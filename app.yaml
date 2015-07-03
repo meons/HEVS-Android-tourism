@@ -10,6 +10,9 @@ handlers:
   script: clear_cache.php
   login: admin
 
+- url: /app_dev.php/.*
+  script: web/app_dev.php
+
 - url: /.*
   script: web/app.php
 

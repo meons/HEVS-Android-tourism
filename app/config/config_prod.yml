@@ -1,31 +1,27 @@
-# Copyright 2015 Google Inc. All Rights Reserved.
 imports:
     - { resource: config.yml }
 
 #framework:
 #    validation:
-#        cache: apc
+#        cache: validator.mapping.cache.apc
+#    serializer:
+#        cache: serializer.mapping.cache.apc
 
-doctrine:
-    dbal:
-        driver: pdo_mysql
-        host: null
-        port: null
-        dbname: tourismdb
-        user: root
-        password: null
-        unix_socket: /cloudsql/hevs-android-tourism:tourism-db
-        charset:  UTF8
-    orm:
-        auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
-        metadata_cache_driver: apc
-        result_cache_driver: apc
-        query_cache_driver: apc
+#doctrine:
+#    orm:
+#        metadata_cache_driver: apc
+#        result_cache_driver: apc
+#        query_cache_driver: apc
 
-# Force monolog to use syslog
 monolog:
     handlers:
-        syslog:
-            type: syslog
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
             level: debug
+        console:
+            type:  console

@@ -45,9 +45,16 @@ class Answer
     /**
      * @var Question
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Question", inversedBy="answer")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Question", inversedBy="previousAnswer")
      */
     private $nextQuestion;
+
+    /**
+     * @var Question
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="answers")
+     */
+    private $question;
 
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Result", mappedBy="answer")
@@ -177,5 +184,28 @@ class Answer
     public function getResult()
     {
         return $this->result;
+    }
+
+    /**
+     * Set question
+     *
+     * @param \AppBundle\Entity\Question $question
+     * @return Answer
+     */
+    public function setQuestion(\AppBundle\Entity\Question $question = null)
+    {
+        $this->question = $question;
+
+        return $this;
+    }
+
+    /**
+     * Get question
+     *
+     * @return \AppBundle\Entity\Question 
+     */
+    public function getQuestion()
+    {
+        return $this->question;
     }
 }

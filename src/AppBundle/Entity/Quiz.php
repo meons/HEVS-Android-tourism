@@ -31,7 +31,7 @@ class Quiz
     /**
      * Question[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Quiz", mappedBy="quiz")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question", mappedBy="quiz")
      */
     private $questions;
 

@@ -38,7 +38,7 @@ class Answer
     /**
      * @var int
      *
-     * @ORM\Column(name="score", type="int")
+     * @ORM\Column(name="score", type="integer")
      */
     private $score;
 

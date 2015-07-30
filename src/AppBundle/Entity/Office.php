@@ -29,19 +29,19 @@ class Office
     private $name;
 
     /**
+     * @var Quiz[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Quiz", mappedBy="office")
+     */
+    private $quizzes;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->quizzes = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-    /**
-     * @var Quiz[]
-     *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Quiz", mappedBy="quiz")
-     */
-    private $quizzes;
 
     /**
      * Get id

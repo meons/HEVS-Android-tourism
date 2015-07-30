@@ -27,6 +27,11 @@ class Result
     private $answer;
 
     /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Tourist", inversedBy="result")
+     */
+    private $tourist;
+
+    /**
      * Get id
      *
      * @return integer 

@@ -28,6 +28,10 @@ class Tourist
      */
     private $reference;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Result", mappedBy="tourist")
+     */
+    private $result;
 
     /**
      * Get id

@@ -22,6 +22,13 @@ class Quiz
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
      * @var Office
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Office", inversedBy="quizzes")
@@ -188,5 +195,28 @@ class Quiz
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Quiz
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

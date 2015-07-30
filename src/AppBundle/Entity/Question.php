@@ -28,6 +28,26 @@ class Question
      */
     private $text;
 
+    /**
+     * @var Quiz
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Quiz", inversedBy="questions")
+     */
+    private $quiz;
+
+    /**
+     * @var Answer
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Answer", mappedBy="nextQuestion")
+     */
+    private $answer;
+
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="questions")
+     */
+    private $category;
 
     /**
      * Get id

@@ -21,6 +21,17 @@ class Quiz
      */
     private $id;
 
+    /**
+     * @var Office
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Office", inversedBy="quizzes")
+     */
+    private $office;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Quiz", mappedBy="quiz")
+     */
+    private $questions;
 
     /**
      * Get id
@@ -30,5 +41,28 @@ class Quiz
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set office
+     *
+     * @param \AppBundle\Entity\Office $office
+     * @return Quiz
+     */
+    public function setOffice(\AppBundle\Entity\Office $office = null)
+    {
+        $this->office = $office;
+
+        return $this;
+    }
+
+    /**
+     * Get office
+     *
+     * @return \AppBundle\Entity\Office 
+     */
+    public function getOffice()
+    {
+        return $this->office;
     }
 }

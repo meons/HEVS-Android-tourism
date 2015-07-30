@@ -28,6 +28,12 @@ class Category
      */
     private $name;
 
+    /**
+     * @var Question[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question", mappedBy="category")
+     */
+    private $questions;
 
     /**
      * Get id

@@ -38,10 +38,16 @@ class Answer
     /**
      * @var int
      *
-     * @ORM\Column(name="scrore", type="int")
+     * @ORM\Column(name="score", type="int")
      */
-    private $scrore;
+    private $score;
 
+    /**
+     * @var Question
+     *
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Question", inversedBy="answer")
+     */
+    private $nextQuestion;
 
     /**
      * Get id
@@ -100,25 +106,25 @@ class Answer
     }
 
     /**
-     * Set scrore
+     * Set score
      *
-     * @param \int $scrore
+     * @param int $score
      * @return Answer
      */
-    public function setScrore(\int $scrore)
+    public function setScore($score)
     {
-        $this->scrore = $scrore;
+        $this->score = $score;
 
         return $this;
     }
 
     /**
-     * Get scrore
+     * Get score
      *
-     * @return \int 
+     * @return int
      */
-    public function getScrore()
+    public function getScore()
     {
-        return $this->scrore;
+        return $this->score;
     }
 }

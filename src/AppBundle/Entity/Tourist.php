@@ -29,6 +29,11 @@ class Tourist
     private $reference;
 
     /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Result", mappedBy="tourist")
+     */
+    private $result;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -74,38 +79,5 @@ class Tourist
     public function getReference()
     {
         return $this->reference;
-    }
-
-    /**
-     * Add quizzes
-     *
-     * @param \AppBundle\Entity\Quiz $quizzes
-     * @return Tourist
-     */
-    public function addQuiz(\AppBundle\Entity\Quiz $quizzes)
-    {
-        $this->quizzes[] = $quizzes;
-
-        return $this;
-    }
-
-    /**
-     * Remove quizzes
-     *
-     * @param \AppBundle\Entity\Quiz $quizzes
-     */
-    public function removeQuiz(\AppBundle\Entity\Quiz $quizzes)
-    {
-        $this->quizzes->removeElement($quizzes);
-    }
-
-    /**
-     * Get quizzes
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getQuizzes()
-    {
-        return $this->quizzes;
     }
 }

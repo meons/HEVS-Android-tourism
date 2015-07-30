@@ -36,6 +36,13 @@ class Category
     private $questions;
 
     /**
+     * @var Quiz
+     * 
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Quiz", inversedBy="categories")
+     */
+    private $quiz;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -107,5 +114,28 @@ class Category
     public function getQuestions()
     {
         return $this->questions;
+    }
+
+    /**
+     * Set quiz
+     *
+     * @param \AppBundle\Entity\Quiz $quiz
+     * @return Category
+     */
+    public function setQuiz(\AppBundle\Entity\Quiz $quiz = null)
+    {
+        $this->quiz = $quiz;
+
+        return $this;
+    }
+
+    /**
+     * Get quiz
+     *
+     * @return \AppBundle\Entity\Quiz 
+     */
+    public function getQuiz()
+    {
+        return $this->quiz;
     }
 }

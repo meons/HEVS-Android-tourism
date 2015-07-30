@@ -44,6 +44,13 @@ class Quiz
     private $tourists;
 
     /**
+     * @var Category[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Category", mappedBy="quiz")
+     */
+    private $categories;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -148,5 +155,38 @@ class Quiz
     public function getTourists()
     {
         return $this->tourists;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \AppBundle\Entity\Category $categories
+     * @return Quiz
+     */
+    public function addCategory(\AppBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \AppBundle\Entity\Category $categories
+     */
+    public function removeCategory(\AppBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

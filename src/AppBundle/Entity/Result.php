@@ -35,4 +35,27 @@ class Result
     {
         return $this->id;
     }
+
+    /**
+     * Set answer
+     *
+     * @param \AppBundle\Entity\Answer $answer
+     * @return Result
+     */
+    public function setAnswer(\AppBundle\Entity\Answer $answer = null)
+    {
+        $this->answer = $answer;
+
+        return $this;
+    }
+
+    /**
+     * Get answer
+     *
+     * @return \AppBundle\Entity\Answer 
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
 }

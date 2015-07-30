@@ -132,4 +132,50 @@ class Answer
     {
         return $this->score;
     }
+
+    /**
+     * Set nextQuestion
+     *
+     * @param \AppBundle\Entity\Question $nextQuestion
+     * @return Answer
+     */
+    public function setNextQuestion(\AppBundle\Entity\Question $nextQuestion = null)
+    {
+        $this->nextQuestion = $nextQuestion;
+
+        return $this;
+    }
+
+    /**
+     * Get nextQuestion
+     *
+     * @return \AppBundle\Entity\Question 
+     */
+    public function getNextQuestion()
+    {
+        return $this->nextQuestion;
+    }
+
+    /**
+     * Set result
+     *
+     * @param \AppBundle\Entity\Result $result
+     * @return Answer
+     */
+    public function setResult(\AppBundle\Entity\Result $result = null)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    /**
+     * Get result
+     *
+     * @return \AppBundle\Entity\Result 
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
 }

@@ -80,4 +80,60 @@ class Tourist
     {
         return $this->reference;
     }
+
+    /**
+     * Set result
+     *
+     * @param \AppBundle\Entity\Result $result
+     * @return Tourist
+     */
+    public function setResult(\AppBundle\Entity\Result $result = null)
+    {
+        $this->result = $result;
+
+        return $this;
+    }
+
+    /**
+     * Get result
+     *
+     * @return \AppBundle\Entity\Result 
+     */
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    /**
+     * Add quizzes
+     *
+     * @param \AppBundle\Entity\Quiz $quizzes
+     * @return Tourist
+     */
+    public function addQuiz(\AppBundle\Entity\Quiz $quizzes)
+    {
+        $this->quizzes[] = $quizzes;
+
+        return $this;
+    }
+
+    /**
+     * Remove quizzes
+     *
+     * @param \AppBundle\Entity\Quiz $quizzes
+     */
+    public function removeQuiz(\AppBundle\Entity\Quiz $quizzes)
+    {
+        $this->quizzes->removeElement($quizzes);
+    }
+
+    /**
+     * Get quizzes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQuizzes()
+    {
+        return $this->quizzes;
+    }
 }

@@ -21,6 +21,10 @@ class Result
      */
     private $id;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Answer", inversedBy="result")
+     **/
+    private $answer;
 
     /**
      * Get id

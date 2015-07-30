@@ -50,6 +50,11 @@ class Answer
     private $nextQuestion;
 
     /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Result", mappedBy="answer")
+     **/
+    private $result;
+
+    /**
      * Get id
      *
      * @return integer 

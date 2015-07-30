@@ -81,4 +81,73 @@ class Question
     {
         return $this->text;
     }
+
+    /**
+     * Set quiz
+     *
+     * @param \AppBundle\Entity\Quiz $quiz
+     * @return Question
+     */
+    public function setQuiz(\AppBundle\Entity\Quiz $quiz = null)
+    {
+        $this->quiz = $quiz;
+
+        return $this;
+    }
+
+    /**
+     * Get quiz
+     *
+     * @return \AppBundle\Entity\Quiz 
+     */
+    public function getQuiz()
+    {
+        return $this->quiz;
+    }
+
+    /**
+     * Set answer
+     *
+     * @param \AppBundle\Entity\Answer $answer
+     * @return Question
+     */
+    public function setAnswer(\AppBundle\Entity\Answer $answer = null)
+    {
+        $this->answer = $answer;
+
+        return $this;
+    }
+
+    /**
+     * Get answer
+     *
+     * @return \AppBundle\Entity\Answer 
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\Category $category
+     * @return Question
+     */
+    public function setCategory(\AppBundle\Entity\Category $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\Category 
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
 }

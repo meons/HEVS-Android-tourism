@@ -34,6 +34,14 @@ class Quiz
     private $questions;
 
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return integer 
@@ -64,5 +72,38 @@ class Quiz
     public function getOffice()
     {
         return $this->office;
+    }
+
+    /**
+     * Add questions
+     *
+     * @param \AppBundle\Entity\Quiz $questions
+     * @return Quiz
+     */
+    public function addQuestion(\AppBundle\Entity\Quiz $questions)
+    {
+        $this->questions[] = $questions;
+
+        return $this;
+    }
+
+    /**
+     * Remove questions
+     *
+     * @param \AppBundle\Entity\Quiz $questions
+     */
+    public function removeQuestion(\AppBundle\Entity\Quiz $questions)
+    {
+        $this->questions->removeElement($questions);
+    }
+
+    /**
+     * Get questions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
     }
 }

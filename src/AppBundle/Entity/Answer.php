@@ -36,7 +36,7 @@ class Answer
     private $description;
 
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="score", type="integer")
      */

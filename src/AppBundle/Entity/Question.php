@@ -40,7 +40,14 @@ class Question
      *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Answer", mappedBy="nextQuestion")
      */
-    private $answer;
+    private $previousAnswer;
+
+    /**
+     * @var Answer[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Answer", mappedBy="question")
+     */
+    private $answers;
 
     /**
      * @var Category
@@ -48,6 +55,14 @@ class Question
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="questions")
      */
     private $category;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -106,26 +121,26 @@ class Question
     }
 
     /**
-     * Set answer
+     * Set previousAnswer
      *
-     * @param \AppBundle\Entity\Answer $answer
+     * @param \AppBundle\Entity\Answer $previousAnswer
      * @return Question
      */
-    public function setAnswer(\AppBundle\Entity\Answer $answer = null)
+    public function setPreviousAnswer(\AppBundle\Entity\Answer $previousAnswer = null)
     {
-        $this->answer = $answer;
+        $this->previousAnswer = $previousAnswer;
 
         return $this;
     }
 
     /**
-     * Get answer
+     * Get previousAnswer
      *
-     * @return \AppBundle\Entity\Answer 
+     * @return \AppBundle\Entity\Answer
      */
-    public function getAnswer()
+    public function getPreviousAnswer()
     {
-        return $this->answer;
+        return $this->previousAnswer;
     }
 
     /**
@@ -149,5 +164,38 @@ class Question
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Add answers
+     *
+     * @param \AppBundle\Entity\Answer $answers
+     * @return Question
+     */
+    public function addAnswer(\AppBundle\Entity\Answer $answers)
+    {
+        $this->answers[] = $answers;
+
+        return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param \AppBundle\Entity\Answer $answers
+     */
+    public function removeAnswer(\AppBundle\Entity\Answer $answers)
+    {
+        $this->answers->removeElement($answers);
+    }
+
+    /**
+     * Get answers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
     }
 }

@@ -36,6 +36,13 @@ class Office
     private $quizzes;
 
     /**
+     * @var User[]
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="office")
+     */
+    private $users;
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -107,5 +114,38 @@ class Office
     public function getQuizzes()
     {
         return $this->quizzes;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \AppBundle\Entity\User $users
+     * @return Office
+     */
+    public function addUser(\AppBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \AppBundle\Entity\User $users
+     */
+    public function removeUser(\AppBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

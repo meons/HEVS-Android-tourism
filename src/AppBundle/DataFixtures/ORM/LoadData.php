@@ -12,9 +12,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class LoadData implements FixtureInterface {
 
-    const NUMBER_OF_OFFICES = 3;
-    const NUMBER_OF_QUIZZES = 2;
-
     /**
      * Load data fixtures with the passed EntityManager
      *
@@ -22,50 +19,74 @@ class LoadData implements FixtureInterface {
      */
     public function load(ObjectManager $manager)
     {
-        for( $i = 0; $i < self::NUMBER_OF_OFFICES; $i++ )
+        for( $i = 0; $i < mt_rand(1,5); $i++ )
         {
             $office = new Office();
             $office->setName('Office '.$i);
             $manager->persist($office);
 
-            for( $j = 0; $j < self::NUMBER_OF_QUIZZES; $j++)
+            for( $j = 0; $j < mt_rand(1,3); $j++ )
             {
                 $quiz = new Quiz();
                 $quiz->setOffice($office);
+                $quiz->setName('Quiz '.$j.' belonging to '.$office->getName());
                 $manager->persist($quiz);
 
+                $questions = array();
                 $answers = array();
 
-                for( $k = 0; $k < 3; $k++)
+                for( $k = 0; $k < mt_rand(1,5); $k++ )
                 {
                     $category = new Category();
-                    $category->setName('Category '.$k.' from quiz ID '.$quiz->getId());
+                    $category->setName('Category '.$k.' belonging to '.$quiz->getName());
                     $category->setQuiz($quiz);
+                    $manager->persist($category);
 
-                    for( $l = 0; $l < 10; $l++)
+
+                    for( $l = 0; $l < mt_rand(1,5); $l++ )
                     {
                         $answer = new Answer();
-                        $answer->setText('Answer');
-                        $answer->setDescription('Description');
+                        $answer->setText('Answer '.$l.' belonging to '.$category->getName());
+                        $answer->setDescription('Description from answer '.$l);
+                        $answer->setScore($l);
+
                         $answers[] = $answer;
 
+                        $manager->persist($answer);
+
                         $question = new Question();
-                        $question->setText('Question '.$l);
+                        $question->setText('Question '.$l.' belonging to '.$category->getName());
                         $question->setQuiz($quiz);
                         $question->setCategory($category);
                         $question->addAnswer($answer);
+
+
+                        $manager->persist($question);
+                        $questions[] = $question;
                     }
                 }
 
-                foreach( $answers  as $key => $answer)
+                foreach( $answers  as $key => $answer )
                 {
-                    if($key == count($answers - 1))
+                    $answer->setQuestion($questions[$key]);
+
+                    if($key == count($questions) - 1)
                     {
                         break;
                     }
 
-                    $answer->setNextQuestion($answers[$key + 1]);
+                    $answer->setNextQuestion($questions[$key + 1]);
                 }
+
+                /*
+                foreach( $questions as $key => $question )
+                {
+                    if($key != 0)
+                    {
+                        $question->setPreviousAnswer($answers[$key - 1]);
+                    }
+                }
+                */
             }
         }
 

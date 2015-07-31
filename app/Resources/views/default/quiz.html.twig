@@ -4,7 +4,6 @@
 
 {% block stylesheets %}
     <style>
-
         .node circle {
             fill: #fff;
             stroke: steelblue;
@@ -24,6 +23,10 @@
     </style>
 {% endblock %}
 
+{% block body %}
+    <div class="cluster"></div>
+{% endblock %}
+
 {% block javascripts %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script>
@@ -36,7 +39,7 @@
     var diagonal = d3.svg.diagonal()
         .projection(function(d) { return [d.y, d.x]; });
 
-    var svg = d3.select("body").append("svg")
+    var svg = d3.select("div.cluster").append("svg")
         .attr("width", width)
         .attr("height", height)
         .append("g")

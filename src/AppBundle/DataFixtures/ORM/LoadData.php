@@ -32,64 +32,56 @@ class LoadData implements FixtureInterface {
                 $quiz->setName('Quiz '.$j.' belonging to '.$office->getName());
                 $manager->persist($quiz);
 
-                $questions = array();
-                $answers = array();
-
-                for( $k = 0; $k < mt_rand(1,5); $k++ )
-                {
+                $categories = array();
+                for ($c = 0; $c < 5; $c++) {
                     $category = new Category();
-                    $category->setName('Category '.$k.' belonging to '.$quiz->getName());
+                    $category->setName('Category');
                     $category->setQuiz($quiz);
+                    $categories[] = $category;
                     $manager->persist($category);
-
-
-                    for( $l = 0; $l < mt_rand(1,5); $l++ )
-                    {
-                        $answer = new Answer();
-                        $answer->setText('Answer '.$l.' belonging to '.$category->getName());
-                        $answer->setDescription('Description from answer '.$l);
-                        $answer->setScore($l);
-
-                        $answers[] = $answer;
-
-                        $manager->persist($answer);
-
-                        $question = new Question();
-                        $question->setText('Question '.$l.' belonging to '.$category->getName());
-                        $question->setQuiz($quiz);
-                        $question->setCategory($category);
-                        $question->addAnswer($answer);
-
-
-                        $manager->persist($question);
-                        $questions[] = $question;
-                    }
                 }
 
-                foreach( $answers  as $key => $answer )
-                {
-                    $answer->setQuestion($questions[$key]);
-
-                    if($key == count($questions) - 1)
-                    {
-                        break;
-                    }
-
-                    $answer->setNextQuestion($questions[$key + 1]);
-                }
-
-                /*
-                foreach( $questions as $key => $question )
-                {
-                    if($key != 0)
-                    {
-                        $question->setPreviousAnswer($answers[$key - 1]);
-                    }
-                }
-                */
+                $this->createQuestions($manager, $quiz, $categories);
             }
         }
 
         $manager->flush();
+    }
+
+    /**
+     * @param ObjectManager $manager
+     * @param $quiz Quiz
+     * @param $categories Category[]
+     * @param int $depth
+     * @param Answer|null $previousAnswer
+     */
+    private function createQuestions($manager, $quiz, $categories, $depth = 3, $previousAnswer = null)
+    {
+        if ($depth === 0) {
+            return;
+        }
+
+        $question = new Question();
+        $question->setText('Question ?');
+        $question->setQuiz($quiz);
+        $question->setCategory($categories[rand(0, count($categories) - 1)]);
+        $manager->persist($question);
+
+        if ($previousAnswer !== null) {
+            $previousAnswer->setNextQuestion($question);
+            $manager->persist($previousAnswer);
+        }
+
+        for ($a = 0; $a < mt_rand(2, 3); $a++) {
+            $answer = new Answer();
+            $answer->setText('Answer '.$a);
+            $answer->setDescription('Description');
+            $answer->setScore($a);
+            $answer->setQuestion($question);
+            $manager->persist($answer);
+
+            $newDepth = $depth - rand(1, $depth - 1);
+            $this->createQuestions($manager, $quiz, $categories, $newDepth, $answer);
+        }
     }
 }

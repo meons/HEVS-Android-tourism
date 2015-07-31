@@ -28,13 +28,11 @@ class LoadData implements FixtureInterface {
             $office->setName('Office '.$i);
             $manager->persist($office);
 
-
             for( $j = 0; $j < self::NUMBER_OF_QUIZZES; $j++)
             {
                 $quiz = new Quiz();
                 $quiz->setOffice($office);
                 $manager->persist($quiz);
-
 
                 $answers = array();
 
@@ -49,15 +47,14 @@ class LoadData implements FixtureInterface {
                         $answer = new Answer();
                         $answer->setText('Answer');
                         $answer->setDescription('Description');
-
                         $answers[] = $answer;
-                    }
 
-                    $question = new Question();
-                    $question->setText('Question 1');
-                    $question->setQuiz($quiz);
-                    $question->setCategory($category);
-                    $question->setAnswer($answer);
+                        $question = new Question();
+                        $question->setText('Question '.$l);
+                        $question->setQuiz($quiz);
+                        $question->setCategory($category);
+                        $question->addAnswer($answer);
+                    }
                 }
 
                 foreach( $answers  as $key => $answer)

@@ -1,11 +1,11 @@
-{% extends 'base_light.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block theme 'login-page' %}
 
-{% block body %}
+{% block content %}
     <div class="login-box">
         <div class="login-logo">
-            <a href="#"><b>Android</b>TOURISM</a>
+            <a href="#"><b>Tourism</b>OFFICE</a>
         </div><!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">Connexion à l'administration</p>
@@ -39,4 +39,4 @@
             <a href="{{ path('fos_user_resetting_request') }}">J'ai perdu mon mot de passe</a><br>
         </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
-{% endblock body %}
+{% endblock content %}

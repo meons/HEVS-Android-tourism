@@ -2,10 +2,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Question;
+use AppBundle\Response\GraphQuizResponse;
+use AppBundle\Response\TreeQuizResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
@@ -18,51 +18,38 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/quiz/{id}", name="quiz")
+     * @Route("/quiz-graph/{id}", name="quiz_graph")
      */
-    public function quizAction($id)
+    public function quizGraphAction($id)
     {
-        return $this->render('default/quiz.html.twig', array('id' => $id));
+        return $this->render('default/quiz_graph.html.twig', array('id' => $id));
     }
 
     /**
-     * @Route("/quiz/{id}/data", name="quiz_data")
+     * @Route("/quiz-graph/{id}/data", name="quiz_graph_data")
      */
-    public function quizDataAction($id)
+    public function quizGraphDataAction($id)
     {
         $quiz = $this->getDoctrine()->getRepository('AppBundle:Quiz')->find($id);
-        $tree = array();
-        $this->tree($tree, $quiz->getQuestions()[0]);
-        return new JsonResponse($tree[0]);
+
+        return new GraphQuizResponse($quiz);
     }
 
     /**
-     * @param $tree array
-     * @param $q Question
+     * @Route("/quiz-tree/{id}", name="quiz_tree")
      */
-    protected function tree(&$tree, $q)
+    public function quizTreeAction($id)
     {
-        if ($q === null) {
-            return;
-        }
+        return $this->render('default/quiz_tree.html.twig', array('id' => $id));
+    }
 
-        // Add question
-        $nodeQ = array(
-            'name' => sprintf('Question %s ?', $q->getId()),
-            'children' => array(),
-        );
-        $tree[] = &$nodeQ;
+    /**
+     * @Route("/quiz-tree/{id}/data", name="quiz_tree_data")
+     */
+    public function quizTreeDataAction($id)
+    {
+        $quiz = $this->getDoctrine()->getRepository('AppBundle:Quiz')->find($id);
 
-        // Add answers
-        $answers = $q->getAnswers();
-        foreach ($answers as $a) {
-            $nodeA = array(
-                'name' => $a->getText(),
-                'children' => array(),
-            );
-            $nodeQ['children'][] = &$nodeA;
-            $this->tree($nodeA['children'], $a->getNextQuestion());
-            unset($nodeA);
-        }
+        return new TreeQuizResponse($quiz);
     }
 }

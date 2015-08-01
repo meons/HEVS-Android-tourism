@@ -1,0 +1,42 @@
+{% extends 'base_light.html.twig' %}
+
+{% block theme 'login-page' %}
+
+{% block body %}
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Android</b>TOURISM</a>
+        </div><!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Connexion à l'administration</p>
+            {% if error %}
+                <div class="external-event bg-red ">{{ error|trans({}, 'FOSUserBundle') }}</div>
+            {% endif %}
+            <form action="{{ path("fos_user_security_check") }}" method="post" novalidate>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <div class="form-group has-feedback">
+                    <input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}" required="required" placeholder="Email" />
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" id="password" name="_password" class="form-control" required="required" placeholder="Mot de passe" />
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+                            </label>
+                        </div>
+                    </div><!-- /.col -->
+                    <div class="col-xs-4">
+                        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-primary btn-block btn-flat" />
+                    </div><!-- /.col -->
+                </div>
+            </form>
+
+            <a href="{{ path('fos_user_resetting_request') }}">J'ai perdu mon mot de passe</a><br>
+        </div><!-- /.login-box-body -->
+    </div><!-- /.login-box -->
+{% endblock body %}

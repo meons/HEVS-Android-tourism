@@ -13,9 +13,12 @@
         </div>
         <div class="box-body">
             <div class="chart">
-                -
                 {% for result in results %}
                     <p> - {{ result.id }}</p>
+                {% endfor %}
+                <hr/>
+                {% for score in scores %}
+                    <p>- {{ score.category.name }} : {{ score.total }}</p>
                 {% endfor %}
             </div>
         </div><!-- /.box-body -->

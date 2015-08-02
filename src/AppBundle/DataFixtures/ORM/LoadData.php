@@ -8,9 +8,10 @@ use AppBundle\Entity\Office;
 use AppBundle\Entity\Question;
 use AppBundle\Entity\Quiz;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LoadData implements FixtureInterface {
+class LoadData implements FixtureInterface, OrderedFixtureInterface {
 
     /**
      * Load data fixtures with the passed EntityManager
@@ -83,5 +84,16 @@ class LoadData implements FixtureInterface {
             $newDepth = $depth - rand(1, $depth - 1);
             $this->createQuestions($manager, $quiz, $categories, $newDepth, $answer);
         }
+    }
+
+
+    /**
+     * Get the order of this fixture
+     *
+     * @return integer
+     */
+    public function getOrder()
+    {
+        return 1;
     }
 }

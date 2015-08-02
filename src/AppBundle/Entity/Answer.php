@@ -57,9 +57,18 @@ class Answer
     private $question;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Result", mappedBy="answer")
-     **/
-    private $result;
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Result", mappedBy="answer")
+     */
+    private $results;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->results = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -120,7 +129,7 @@ class Answer
     /**
      * Set score
      *
-     * @param int $score
+     * @param integer $score
      * @return Answer
      */
     public function setScore($score)
@@ -133,7 +142,7 @@ class Answer
     /**
      * Get score
      *
-     * @return int
+     * @return integer 
      */
     public function getScore()
     {
@@ -164,29 +173,6 @@ class Answer
     }
 
     /**
-     * Set result
-     *
-     * @param \AppBundle\Entity\Result $result
-     * @return Answer
-     */
-    public function setResult(\AppBundle\Entity\Result $result = null)
-    {
-        $this->result = $result;
-
-        return $this;
-    }
-
-    /**
-     * Get result
-     *
-     * @return \AppBundle\Entity\Result 
-     */
-    public function getResult()
-    {
-        return $this->result;
-    }
-
-    /**
      * Set question
      *
      * @param \AppBundle\Entity\Question $question
@@ -207,5 +193,38 @@ class Answer
     public function getQuestion()
     {
         return $this->question;
+    }
+
+    /**
+     * Add results
+     *
+     * @param \AppBundle\Entity\Result $results
+     * @return Answer
+     */
+    public function addResult(\AppBundle\Entity\Result $results)
+    {
+        $this->results[] = $results;
+
+        return $this;
+    }
+
+    /**
+     * Remove results
+     *
+     * @param \AppBundle\Entity\Result $results
+     */
+    public function removeResult(\AppBundle\Entity\Result $results)
+    {
+        $this->results->removeElement($results);
+    }
+
+    /**
+     * Get results
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getResults()
+    {
+        return $this->results;
     }
 }

@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Quiz{% endblock %}
+
+{% block body %}
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Tourists list</h3>
+        </div><!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Reference</th>
+                        <th></th>
+                    </tr>
+                    {% for tourist in tourists %}
+                        <tr>
+                            <td>1.</td>
+                            <td>
+                                <a href="{{ path('result_user', { id: tourist.id }) }}">
+                                    {{ tourist.reference }}
+                                </a>
+                            </td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+        </div><!-- /.box-body -->
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+
+    <script>
+        $(function () {
+
+            $('#container').highcharts({
+
+                chart: {
+                    polar: true,
+                    type: 'line'
+                },
+
+                title: {
+                    text: 'Budget vs spending',
+                    x: -80
+                },
+
+                pane: {
+                    size: '80%'
+                },
+
+                xAxis: {
+                    categories: ['Sales', 'Marketing', 'Development', 'Customer Support',
+                        'Information Technology', 'Administration'],
+                    tickmarkPlacement: 'on',
+                    lineWidth: 0
+                },
+
+                yAxis: {
+                    gridLineInterpolation: 'polygon',
+                    lineWidth: 0,
+                    min: 0
+                },
+
+                tooltip: {
+                    shared: true,
+                    pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+                },
+
+                legend: {
+                    align: 'right',
+                    verticalAlign: 'top',
+                    y: 70,
+                    layout: 'vertical'
+                },
+
+                series: [{
+                    name: 'Allocated Budget',
+                    data: [43000, 19000, 60000, 35000, 17000, 10000],
+                    pointPlacement: 'on'
+                }, {
+                    name: 'Actual Spending',
+                    data: [50000, 39000, 42000, 31000, 26000, 14000],
+                    pointPlacement: 'on'
+                }]
+
+            });
+        });
+    </script>
+{% endblock %}

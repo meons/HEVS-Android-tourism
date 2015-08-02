@@ -13,13 +13,10 @@
         </div>
         <div class="box-body">
             <div class="chart">
-                {% for result in results %}
-                    <p> - {{ result.id }}</p>
-                {% endfor %}
-                <hr/>
                 {% for score in scores %}
                     <p>- {{ score.category.name }} : {{ score.total }}</p>
                 {% endfor %}
+                <div id="container" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
             </div>
         </div><!-- /.box-body -->
     </div>
@@ -30,7 +27,6 @@
 
     <script>
         $(function () {
-
             $('#container').highcharts({
 
                 chart: {
@@ -48,8 +44,11 @@
                 },
 
                 xAxis: {
-                    categories: ['Sales', 'Marketing', 'Development', 'Customer Support',
-                        'Information Technology', 'Administration'],
+                    categories: [
+                        {% for key, score in scores %}
+                            "{{ score.category.name|raw }}",
+                        {% endfor %}
+                    ],
                     tickmarkPlacement: 'on',
                     lineWidth: 0
                 },
@@ -73,15 +72,14 @@
                 },
 
                 series: [{
-                    name: 'Allocated Budget',
-                    data: [43000, 19000, 60000, 35000, 17000, 10000],
-                    pointPlacement: 'on'
-                }, {
-                    name: 'Actual Spending',
-                    data: [50000, 39000, 42000, 31000, 26000, 14000],
+                    name: 'Tourist result',
+                    data: [
+                        {% for score in scores %}
+                            {{ score.total|raw }},
+                        {% endfor %}
+                    ],
                     pointPlacement: 'on'
                 }]
-
             });
         });
     </script>

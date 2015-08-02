@@ -22,12 +22,12 @@ class Result
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Answer", inversedBy="result")
-     **/
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Answer", inversedBy="results")
+     */
     private $answer;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Tourist", inversedBy="result")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Tourist", inversedBy="results")
      */
     private $tourist;
 
@@ -62,5 +62,28 @@ class Result
     public function getAnswer()
     {
         return $this->answer;
+    }
+
+    /**
+     * Set tourist
+     *
+     * @param \AppBundle\Entity\Tourist $tourist
+     * @return Result
+     */
+    public function setTourist(\AppBundle\Entity\Tourist $tourist = null)
+    {
+        $this->tourist = $tourist;
+
+        return $this;
+    }
+
+    /**
+     * Get tourist
+     *
+     * @return \AppBundle\Entity\Tourist 
+     */
+    public function getTourist()
+    {
+        return $this->tourist;
     }
 }

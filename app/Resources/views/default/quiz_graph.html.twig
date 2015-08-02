@@ -3,7 +3,7 @@
 {% block title %}Quiz{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
+
     <style>
         .node circle {
             fill: #fff;
@@ -39,10 +39,10 @@
             </div>
         </div><!-- /.box-body -->
     </div>
+
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <script>
     var width = 900,
@@ -60,7 +60,7 @@
         .append("g")
         .attr("transform", "translate(40,0)");
 
-    d3.json("{{ path('quiz_graph_data', {id: id}) }}", function(error, root) {
+    d3.json("{{ path('quiz_data', {id: id}) }}", function(error, root) {
         if (error) throw error;
 
         var nodes = cluster.nodes(root),

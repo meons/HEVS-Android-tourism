@@ -29,9 +29,9 @@ class Tourist
     private $reference;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Result", mappedBy="tourist")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Result", mappedBy="tourist")
      */
-    private $result;
+    private $results;
 
     /**
      * Constructor
@@ -82,26 +82,36 @@ class Tourist
     }
 
     /**
-     * Set result
+     * Add results
      *
-     * @param \AppBundle\Entity\Result $result
+     * @param \AppBundle\Entity\Result $results
      * @return Tourist
      */
-    public function setResult(\AppBundle\Entity\Result $result = null)
+    public function addResult(\AppBundle\Entity\Result $results)
     {
-        $this->result = $result;
+        $this->results[] = $results;
 
         return $this;
     }
 
     /**
-     * Get result
+     * Remove results
      *
-     * @return \AppBundle\Entity\Result 
+     * @param \AppBundle\Entity\Result $results
      */
-    public function getResult()
+    public function removeResult(\AppBundle\Entity\Result $results)
     {
-        return $this->result;
+        $this->results->removeElement($results);
+    }
+
+    /**
+     * Get results
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getResults()
+    {
+        return $this->results;
     }
 
     /**

@@ -26,6 +26,23 @@ class ResultController extends Controller
         $tourist = $this->getDoctrine()->getRepository('AppBundle:Tourist')->find($id);
         $results = $tourist->getResults();
 
-        return $this->render('result/tourist_result.html.twig', array('results' => $results));
+        /** @var Result $result */
+        $scores = array();
+        foreach ($results as $result) {
+            $category = $result->getAnswer()->getQuestion()->getCategory();
+            $score = $result->getAnswer()->getScore();
+            if (!isset($scores[$category->getId()])) {
+                $scores[$category->getId()] = array(
+                    'category' => $category,
+                    'total' => 0,
+                );
+            }
+            $scores[$category->getId()]['total'] += $score;
+        }
+
+        return $this->render('result/tourist_result.html.twig', array(
+            'results' => $results,
+            'scores' => $scores,
+        ));
     }
 }

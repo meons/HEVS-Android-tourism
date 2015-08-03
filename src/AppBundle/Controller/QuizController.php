@@ -27,8 +27,8 @@ class QuizController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
-        $quizzes = $em->getRepository('AppBundle:Quiz')->findAll();
+        $user = $this->getUser();
+        $quizzes = $em->getRepository('AppBundle:Quiz')->findAllByOffice($user->getOffice());
 
         return $this->render('quiz/index.html.twig', array(
             'quizzes' => $quizzes,

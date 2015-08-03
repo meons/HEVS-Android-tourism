@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuizRepository extends EntityRepository
 {
+    /**
+     * @param $office Office
+     * @return Quiz[]
+     */
+    public function findAllByOffice($office)
+    {
+        return $this->findBy(array('office' => $office));
+    }
+
 }

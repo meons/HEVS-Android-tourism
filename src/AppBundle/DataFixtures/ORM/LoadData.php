@@ -36,7 +36,7 @@ class LoadData implements FixtureInterface, OrderedFixtureInterface {
                 $categories = array();
                 for ($c = 0; $c < 5; $c++) {
                     $category = new Category();
-                    $category->setName('Category');
+                    $category->setName('Category '.$c);
                     $category->setQuiz($quiz);
                     $categories[] = $category;
                     $manager->persist($category);
@@ -77,7 +77,7 @@ class LoadData implements FixtureInterface, OrderedFixtureInterface {
             $answer = new Answer();
             $answer->setText('Answer '.$a);
             $answer->setDescription('Description');
-            $answer->setScore($a);
+            $answer->setScore(mt_rand(-5, 5));
             $answer->setQuestion($question);
             $manager->persist($answer);
 

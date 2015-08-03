@@ -29,8 +29,9 @@ class TreeQuizResponse extends JsonResponse
         }
 
         // Add question
+        $info = sprintf('<span class="label label-primary">%s</span>', $q->getCategory()->getName());
         $nodeQ = array(
-            'text' => sprintf('Question %s ?', $q->getId()),
+            'text' => sprintf('%s Question %s ?', $info, $q->getId()),
             'children' => array(),
             'state' => array(
                 'opened' => true,
@@ -43,14 +44,15 @@ class TreeQuizResponse extends JsonResponse
         // Add answers
         $answers = $q->getAnswers();
         foreach ($answers as $a) {
+            $info = sprintf('<span class="label label-default">%s</span>', $a->getScore() > 0 ? '+'.$a->getScore() : $a->getScore());
             $nodeA = array(
-                'text' => $a->getText(),
+                'text' => sprintf('%s %s', $info, $a->getText()),
                 'children' => array(),
                 'state' => array(
                     'opened' => true,
                 ),
                 'id' => 'a-'.$a->getId(),
-                'icon' => 'glyphicon glyphicon-comment',
+                'icon' => 'glyphicon glyphicon-arrow-right',
             );
             $nodeQ['children'][] = &$nodeA;
             $this->tree($nodeA['children'], $a->getNextQuestion());

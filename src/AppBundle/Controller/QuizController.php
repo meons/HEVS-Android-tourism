@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Response\GraphQuizResponse;
+use AppBundle\Response\TreeQuizResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -73,6 +75,42 @@ class QuizController extends Controller
             'quiz' => $quiz,
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+
+    /**
+     * @Route("/{id}/graph", name="quiz_show_graph")
+     */
+    public function showGraphAction($id)
+    {
+        return $this->render('quiz/show_graph.html.twig', array('id' => $id));
+    }
+
+    /**
+     * @Route("/{id}/graph/data", name="quiz_show_graph_data")
+     */
+    public function showGraphDataAction($id)
+    {
+        $quiz = $this->getDoctrine()->getRepository('AppBundle:Quiz')->find($id);
+
+        return new GraphQuizResponse($quiz);
+    }
+
+    /**
+     * @Route("/{id}/tree", name="quiz_show_tree")
+     */
+    public function showTreeAction($id)
+    {
+        return $this->render('quiz/show_tree.html.twig', array('id' => $id));
+    }
+
+    /**
+     * @Route("/{id}/tree/data", name="quiz_show_tree_data")
+     */
+    public function showTreeDataAction($id)
+    {
+        $quiz = $this->getDoctrine()->getRepository('AppBundle:Quiz')->find($id);
+
+        return new TreeQuizResponse($quiz);
     }
 
     /**

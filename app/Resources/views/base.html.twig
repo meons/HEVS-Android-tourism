@@ -29,9 +29,17 @@
                 <!-- Logo -->
                 <a href="#" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
-                    <span class="logo-mini">#OFC</span>
+                    <span class="logo-mini">
+                        <span class="glyphicon glyphicon-home"></span>
+                    </span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg">#Office name</span>
+                    <span class="logo-lg">
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            {{ app.user.office.name }}
+                        {% else %}
+                            Office
+                        {% endif %}
+                    </span>
                 </a>
 
                 <!-- Header Navbar -->
@@ -45,44 +53,58 @@
                         <ul class="nav navbar-nav">
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
-                                <!-- Menu Toggle Button -->
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <!-- The user image in the navbar-->
-                                    <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image" />
-                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                    <span class="hidden-xs">Alexander Pierce</span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <!-- The user image in the menu -->
-                                    <li class="user-header">
-                                        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image" />
-                                        <p>
-                                            Alexander Pierce - Web Developer
-                                            <small>Member since Nov. 2012</small>
-                                        </p>
-                                    </li>
-                                    <!-- Menu Body -->
-                                    <li class="user-body">
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Followers</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Sales</a>
-                                        </div>
-                                        <div class="col-xs-4 text-center">
-                                            <a href="#">Friends</a>
-                                        </div>
-                                    </li>
-                                    <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
-                                            <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                        </div>
-                                        <div class="pull-right">
-                                            <a href="#" class="btn btn-default btn-flat">Sign out</a>
-                                        </div>
-                                    </li>
-                                </ul>
+                                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                    <!-- Menu Toggle Button -->
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <!-- The user image in the navbar-->
+                                        <!-- <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image" /> -->
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                        <span class="hidden-xs">
+                                            {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <!-- The user image in the menu -->
+                                        <li class="user-header">
+                                            <img src="{{ asset('resources/img/goat.png') }}" class="img-circle" alt="User Image" />
+                                            <p>
+                                                {{ app.user.username }}
+                                                <small>{{ app.user.office.name }}</small>
+                                            </p>
+                                        </li>
+                                        <!-- Menu Body -->
+                                        <!-- May could be useful later -->
+                                        <!--
+                                        <li class="user-body">
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Followers</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Sales</a>
+                                            </div>
+                                            <div class="col-xs-4 text-center">
+                                                <a href="#">Friends</a>
+                                            </div>
+                                        </li>
+                                        -->
+                                        <!-- Menu Footer-->
+                                        <li class="user-footer">
+                                            <!--
+                                            <div class="pull-left">
+                                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                            </div>
+                                            -->
+                                            <div class="pull-right">
+                                                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-flat">
+                                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                {% else %}
+                                    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                                {% endif %}
                             </li>
                         </ul>
                     </div>
@@ -98,13 +120,13 @@
                     <ul class="sidebar-menu">
                         <li class="header">MENU</li>
                         <!-- Optionally, you can add icons to the links -->
-                        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-                        <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>
+                        <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Tourist</span></a></li>
+                        <li><a href="#"><i class="fa fa-link"></i> <span>Quiz</span></a></li>
                         <li class="treeview">
-                            <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+                            <a href="#"><i class="fa fa-link"></i> <span>Question</span> <i class="fa fa-angle-left pull-right"></i></a>
                             <ul class="treeview-menu">
-                                <li><a href="#">Link in level 2</a></li>
-                                <li><a href="#">Link in level 2</a></li>
+                                <li><a href="#">Show</a></li>
+                                <li><a href="#">Add</a></li>
                             </ul>
                         </li>
                     </ul><!-- /.sidebar-menu -->
@@ -117,8 +139,8 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Page Header
-                        <small>Optional description</small>
+                        {% block header %}{% endblock %}
+                        <small>{% block header_desc %}{% endblock %}</small>
                     </h1>
                 </section>
 
@@ -135,10 +157,10 @@
             <footer class="main-footer">
                 <!-- To the right -->
                 <div class="pull-right hidden-xs">
-                    Anything you want
+                    <!-- Anything you want -->
                 </div>
                 <!-- Default to the left -->
-                <strong>Copyright &copy; 2015 <a href="#">Company</a>.</strong> All rights reserved.
+                <strong>Copyright &copy; 2015 <a href="http://www.hevs.ch/fr/">HES-SO Valais-Wallis</a>.</strong> All rights reserved.
             </footer>
         </div><!-- ./wrapper -->
     {% endblock content %}

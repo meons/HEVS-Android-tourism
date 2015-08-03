@@ -98,14 +98,6 @@ class QuizController extends Controller
     /**
      * @Route("/{id}/tree", name="quiz_show_tree")
      */
-    public function showTreeAction($id)
-    {
-        return $this->render('quiz/show_tree.html.twig', array('id' => $id));
-    }
-
-    /**
-     * @Route("/{id}/tree/data", name="quiz_show_tree_data")
-     */
     public function showTreeDataAction($id)
     {
         $quiz = $this->getDoctrine()->getRepository('AppBundle:Quiz')->find($id);

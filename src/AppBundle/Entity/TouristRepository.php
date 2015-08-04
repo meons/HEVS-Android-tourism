@@ -12,4 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class TouristRepository extends EntityRepository
 {
+    /**
+     * @param $office Office
+     * @return Tourist[]
+     */
+    public function findAllByOffice($office)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $qb->select('t')
+            ->from('AppBundle:Tourist', 't')
+            ->join('t.quizzes', 'q')
+            ->join('q.office', 'o')
+            ->where('o = :office')
+            ->setParameter('office', $office);
+
+        return $qb->getQuery()->getResult();
+    }
 }

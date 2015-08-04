@@ -27,7 +27,8 @@ class TouristController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $tourists = $em->getRepository('AppBundle:Tourist')->findAll();
+        $user = $this->getUser();
+        $tourists = $em->getRepository('AppBundle:Tourist')->findAllByOffice($user->getOffice());
 
         return $this->render('tourist/tourist_list.html.twig', array('tourists' => $tourists));
     }

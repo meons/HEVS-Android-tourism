@@ -54,16 +54,25 @@
                             <li>
                                 <a href="#">
                                     FR
+                                    {% if app.request.locale == 'fr' %}
+                                        <span class="label label-warning">&nbsp;</span>
+                                    {% endif %}
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
                                     DE
+                                    {% if app.request.locale == 'de' %}
+                                        <span class="label label-warning">&nbsp;</span>
+                                    {% endif %}
                                 </a>
                             </li>
                             <li>
                                 <a href="#">
                                     EN
+                                    {% if app.request.locale == 'en' %}
+                                        <span class="label label-warning">&nbsp;</span>
+                                    {% endif %}
                                 </a>
                             </li>
                             <!-- User Account Menu -->

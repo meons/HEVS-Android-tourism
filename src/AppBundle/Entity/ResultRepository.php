@@ -21,25 +21,4 @@ class ResultRepository extends EntityRepository
     {
         return $this->findBy(array('tourist' => $tourist, 'quiz' => $quiz));
     }
-
-    /**
-     * @param $quiz Quiz
-     * @return array|null
-     */
-    public function getAllByQuizTourist($quiz)
-    {
-
-        $query = $this->getEntityManager()
-            ->createQuery('
-                SELECT t, r FROM AppBundle:Tourist t
-                JOIN AppBundle:Result r
-                WHERE t.id = :id
-            ')->setParameter('id', $id);
-
-        try {
-            return $query->getResult();
-        } catch (\Doctrine\ORM\NoResultException $e) {
-            return null;
-        }
-    }
 }

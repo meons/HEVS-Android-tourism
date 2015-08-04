@@ -12,12 +12,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Quiz;
 use AppBundle\Entity\Result;
 use AppBundle\Entity\Tourist;
-use AppBundle\Response\RadarPlotTouristResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Symfony\Component\Validator\Constraints\All;
 
 /**
  * @Route("/result")

@@ -34,7 +34,7 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface, Ordered
 
         $userManager = $this->container->get('fos_user.user_manager');
 
-        for($i = 0; $i < 3; $i++ ) {
+        for ($i = 0; $i < 3; $i++ ) {
             $user = $userManager->createUser();
             $user->setUsername("user" . $i);
             $user->setPlainPassword("passw0rd");

@@ -9,10 +9,15 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Quiz;
 use AppBundle\Entity\Result;
 use AppBundle\Entity\Tourist;
+use AppBundle\Response\RadarPlotTouristResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Validator\Constraints\All;
 
 /**
  * @Route("/result")
@@ -20,21 +25,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class ResultController extends Controller
 {
     /**
-     * @Route("/tourists", name="list_tourists")
+     * List all quizzes belonging to a tourist
+     *
+     * @Route("/tourist/{id}", name="result_tourist_quizzes")
      */
-    public function listAction()
+    public function indexAction(Tourist $tourist)
     {
-        $tourists = $this->getDoctrine()->getRepository('AppBundle:Tourist')->findAll();
+        $quizzes = $tourist->getQuizzes();
 
-        return $this->render('result/tourist_list.html.twig', array('tourists' => $tourists));
+        return $this->render('result/tourist_quizzes.html.twig', array('tourist' => $tourist, 'quizzes' => $quizzes));
     }
 
     /**
-     * @Route("/tourist/{id}", name="result_user")
+     * @Route("/tourist/{tourist_id}/quiz/{quiz_id}", name="result_tourist_quiz")
+     * @ParamConverter("tourist", options={"mapping": {"tourist_id": "id"}})
+     * @ParamConverter("quiz", options={"mapping": {"quiz_id": "id"}})
      */
-    public function listTouristAction(Tourist $tourist)
+    public function listTouristAction(Tourist $tourist, Quiz $quiz)
     {
-        $results = $tourist->getResults();
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->getRepository('AppBundle:Result')->getAllByTouristQuiz($tourist, $quiz);
 
         /** @var Result $result */
         $scores = array();
@@ -50,9 +60,52 @@ class ResultController extends Controller
             $scores[$category->getId()]['total'] += $score;
         }
 
+        // find max score
+        $maxScore = array_reduce($scores, function($v, $w) {
+            return max($v, $w['total']);
+        }, -9999999);
+
         return $this->render('result/tourist_result.html.twig', array(
             'results' => $results,
             'scores' => $scores,
+            'max_score' => $maxScore
         ));
+    }
+
+    /**
+     * This method returns an ajax response with categories and scores.
+     *
+     * @Route("/tourist/{tourist_id}/quiz/{quiz_id}/data", name="result_show_radar_plot_tourist_data")
+     * @ParamConverter("tourist", options={"mapping": {"tourist_id": "id"}})
+     * @ParamConverter("quiz", options={"mapping": {"quiz_id": "id"}})
+     */
+    public function showRadarPlotTouristAction(Tourist $tourist, Quiz $quiz)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $results = $em->getRepository('AppBundle:Result')->getAllByTouristQuiz($tourist, $quiz);
+
+        /** @var Result $result */
+        $scores = array();
+        $categories = array();
+        foreach ($results as $key => $result) {
+
+            $category = $result->getAnswer()->getQuestion()->getCategory();
+            $score = $result->getAnswer()->getScore();
+
+            if (!isset($scores[$category->getId()]) || !isset($categories[$category->getId()])) {
+                $scores[$category->getId()] = 0;
+                $categories[$category->getId()] = $category->getName();
+            }
+
+            $scores[$category->getId()] += $score;
+        }
+
+        // crate a result array and remove array keys
+        $result = array(
+            'scores' => array_values($scores),
+            'categories' => array_values($categories)
+        );
+
+        return new JsonResponse($result);
     }
 }

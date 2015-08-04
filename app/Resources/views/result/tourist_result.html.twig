@@ -3,22 +3,45 @@
 {% block title %}Quiz{% endblock %}
 
 {% block body %}
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Area Chart</h3>
-            <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Bar plot</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    {% for score in scores %}
+                        <div class="progress-group">
+                            <span class="progress-text">{{ score.category.name }}</span>
+                            <span class="progress-number"><b>{{ score.total }}</b>/{{ max_score }}</span>
+                            <div class="progress sm">
+                                <div class="progress-bar progress-bar-aqua" style="width: {{ 100 * score.total / max_score }}%"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div><!-- /.box-body -->
             </div>
         </div>
-        <div class="box-body">
-            <div class="chart">
-                {% for score in scores %}
-                    <p>- {{ score.category.name }} : {{ score.total }}</p>
-                {% endfor %}
-                <div id="container" style="min-width: 400px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Radar plot</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="chart">
+                        <div id="container" style="width: 100%; height: 550px; margin: 0 auto"></div>
+                    </div>
+                </div><!-- /.box-body -->
             </div>
-        </div><!-- /.box-body -->
+        </div>
     </div>
 {% endblock %}
 
@@ -26,61 +49,69 @@
 {{ parent() }}
 
     <script>
-        $(function () {
-            $('#container').highcharts({
+        var chart;
 
+        $(document).ready(function() {
+            chart = new Highcharts.Chart({
                 chart: {
+                    renderTo: 'container',
                     polar: true,
-                    type: 'line'
+                    type: 'line',
+                    events: {
+                        load: requestData
+                    }
                 },
-
                 title: {
-                    text: 'Budget vs spending',
-                    x: -80
+                    text: '',
+                    style: {
+                        display: 'none'
+                    }
                 },
-
                 pane: {
-                    size: '80%'
+                    size: '100%'
                 },
-
                 xAxis: {
-                    categories: [
-                        {% for key, score in scores %}
-                            "{{ score.category.name|raw }}",
-                        {% endfor %}
-                    ],
                     tickmarkPlacement: 'on',
                     lineWidth: 0
                 },
-
                 yAxis: {
                     gridLineInterpolation: 'polygon',
                     lineWidth: 0,
                     min: 0
                 },
-
                 tooltip: {
                     shared: true,
-                    pointFormat: '<span style="color:{series.color}">{series.name}: <b>${point.y:,.0f}</b><br/>'
+                    pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y:,.0f}</b><br/>'
                 },
-
                 legend: {
                     align: 'right',
                     verticalAlign: 'top',
                     y: 70,
                     layout: 'vertical'
-                },
-
-                series: [{
-                    name: 'Tourist result',
-                    data: [
-                        {% for score in scores %}
-                            {{ score.total|raw }},
-                        {% endfor %}
-                    ],
-                    pointPlacement: 'on'
-                }]
+                }
             });
+
+            /**
+             * Retrieve radar plot data
+             */
+            function requestData() {
+                $.ajax({
+                    url: '{{ path('result_show_radar_plot_tourist_data', {tourist_id: app.request.get('tourist_id'), quiz_id: app.request.get('quiz_id') }) }}',
+                    type: "GET",
+                    dataType: "json",
+                    cache: false,
+                    success : function(data, statut){
+                        chart.xAxis[0].setCategories(data['categories']);
+
+                        chart.addSeries({
+                            showInLegend: false,
+                            name: "Tourist result",
+                            data: data['scores'],
+                            color: 'rgb(0, 192, 239)',
+                        });
+                    }
+                });
+            }
         });
     </script>
 {% endblock %}

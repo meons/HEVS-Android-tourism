@@ -32,6 +32,11 @@ class Result
     private $tourist;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Quiz")
+     **/
+    private $quiz;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -85,5 +90,28 @@ class Result
     public function getTourist()
     {
         return $this->tourist;
+    }
+
+    /**
+     * Set quiz
+     *
+     * @param \AppBundle\Entity\Quiz $quiz
+     * @return Result
+     */
+    public function setQuiz(\AppBundle\Entity\Quiz $quiz = null)
+    {
+        $this->quiz = $quiz;
+
+        return $this;
+    }
+
+    /**
+     * Get quiz
+     *
+     * @return \AppBundle\Entity\Quiz 
+     */
+    public function getQuiz()
+    {
+        return $this->quiz;
     }
 }

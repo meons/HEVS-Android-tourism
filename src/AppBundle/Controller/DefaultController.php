@@ -14,6 +14,19 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('default/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $users = $em->getRepository('AppBundle:User')->findAll();
+
+        $user = $this->getUser();
+        $quizzes = $em->getRepository('AppBundle:Quiz')->findAllByOffice($user->getOffice());
+
+        $tourists = $em->getRepository('AppBundle:Tourist')->findAll();
+
+        return $this->render('default/index.html.twig', array(
+            'users' => $users,
+            'quizzes' => $quizzes,
+            'tourists' => $tourists
+        ));
     }
 }

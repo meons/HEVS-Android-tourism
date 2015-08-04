@@ -51,6 +51,30 @@
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
+                            <li>
+                                <a href="#">
+                                    FR
+                                    {% if app.request.locale == 'fr' %}
+                                        <span class="label label-warning">&nbsp;</span>
+                                    {% endif %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    DE
+                                    {% if app.request.locale == 'de' %}
+                                        <span class="label label-warning">&nbsp;</span>
+                                    {% endif %}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    EN
+                                    {% if app.request.locale == 'en' %}
+                                        <span class="label label-warning">&nbsp;</span>
+                                    {% endif %}
+                                </a>
+                            </li>
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -135,6 +159,10 @@
                         {% block header %}{% endblock %}
                         <small>{% block header_desc %}{% endblock %}</small>
                     </h1>
+                    <ol class="breadcrumb">
+                        <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+                        <li class="active">Here</li>
+                    </ol>
                 </section>
 
                 <!-- Main content -->

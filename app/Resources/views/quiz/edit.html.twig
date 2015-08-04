@@ -1,21 +1,61 @@
 {% extends 'base.html.twig' %}
 
+{% block header %}{{ 'quiz.edit'|trans }}{% endblock %}
+{% block header_desc %}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/themes/default/style.min.css" />
+{% endblock %}
+
 {% block body %}
-    <h1>Quiz edit</h1>
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab-basic" data-toggle="tab" aria-expanded="true">{{ 'basic'|trans }}</a></li>
+              <li class=""><a href="#tab-structure" data-toggle="tab" aria-expanded="false">{{ 'structure'|trans }}</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab-basic">
+                {{ form_start(edit_form) }}
+                    {{ form_widget(edit_form) }}
+                    <input type="submit" value="Edit" class="btn btn-primary" />
+                {{ form_end(edit_form) }}
+            </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+            <div class="tab-pane" id="tab-structure">
+                <div class="chart">
+                    <div class="tree"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="btn btn-app" href="{{ path('quiz_index') }}">
+        <i class="fa fa-arrow-left"></i> {{ 'back_list'|trans }}
+    </a>
+    {{ form_start(delete_form) }}
+        <input type="submit" value="{{ 'delete'|trans }}" class="btn btn-app">
+    {{ form_end(delete_form) }}
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('quiz_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/jstree.min.js"></script>
+    <script>
+        $(function() {
+            $('.tree')
+                .on('changed.jstree', function (e, data) {
+                    console.log(data);
+                })
+                .jstree({
+                    'core' : {
+                        'data' : {
+                            "url" : "{{ path('quiz_show_tree', {id:    quiz.id}) }}",
+                        },
+                        "check_callback" : true
+                    },
+                    "plugins" : ["dnd"]
+                })
+            ;
+        });
+    </script>
 {% endblock %}

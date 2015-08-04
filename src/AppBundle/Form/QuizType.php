@@ -16,8 +16,8 @@ class QuizType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('office')
-            ->add('tourists')
+            //->add('office')
+            //->add('tourists')
         ;
     }
     

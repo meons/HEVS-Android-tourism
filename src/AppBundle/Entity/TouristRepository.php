@@ -13,6 +13,8 @@ use Doctrine\ORM\EntityRepository;
 class TouristRepository extends EntityRepository
 {
     /**
+     * Get a list of all tourists in an office
+     *
      * @param $office Office
      * @return Tourist[]
      */

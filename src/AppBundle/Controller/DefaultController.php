@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/{_locale}", name="home", defaults={"_locale" = "en"})
+     * @Route("/", name="home", defaults={"_locale" = "en"})
      */
     public function indexAction()
     {

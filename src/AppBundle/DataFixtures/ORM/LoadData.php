@@ -7,11 +7,18 @@ use AppBundle\Entity\Category;
 use AppBundle\Entity\Office;
 use AppBundle\Entity\Question;
 use AppBundle\Entity\Quiz;
+use AppBundle\Entity\Tourist;
+use AppBundle\Entity\Result;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use FOS\UserBundle\Entity\User;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class LoadData implements FixtureInterface, OrderedFixtureInterface {
+class LoadData implements FixtureInterface, ContainerAwareInterface
+{
+    private $container;
 
     /**
      * Load data fixtures with the passed EntityManager
@@ -20,21 +27,21 @@ class LoadData implements FixtureInterface, OrderedFixtureInterface {
      */
     public function load(ObjectManager $manager)
     {
-        for ($i = 0; $i < 3; $i++ ) {
+        for ($i = 0; $i < 5; $i++ ) {
             $office = new Office();
             $office->setName('Office '.$i);
             $manager->persist($office);
 
-            for ($j = 0; $j < mt_rand(1,3); $j++ ) {
+            for ($j = 0; $j < mt_rand(1,5); $j++ ) {
                 $quiz = new Quiz();
+                $quiz->setName('Quiz '.$j.' '.$office->getName());
                 $quiz->setOffice($office);
-                $quiz->setName('Quiz '.$j.' belonging to '.$office->getName());
                 $manager->persist($quiz);
 
                 $categories = array();
                 for ($c = 0; $c < 10; $c++) {
                     $category = new Category();
-                    $category->setName('Cat. '.$c.' quiz '.$quiz->getName());
+                    $category->setName('Cat. '.$c.' '.$quiz->getName());
                     $category->setQuiz($quiz);
                     $categories[] = $category;
                     $manager->persist($category);
@@ -42,9 +49,14 @@ class LoadData implements FixtureInterface, OrderedFixtureInterface {
 
                 $this->createQuestions($manager, $quiz, $categories);
             }
+
+            $manager->flush();
+            $manager->clear();
+
+            $this->createResponse($manager, $office);
         }
 
-        $manager->flush();
+        $this->createTouristOfficeUser($manager);
     }
 
     /**
@@ -84,14 +96,120 @@ class LoadData implements FixtureInterface, OrderedFixtureInterface {
         }
     }
 
+    /**
+     * Create response for quizzes
+     *
+     * @param ObjectManager $manager
+     * @param Office $office
+     */
+    public function createResponse($manager, $office)
+    {
+        $quizzes = $manager->getRepository('AppBundle:Quiz')->findAllByOffice($office);
+
+        // create some tourists
+        for ( $i = 0; $i < mt_rand(2, 5); $i++ ) {
+            $tourist = new Tourist();
+            $tourist->setReference('Ref. T'.$i);
+            $tourist->setCreationDate(new \DateTime());
+            $manager->persist($tourist);
+
+            // tourist respond to arbitrary quizzes, not all but at least one
+            $randQuizzesKeys = (array)array_rand($quizzes, mt_rand(1, count($quizzes)));
+
+            // loop through quizzes random keys to get single quiz
+            for ($j = 0; $j < count($randQuizzesKeys); $j++) {
+                $quiz = $quizzes[$randQuizzesKeys[$j]];
+
+                $quiz->addTourist($tourist);
+                $tourist->addQuiz($quiz);
+
+                // get tourist response
+                //$this->respond($manager, $tourist, $quiz->getQuestions()[0]);
+
+                // respond to all categories
+                /** @var  $category Category */
+
+                foreach ($quiz->getCategories() as $category) {
+                    $this->respond($manager, $tourist, $category->getQuiz()->getQuestions()[0]);
+                }
+            }
+        }
+
+        $manager->flush();
+    }
 
     /**
-     * Get the order of this fixture
+     * Create responses for a question
      *
-     * @return integer
+     * @param $manager ObjectManager
+     * @param $tourist Tourist
+     * @param $q Question
      */
-    public function getOrder()
+    private function respond($manager, $tourist, $q)
     {
-        return 1;
+        if ($q === null) {
+            return;
+        }
+
+        /*
+         * get all possible answers for this question
+         * then choose one arbitrary
+         */
+        $answers = $q->getAnswers();
+        $a = $answers[mt_rand(0, count( $answers ) - 1)];
+
+        $result = new Result();
+        $result->setAnswer($a);
+        $result->setTourist($tourist);
+        $result->setQuiz($q->getQuiz());
+        $manager->persist($result);
+
+        // repeat...
+        $q = $a->getNextQuestion();
+        $this->respond($manager, $tourist, $q);
+    }
+
+    /**
+     * Crate admin users for each offices
+     *
+     * @param $manager ObjectManager
+     */
+    public function createTouristOfficeUser($manager)
+    {
+        $offices = $manager->getRepository('AppBundle:Office')->findAll();
+        $userManager = $this->container->get('fos_user.user_manager');
+
+        /**
+         * add at least one user per office
+         *
+         * @var User $user
+         * @var Office $office
+         */
+        foreach ($offices as $key => $office) {
+            for ($i = 0; $i < mt_rand(1, 2); $i++ ) {
+                $user = $userManager->createUser();
+
+                $user->setUsername('user'.$i.'office'.$key);
+                echo "User   user".$i.'office'.$key."   created with password passw0rd\n";
+                $user->setPlainPassword("passw0rd");
+                $user->setEmail('user'.$i.$key.'@domain.com');
+                $user->setEnabled(true);
+                $user->setOffice($office);
+
+                $userManager->updateUser($user);
+            }
+        }
+    }
+
+    /**
+     * Sets the Container.
+     *
+     * @param ContainerInterface|null $container A ContainerInterface instance or null
+     *
+     * @api
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
     }
 }

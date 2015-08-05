@@ -11,12 +11,12 @@
 {% block body %}
     <!-- Small boxes (Stat box) -->
     <div class="row">
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-green">
                 <div class="inner">
                     <h3>{{ quizzes|length }}</h3>
-                    <p>Existing quizzes in the current office</p>
+                    <p>{{ 'stat.office_quizzes'|trans }}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-stats-bars"></i>
@@ -24,19 +24,19 @@
                 <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
             </div>
         </div><!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-6">
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
                     <h3>{{ tourists|length }}</h3>
-                    <p>Tourists who answered to the quizzes</p>
+                    <p>{{ 'stat.tourist_quizzes'|trans }}</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-pie-graph"></i>
                 </div>
             </div>
         </div><!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-lg-4 col-xs-12">
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
@@ -48,6 +48,47 @@
                 </div>
             </div>
         </div><!-- ./col -->
-
     </div><!-- /.row -->
+    <div class="row">
+        <div class="col-lg-6 col-xs-6">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Latest tourists who answered to the quizzes</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <th style="width: 10px">#</th>
+                            <th>Reference</th>
+                            <th></th>
+                        </tr>
+                        {% for tourist in tourists %}
+                            <tr>
+                                <td>1.</td>
+                                <td>
+                                    <a href="{{ path('result_tourist_quizzes', { id: tourist.id }) }}">
+                                        {{ tourist.reference }}
+                                    </a>
+                                </td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div><!-- /.box-body -->
+            </div>
+        </div>
+        <div class="col-lg-6 col-xs-6">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Average tourists answers</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body no-padding">
+
+                </div><!-- /.box-body -->
+            </div>
+        </div>
+    </div>
 {% endblock %}

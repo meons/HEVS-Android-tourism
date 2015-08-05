@@ -29,6 +29,12 @@ class Tourist
     private $reference;
 
     /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", name="creation_date")
+     */
+    private $creationDate;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Result", mappedBy="tourist")
      */
     private $results;
@@ -79,6 +85,29 @@ class Tourist
     public function getReference()
     {
         return $this->reference;
+    }
+
+    /**
+     * Set creationDate
+     *
+     * @param \DateTime $creationDate
+     * @return Tourist
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get creationDate
+     *
+     * @return \DateTime
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
     }
 
     /**

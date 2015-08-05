@@ -20,5 +20,4 @@ class QuizRepository extends EntityRepository
     {
         return $this->findBy(array('office' => $office));
     }
-
 }

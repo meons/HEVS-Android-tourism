@@ -6,7 +6,6 @@ use AppBundle\Response\GraphQuizResponse;
 use AppBundle\Response\TreeQuizResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Entity\Quiz;
 
 class DefaultController extends Controller
 {
@@ -16,17 +15,13 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $user = $this->getUser();
 
-        $users = $em->getRepository('AppBundle:User')->findAllByOffice($user->getOffice());
+        $users = $em->getRepository('AppBundle:User')->findAll();
+
+        $user = $this->getUser();
         $quizzes = $em->getRepository('AppBundle:Quiz')->findAllByOffice($user->getOffice());
 
-        foreach ($quizzes as $quiz) {
-            dump($quiz->getTourists());
-            $tourists[] = $quiz->getTourists();
-        }
-
-        dump($tourists);
+        $tourists = $em->getRepository('AppBundle:Tourist')->findAll();
 
         return $this->render('default/index.html.twig', array(
             'users' => $users,

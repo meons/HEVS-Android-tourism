@@ -21,7 +21,8 @@ class DefaultController extends Controller
         $user = $this->getUser();
         $quizzes = $em->getRepository('AppBundle:Quiz')->findAllByOffice($user->getOffice());
 
-        $tourists = $em->getRepository('AppBundle:Tourist')->findAll();
+        //$tourists = $em->getRepository('AppBundle:Tourist')->findAll();
+        $tourists = $em->getRepository('AppBundle:Tourist')->findAllByOffice($user->getOffice());
 
         return $this->render('default/index.html.twig', array(
             'users' => $users,

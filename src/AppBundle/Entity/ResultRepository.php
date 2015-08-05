@@ -12,4 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ResultRepository extends EntityRepository
 {
+    /**
+     * @param $tourist
+     * @param $quiz
+     * @return Result[]
+     */
+    public function getAllByTouristQuiz($tourist, $quiz)
+    {
+        return $this->findBy(array('tourist' => $tourist, 'quiz' => $quiz));
+    }
 }

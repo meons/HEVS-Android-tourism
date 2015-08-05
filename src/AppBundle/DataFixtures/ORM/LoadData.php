@@ -20,23 +20,21 @@ class LoadData implements FixtureInterface, OrderedFixtureInterface {
      */
     public function load(ObjectManager $manager)
     {
-        for( $i = 0; $i < mt_rand(1,5); $i++ )
-        {
+        for ($i = 0; $i < 3; $i++ ) {
             $office = new Office();
             $office->setName('Office '.$i);
             $manager->persist($office);
 
-            for( $j = 0; $j < mt_rand(1,3); $j++ )
-            {
+            for ($j = 0; $j < mt_rand(1,3); $j++ ) {
                 $quiz = new Quiz();
                 $quiz->setOffice($office);
                 $quiz->setName('Quiz '.$j.' belonging to '.$office->getName());
                 $manager->persist($quiz);
 
                 $categories = array();
-                for ($c = 0; $c < 5; $c++) {
+                for ($c = 0; $c < 10; $c++) {
                     $category = new Category();
-                    $category->setName('Category '.$c);
+                    $category->setName('Cat. '.$c.' quiz '.$quiz->getName());
                     $category->setQuiz($quiz);
                     $categories[] = $category;
                     $manager->persist($category);
@@ -73,11 +71,11 @@ class LoadData implements FixtureInterface, OrderedFixtureInterface {
             $manager->persist($previousAnswer);
         }
 
-        for ($a = 0; $a < mt_rand(2, 3); $a++) {
+        for ($a = 0; $a < mt_rand(1, 5); $a++) {
             $answer = new Answer();
             $answer->setText('Answer '.$a);
             $answer->setDescription('Description');
-            $answer->setScore(mt_rand(-5, 5));
+            $answer->setScore(mt_rand(0, 5));
             $answer->setQuestion($question);
             $manager->persist($answer);
 

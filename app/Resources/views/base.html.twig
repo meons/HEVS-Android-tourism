@@ -27,7 +27,7 @@
             <header class="main-header">
 
                 <!-- Logo -->
-                <a href="#" class="logo">
+                <a href="{{ path('home') }}" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini">
                         <span class="glyphicon glyphicon-home"></span>
@@ -51,30 +51,9 @@
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                            <li>
-                                <a href="#">
-                                    FR
-                                    {% if app.request.locale == 'fr' %}
-                                        <span class="label label-warning">&nbsp;</span>
-                                    {% endif %}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    DE
-                                    {% if app.request.locale == 'de' %}
-                                        <span class="label label-warning">&nbsp;</span>
-                                    {% endif %}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    EN
-                                    {% if app.request.locale == 'en' %}
-                                        <span class="label label-warning">&nbsp;</span>
-                                    {% endif %}
-                                </a>
-                            </li>
+                            {% for locale in locales() %}
+                                <li><a href="{{ path(app.request.get('_route'), { _locale: locale.code }) }}">{{ locale.code|capitalize }} {% if app.request.locale == locale.code %}<span class="label label-warning">&nbsp;</span>{% endif %}</a></li>
+                            {% endfor %}
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

@@ -1,6 +1,17 @@
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
+    prefix:   /{_locale}
+    requirements:
+        _locale: %app_locales%
+    defaults:
+        _locale: %locale%
+
+homepage:
+    path: /
+    defaults:
+        _controller: AppBundle:Default:index
+        _locale:     "%locale%"
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

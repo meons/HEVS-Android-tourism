@@ -4,6 +4,9 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  app.twig.locale_extension:
+        public: false
+        class: AppBundle\Twig\LocaleExtension
+        arguments: ["%app_locales%"]
+        tags:
+            - { name: twig.extension }

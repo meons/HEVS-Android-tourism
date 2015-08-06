@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/{_locale}/tourist")
+ * @Route("/tourist")
  */
 class TouristController extends Controller
 {

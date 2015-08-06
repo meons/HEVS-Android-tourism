@@ -52,8 +52,9 @@
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                             {% for locale in locales() %}
-                                <li><a href="{{ path(app.request.get('_route'), { _locale: locale.code }) }}">{{ locale.code|capitalize }} {% if app.request.locale == locale.code %}<span class="label label-warning">&nbsp;</span>{% endif %}</a></li>
+                                <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': locale.code})) }}">{{ locale.code|capitalize }} {% if app.request.locale == locale.code %}<span class="label label-warning">&nbsp;</span>{% endif %}</a></li>
                             {% endfor %}
+
                             <!-- User Account Menu -->
                             <li class="dropdown user user-menu">
                                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

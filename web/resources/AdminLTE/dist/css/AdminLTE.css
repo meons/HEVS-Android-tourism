@@ -4210,3 +4210,7 @@ table.text-center th {
     white-space: normal!important;
   }
 }
+
+.sidebar .form-group {
+    margin:0;
+}

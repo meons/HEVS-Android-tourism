@@ -9,9 +9,12 @@
 namespace AppBundle\Controller;
 
 
-use AppBundle\Entity\Result;
 use AppBundle\Entity\Tourist;
+use AppBundle\Entity\TouristSearch;
+use AppBundle\Form\TouristSearchByReferenceType;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -31,5 +34,37 @@ class TouristController extends Controller
         $tourists = $em->getRepository('AppBundle:Tourist')->findAllByOffice($user->getOffice());
 
         return $this->render('tourist/tourist_list.html.twig', array('tourists' => $tourists));
+    }
+
+    /**
+     * Creates a search form
+     *
+     * @Route("/search", name="tourist_search_by_reference")
+     * @Method({"POST"})
+     */
+    public function searchByReferenceAction(Request $request)
+    {
+        $tourist = new Tourist();
+        $form = $this->createForm(
+            new TouristSearchByReferenceType(), $tourist, array(
+                'action' => $this->generateUrl('tourist_search_by_reference', array(), false)
+            )
+        );
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $data = $form->getData();
+
+            $tourists = $em->getRepository('AppBundle:Tourist')->findByReference($data->getReference());
+
+            return $this->render('tourist/tourist_search_result.html.twig', array(
+                'tourists' => $tourists
+            ));
+        }
+
+        return $this->render('tourist/tourist_search.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 }

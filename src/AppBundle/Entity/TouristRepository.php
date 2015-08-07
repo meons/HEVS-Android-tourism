@@ -30,4 +30,16 @@ class TouristRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function findByReference($reference)
+    {
+        return $this
+            ->createQueryBuilder('t')
+            ->select('t')
+            ->where('t.reference LIKE :reference')->setParameter('reference', '%'.$reference.'%')
+            ->orderBy('t.reference', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

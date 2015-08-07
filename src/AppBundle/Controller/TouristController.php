@@ -56,7 +56,8 @@ class TouristController extends Controller
             $em = $this->getDoctrine()->getManager();
             $data = $form->getData();
 
-            $tourists = $em->getRepository('AppBundle:Tourist')->findByReference($data->getReference());
+            $user = $this->getUser();
+            $tourists = $em->getRepository('AppBundle:Tourist')->findByReference($data->getReference(), $user->getOffice());
 
             return $this->render('tourist/tourist_search_result.html.twig', array(
                 'tourists' => $tourists

@@ -25,21 +25,35 @@ class TouristRepository extends EntityRepository
             ->from('AppBundle:Tourist', 't')
             ->join('t.quizzes', 'q')
             ->join('q.office', 'o')
-            ->where('o = :office')
-            ->setParameter('office', $office);
+            ->where('o = :office')->setParameter('office', $office);
 
         return $qb->getQuery()->getResult();
     }
 
-    public function findByReference($reference)
+    /**
+     * @param $reference
+     * @param $office Office
+     * @return array
+     */
+    public function findByReference($reference, $office = null)
     {
-        return $this
-            ->createQueryBuilder('t')
+        $qb = $this->getEntityManager()->createQueryBuilder()
             ->select('t')
-            ->where('t.reference LIKE :reference')->setParameter('reference', '%'.$reference.'%')
+            ->from('AppBundle:Tourist', 't')
+        ;
+
+        if ($office) {
+            $qb->join('t.quizzes', 'q')
+                ->join('q.office', 'o')
+                ->andWhere('o = :office')->setParameter('office', $office)
+            ;
+        }
+
+        return $qb
+            ->andWhere('t.reference LIKE :reference')->setParameter('reference', '%'.$reference.'%')
             ->orderBy('t.reference', 'DESC')
             ->getQuery()
             ->getResult()
-            ;
+        ;
     }
 }

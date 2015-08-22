@@ -111,6 +111,21 @@ class Tourist
     }
 
     /**
+     * Get answers result
+     *
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getAnswersResult()
+    {
+        $answers = new \Doctrine\Common\Collections\ArrayCollection();
+        foreach ($this->getResults() as $result) {
+            $answers->add($result->getAnswer());
+        }
+
+        return $answers;
+    }
+
+    /**
      * Add results
      *
      * @param \AppBundle\Entity\Result $results

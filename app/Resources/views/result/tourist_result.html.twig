@@ -1,9 +1,33 @@
 {% extends 'base.html.twig' %}
 
+{% use 'result/tourist_result_graph.html.twig' with
+    stylesheets as graph_stylesheets,
+    body as graph_body,
+    javascripts as graph_javascripts %}
+
 {% block title %}Quiz{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ block('graph_stylesheets') }}
+{% endblock %}
 
 {% block body %}
     <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tree plot</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    {{ block('graph_body') }}
+                </div><!-- /.box-body -->
+            </div>
+        </div>
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
@@ -46,8 +70,7 @@
 {% endblock %}
 
 {% block javascripts %}
-{{ parent() }}
-
+    {{ parent() }}
     <script>
         var chart;
 
@@ -96,7 +119,7 @@
              */
             function requestData() {
                 $.ajax({
-                    url: '{{ path('result_show_radar_plot_tourist_data', {tourist_id: app.request.get('tourist_id'), quiz_id: app.request.get('quiz_id') }) }}',
+                    url: '{{ path('result_show_radar_plot_tourist_data', { tourist_id: tourist.id, quiz_id: quiz.id }) }}',
                     type: "GET",
                     dataType: "json",
                     cache: false,
@@ -114,4 +137,5 @@
             }
         });
     </script>
+    {{ block('graph_javascripts') }}
 {% endblock %}

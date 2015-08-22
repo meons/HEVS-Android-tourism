@@ -21,4 +21,22 @@ class QuizRepository extends EntityRepository
         return $this->findBy(array('office' => $office));
     }
 
+    /**
+     * @param $quiz Quiz|int
+     * @param $tourist Tourist|int
+     * @return Quiz
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByTourist($quiz, $tourist)
+    {
+        return $this->createQueryBuilder('q')
+            ->addSelect('t, r')
+            ->join('q.tourists', 't')
+            ->join('t.results', 'r')
+            ->where('q.id = :quiz')->setParameter('quiz', $quiz)
+            ->andWhere('t.id = :tourist')->setParameter('tourist', $tourist)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
 }

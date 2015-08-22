@@ -12,6 +12,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Quiz;
 use AppBundle\Entity\Result;
 use AppBundle\Entity\Tourist;
+use AppBundle\Response\GraphResultResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
@@ -64,9 +65,11 @@ class ResultController extends Controller
         }, -9999999);
 
         return $this->render('result/tourist_result.html.twig', array(
+            'quiz' => $quiz,
+            'tourist' => $tourist,
             'results' => $results,
             'scores' => $scores,
-            'max_score' => $maxScore
+            'max_score' => $maxScore,
         ));
     }
 
@@ -105,5 +108,18 @@ class ResultController extends Controller
         );
 
         return new JsonResponse($result);
+    }
+
+    /**
+     * @Route("/tourist/{tourist_id}/quiz/{quiz_id}/graph/data", name="result_tourist_quiz_graph_data")
+     * @ParamConverter("quiz", options={
+     *      "repository_method" = "findOneByTourist",
+     *      "mapping" = {"quiz_id": "quiz", "tourist_id": "tourist"},
+     *      "map_method_signature" = true
+     * })
+     */
+    public function showGraphDataAction(Quiz $quiz)
+    {
+        return new GraphResultResponse($quiz);
     }
 }

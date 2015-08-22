@@ -6,7 +6,7 @@ use AppBundle\Entity\Question;
 use AppBundle\Entity\Quiz;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class GraphQuizResponse extends JsonResponse
+class GraphResultResponse extends JsonResponse
 {
     /**
      * {@inheritdoc}
@@ -42,6 +42,7 @@ class GraphQuizResponse extends JsonResponse
             $nodeA = array(
                 'name' => $a->getText(),
                 'children' => array(),
+                'answered' => $q->getQuiz()->getTourists()->first()->getAnswersResult()->contains($a),
             );
             $nodeQ['children'][] = &$nodeA;
             $this->tree($nodeA['children'], $a->getNextQuestion());

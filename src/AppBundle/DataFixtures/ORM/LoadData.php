@@ -122,16 +122,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 
                 $quiz->addTourist($tourist);
                 $tourist->addQuiz($quiz);
-
-                // get tourist response
-                //$this->respond($manager, $tourist, $quiz->getQuestions()[0]);
-
-                // respond to all categories
-                /** @var  $category Category */
-
-                foreach ($quiz->getCategories() as $category) {
-                    $this->respond($manager, $tourist, $category->getQuiz()->getQuestions()[0]);
-                }
+                $this->respond($manager, $tourist, $quiz->getQuestions()[0]);
             }
         }
 

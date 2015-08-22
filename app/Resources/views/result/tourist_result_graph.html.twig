@@ -1,12 +1,13 @@
-{% extends 'base.html.twig' %}
-
 {% block stylesheets %}
-    {{ parent() }}
     <style>
-        .node circle {
-            fill: #fff;
-            stroke: steelblue;
+        circle {
+            stroke: black;
             stroke-width: 1.5px;
+        }
+
+        .answered circle {
+            fill: yellow;
+            stroke: black;
         }
 
         .node {
@@ -22,27 +23,15 @@
 {% endblock %}
 
 {% block body %}
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Area Chart</h3>
-            <div class="box-tools pull-right">
-                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
-        </div>
-        <div class="box-body">
-            <div class="chart">
-                <div class="cluster"></div>
-            </div>
-        </div><!-- /.box-body -->
+    <div class="chart">
+        <div class="cluster"></div>
     </div>
 {% endblock %}
 
 {% block javascripts %}
-    {{ parent() }}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script>
-        var width = 900,
+        var width = 1200,
             height = 600;
 
         var cluster = d3.layout.cluster()
@@ -57,7 +46,7 @@
             .append("g")
             .attr("transform", "translate(40,0)");
 
-        d3.json("{{ path('quiz_show_graph_data', {id: id}) }}", function(error, root) {
+        d3.json("{{ path('result_tourist_quiz_graph_data', { quiz_id: quiz.id, tourist_id: tourist.id }) }}", function(error, root) {
             if (error) throw error;
 
             var nodes = cluster.nodes(root),
@@ -83,6 +72,8 @@
                 .attr("dy", 3)
                 .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
                 .text(function(d) { return d.name; });
+
+            node.attr("class", function(d) { console.log(d); return d.answered ? 'answered' : ''; })
         });
 
         d3.select(self.frameElement).style("height", height + "px");

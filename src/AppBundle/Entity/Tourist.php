@@ -40,19 +40,18 @@ class Tourist
     private $results;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participation", mappedBy="tourist")
+     */
+    private $participations;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
-        $this->quizzes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->results = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->participations = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
-    /**
-     * @var Quiz[]
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Quiz", mappedBy="tourists")
-     */
-    private $quizzes;
 
     /**
      * Get id
@@ -159,35 +158,35 @@ class Tourist
     }
 
     /**
-     * Add quizzes
+     * Add participations
      *
-     * @param \AppBundle\Entity\Quiz $quizzes
+     * @param \AppBundle\Entity\Participation $participations
      * @return Tourist
      */
-    public function addQuiz(\AppBundle\Entity\Quiz $quizzes)
+    public function addParticipation(\AppBundle\Entity\Participation $participations)
     {
-        $this->quizzes[] = $quizzes;
+        $this->participations[] = $participations;
 
         return $this;
     }
 
     /**
-     * Remove quizzes
+     * Remove participations
      *
-     * @param \AppBundle\Entity\Quiz $quizzes
+     * @param \AppBundle\Entity\Participation $participations
      */
-    public function removeQuiz(\AppBundle\Entity\Quiz $quizzes)
+    public function removeParticipation(\AppBundle\Entity\Participation $participations)
     {
-        $this->quizzes->removeElement($quizzes);
+        $this->participations->removeElement($participations);
     }
 
     /**
-     * Get quizzes
+     * Get participations
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getQuizzes()
+    public function getParticipations()
     {
-        return $this->quizzes;
+        return $this->participations;
     }
 }

@@ -43,12 +43,9 @@ class Quiz
     private $questions;
 
     /**
-     * @var Tourist[]
-     *
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tourist", inversedBy="quizzes")
-     * @ORM\JoinTable(name="quiz_tourist")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participation", mappedBy="quiz")
      */
-    private $tourists;
+    private $participations;
 
     /**
      * @var Category[]
@@ -132,39 +129,6 @@ class Quiz
     }
 
     /**
-     * Add tourists
-     *
-     * @param \AppBundle\Entity\Tourist $tourists
-     * @return Quiz
-     */
-    public function addTourist(\AppBundle\Entity\Tourist $tourists)
-    {
-        $this->tourists[] = $tourists;
-
-        return $this;
-    }
-
-    /**
-     * Remove tourists
-     *
-     * @param \AppBundle\Entity\Tourist $tourists
-     */
-    public function removeTourist(\AppBundle\Entity\Tourist $tourists)
-    {
-        $this->tourists->removeElement($tourists);
-    }
-
-    /**
-     * Get tourists
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getTourists()
-    {
-        return $this->tourists;
-    }
-
-    /**
      * Add categories
      *
      * @param \AppBundle\Entity\Category $categories
@@ -218,5 +182,38 @@ class Quiz
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add participations
+     *
+     * @param \AppBundle\Entity\Participation $participations
+     * @return Quiz
+     */
+    public function addParticipation(\AppBundle\Entity\Participation $participations)
+    {
+        $this->participations[] = $participations;
+
+        return $this;
+    }
+
+    /**
+     * Remove participations
+     *
+     * @param \AppBundle\Entity\Participation $participations
+     */
+    public function removeParticipation(\AppBundle\Entity\Participation $participations)
+    {
+        $this->participations->removeElement($participations);
+    }
+
+    /**
+     * Get participations
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getParticipations()
+    {
+        return $this->participations;
     }
 }

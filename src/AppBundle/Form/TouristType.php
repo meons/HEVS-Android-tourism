@@ -36,6 +36,6 @@ class TouristType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_tourist';
+        return 'app_tourist';
     }
 }

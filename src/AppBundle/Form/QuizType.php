@@ -36,6 +36,6 @@ class QuizType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_quiz';
+        return 'app_quiz';
     }
 }

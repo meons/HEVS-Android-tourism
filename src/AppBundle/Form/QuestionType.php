@@ -16,9 +16,17 @@ class QuestionType extends AbstractType
     {
         $builder
             ->add('text')
-            ->add('quiz')
-            ->add('previousAnswer')
-            ->add('category')
+            ->add('category', 'entity', array(
+                'class' => 'AppBundle\Entity\Category',
+                'property' => 'name',
+            ))
+            ->add('answers', 'collection', array(
+                'type' => new AnswerType(),
+                'allow_add' => true,
+                'allow_delete' => true,
+            ))
+            //->add('quiz')
+            //->add('previousAnswer')
         ;
     }
     
@@ -37,6 +45,6 @@ class QuestionType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_question';
+        return 'app_question';
     }
 }

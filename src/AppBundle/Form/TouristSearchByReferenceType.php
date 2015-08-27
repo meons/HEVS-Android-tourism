@@ -31,7 +31,7 @@ class TouristSearchByReferenceType extends AbstractType {
      */
     public function getName()
     {
-        return 'appbundle_tourist_search';
+        return 'app_tourist_search';
     }
 
     /**

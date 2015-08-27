@@ -18,8 +18,11 @@ class AnswerType extends AbstractType
             ->add('text')
             ->add('description')
             ->add('score')
-            ->add('nextQuestion')
-            ->add('question')
+            ->add('nextQuestion', 'entity', array(
+                'class' => 'AppBundle\Entity\Question',
+                'property' => 'text'
+            ))
+            //->add('question')
         ;
     }
     
@@ -38,6 +41,6 @@ class AnswerType extends AbstractType
      */
     public function getName()
     {
-        return 'appbundle_answer';
+        return 'app_answer';
     }
 }

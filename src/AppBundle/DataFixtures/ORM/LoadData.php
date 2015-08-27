@@ -5,6 +5,7 @@ namespace AppBundle\DataFixtures\ORM;
 use AppBundle\Entity\Answer;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Office;
+use AppBundle\Entity\Participation;
 use AppBundle\Entity\Question;
 use AppBundle\Entity\Quiz;
 use AppBundle\Entity\Tourist;
@@ -120,8 +121,15 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
             for ($j = 0; $j < count($randQuizzesKeys); $j++) {
                 $quiz = $quizzes[$randQuizzesKeys[$j]];
 
-                $quiz->addTourist($tourist);
-                $tourist->addQuiz($quiz);
+                $p = new Participation();
+                $p->setCreatedAt(new \DateTime());
+                $p->setTourist($tourist);
+                $p->setQuiz($quiz);
+
+                $quiz->addParticipation($p);
+                $tourist->addParticipation($p);
+                //$quiz->addTourist($tourist);
+                //$tourist->addQuiz($quiz);
                 $this->respond($manager, $tourist, $quiz->getQuestions()[0]);
             }
         }

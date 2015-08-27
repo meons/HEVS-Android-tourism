@@ -15,12 +15,12 @@
                         <th>Reference</th>
                         <th></th>
                     </tr>
-                    {% for quiz in quizzes %}
+                    {% for p in partitipation %}
                         <tr>
                             <td>1.</td>
                             <td>
-                                <a href="{{ path('result_tourist_quiz', { tourist_id: tourist.id, quiz_id: quiz.id }) }}">
-                                    {{ quiz.name }}
+                                <a href="{{ path('result_tourist_quiz', { tourist_id: tourist.id, quiz_id: p.quiz.id }) }}">
+                                    {{ p.quiz.name }}
                                 </a>
                             </td>
                             <td></td>

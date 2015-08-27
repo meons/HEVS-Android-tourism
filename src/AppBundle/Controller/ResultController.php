@@ -12,6 +12,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Quiz;
 use AppBundle\Entity\Result;
 use AppBundle\Entity\Tourist;
+use AppBundle\Entity\Participation;
 use AppBundle\Response\GraphResultResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -26,17 +27,20 @@ class ResultController extends Controller
     /**
      * List all quizzes belonging to a tourist
      *
-     * @Route("/tourist/{id}", name="result_tourist_quizzes")
+     * @ParamConverter("tourist", options={"mapping": {"tourist_id": "id"}})
+     * @Route("/{tourist_id}", name="result_tourist_quizzes")
      */
     public function indexAction(Tourist $tourist)
     {
-        $quizzes = $tourist->getQuizzes();
+        $participation = $tourist->getParticipations();
+        //$quizzes = $tourist->getQuizzes();
 
-        return $this->render('result/tourist_quizzes.html.twig', array('tourist' => $tourist, 'quizzes' => $quizzes));
+        //return $this->render('result/tourist_quizzes.html.twig', array('tourist' => $tourist, 'quizzes' => $quizzes));
+        return $this->render('result/tourist_quizzes.html.twig', array('tourist' => $tourist, 'partitipation' => $participation));
     }
 
     /**
-     * @Route("/tourist/{tourist_id}/quiz/{quiz_id}", name="result_tourist_quiz")
+     * @Route("/{tourist_id}/{quiz_id}", name="result_tourist_quiz")
      * @ParamConverter("tourist", options={"mapping": {"tourist_id": "id"}})
      * @ParamConverter("quiz", options={"mapping": {"quiz_id": "id"}})
      */

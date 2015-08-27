@@ -1,21 +1,12 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Question edit</h1>
-
-    {{ form_start(edit_form) }}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">Question edit</h4>
+</div>
+<div class="modal-body">
+    {{ form_start(edit_form, { attr: {class: 'form-edit-question'} }) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
     {{ form_end(edit_form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('question_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-{% endblock %}
+</div>
+<div class="modal-footer">
+    <input type="submit" class="btn btn-primary btn-edit-question" value="Save changes" />
+</div>

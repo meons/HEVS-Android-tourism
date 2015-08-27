@@ -25,6 +25,11 @@
             <div class="tab-pane" id="tab-structure">
                 <div class="chart">
                     <div class="tree"></div>
+                    <div class="modal fade" id="modal-edit-question" tabindex="-1" role="dialog" aria-labelledby="modal-edit-questionLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -42,20 +47,65 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/jstree.min.js"></script>
     <script>
         $(function() {
-            $('.tree')
-                .on('changed.jstree', function (e, data) {
-                    console.log(data);
-                })
-                .jstree({
-                    'core' : {
-                        'data' : {
-                            "url" : "{{ path('quiz_show_tree', {id:    quiz.id}) }}",
-                        },
-                        "check_callback" : true
+            $('#modal-edit-question').on('hide.bs.modal', function (e) {
+                $('.tree').jstree(true).refresh();
+            });
+
+            $('.tree').jstree({
+                'core' : {
+                    'data' : {
+                        "url" : "{{ path('quiz_show_tree', {id: quiz.id}) }}",
                     },
-                    "plugins" : ["dnd"]
-                })
-            ;
+                    "check_callback" : true
+                },
+                "contextmenu":{
+                    "items": function($node) {
+                        var tree = $(".tree").jstree(true);
+                        if ($node.original.type == 'question') {
+                            return {
+                                "edit": {
+                                    "id": $node.original.id,
+                                    "separator_before": false,
+                                    "separator_after": false,
+                                    "label": "Editer la structure de cette question",
+                                    "action": editQuestion
+                                }
+                            };
+                        } else if ($node.original.type == 'answer') {
+                            return {
+                                "add": {
+                                    "id": $node.original.id,
+                                    "separator_before": false,
+                                    "separator_after": false,
+                                    "label": "Ajouter une nouvelle question",
+                                    "_disabled": $node.children.length > 0,
+                                    "action": addAction
+                                }
+                            };
+                        }
+                    }
+                },
+                "plugins" : ["dnd", "contextmenu"]
+            });
         });
+
+        function editQuestion(obj) {
+            var id = obj.item.id.split('-')[1];
+            var url = Routing.generate('question_edit', { id: id });
+            $('#modal-edit-question').modal('show');
+            $.get(url, function (data) {
+                $('#modal-edit-question .modal-content').html(data);
+                $('input.btn-edit-question').click(function() {
+                    var $form = $('form.form-edit-question');
+                    $.post(url, $form.serialize(), function() {
+                        $('#modal-edit-question').modal('hide');
+                    });
+                });
+            });
+        }
+
+        function addQuestion(obj) {
+            // TODO
+        }
     </script>
 {% endblock %}

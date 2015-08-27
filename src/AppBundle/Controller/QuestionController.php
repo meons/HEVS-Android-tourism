@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -78,7 +79,7 @@ class QuestionController extends Controller
     /**
      * Displays a form to edit an existing Question entity.
      *
-     * @Route("/{id}/edit", name="question_edit")
+     * @Route("/{id}/edit", name="question_edit", options={"expose"=true})
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Question $question)
@@ -91,8 +92,6 @@ class QuestionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($question);
             $em->flush();
-
-            return $this->redirectToRoute('question_edit', array('id' => $question->getId()));
         }
 
         return $this->render('question/edit.html.twig', array(

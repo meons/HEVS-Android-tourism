@@ -42,7 +42,7 @@ class GraphResultResponse extends JsonResponse
             $nodeA = array(
                 'name' => $a->getText(),
                 'children' => array(),
-                'answered' => $q->getQuiz()->getTourists()->first()->getAnswersResult()->contains($a),
+                'answered' => $q->getQuiz()->getParticipations()->first()->getTourist()->getAnswersResult()->contains($a),
             );
             $nodeQ['children'][] = &$nodeA;
             $this->tree($nodeA['children'], $a->getNextQuestion());

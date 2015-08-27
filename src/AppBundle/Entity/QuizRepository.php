@@ -30,13 +30,13 @@ class QuizRepository extends EntityRepository
     public function findOneByTourist($quiz, $tourist)
     {
         return $this->createQueryBuilder('q')
-            ->addSelect('t, r')
-            ->join('q.tourists', 't')
+            ->addSelect('p')->addSelect('t')->addSelect('r')
+            ->join('q.participations', 'p')
+            ->join('p.tourist', 't')
             ->join('t.results', 'r')
             ->where('q.id = :quiz')->setParameter('quiz', $quiz)
             ->andWhere('t.id = :tourist')->setParameter('tourist', $tourist)
             ->getQuery()
             ->getOneOrNullResult();
     }
-
 }

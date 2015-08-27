@@ -128,8 +128,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 
                 $quiz->addParticipation($p);
                 $tourist->addParticipation($p);
-                //$quiz->addTourist($tourist);
-                //$tourist->addQuiz($quiz);
+
                 $this->respond($manager, $tourist, $quiz->getQuestions()[0]);
             }
         }

@@ -27,8 +27,8 @@ class ResultController extends Controller
     /**
      * List all quizzes belonging to a tourist
      *
-     * @ParamConverter("tourist", options={"mapping": {"tourist_id": "id"}})
      * @Route("/{tourist_id}", name="result_tourist_quizzes")
+     * @ParamConverter("tourist", options={"mapping": {"tourist_id": "id"}})
      */
     public function indexAction(Tourist $tourist)
     {

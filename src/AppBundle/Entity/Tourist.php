@@ -40,7 +40,7 @@ class Tourist
     private $results;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participation", mappedBy="tourist")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participation", mappedBy="tourist", cascade={"persist"})
      */
     private $participations;
 

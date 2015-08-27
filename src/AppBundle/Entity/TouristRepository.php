@@ -23,7 +23,8 @@ class TouristRepository extends EntityRepository
         $qb = $this->getEntityManager()->createQueryBuilder();
         $qb->select('t')
             ->from('AppBundle:Tourist', 't')
-            ->join('t.quizzes', 'q')
+            ->join('t.participations', 'p')
+            ->join('p.quiz', 'q')
             ->join('q.office', 'o')
             ->where('o = :office')->setParameter('office', $office);
 

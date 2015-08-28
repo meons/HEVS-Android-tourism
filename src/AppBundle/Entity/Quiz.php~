@@ -225,37 +225,4 @@ class Quiz
     {
         return $this->participations;
     }
-
-    /**
-     * Add recommendations
-     *
-     * @param \AppBundle\Entity\Recommendation $recommendations
-     * @return Quiz
-     */
-    public function addRecommendation(\AppBundle\Entity\Recommendation $recommendations)
-    {
-        $this->recommendations[] = $recommendations;
-
-        return $this;
-    }
-
-    /**
-     * Remove recommendations
-     *
-     * @param \AppBundle\Entity\Recommendation $recommendations
-     */
-    public function removeRecommendation(\AppBundle\Entity\Recommendation $recommendations)
-    {
-        $this->recommendations->removeElement($recommendations);
-    }
-
-    /**
-     * Get recommendations
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRecommendations()
-    {
-        return $this->recommendations;
-    }
 }

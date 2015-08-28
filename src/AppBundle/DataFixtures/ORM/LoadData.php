@@ -112,6 +112,8 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
             $tourist = new Tourist();
             $tourist->setReference('Ref. T'.$i);
             $tourist->setCreationDate(new \DateTime());
+            $tourist->setBirthDate(new \DateTime());
+            $tourist->setGender(mt_rand(0, 1));
             $manager->persist($tourist);
 
             // tourist respond to arbitrary quizzes, not all but at least one

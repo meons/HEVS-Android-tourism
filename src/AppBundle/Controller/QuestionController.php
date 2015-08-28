@@ -43,23 +43,24 @@ class QuestionController extends Controller
      */
     public function newAction(Request $request)
     {
+        if (!$request->query->has('previousAnswer')) {
+            throw $this->createAccessDeniedException('previousAnswer parameter must be defined');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        // Create new question joined with previous answer and that contain an predefined answer
         $question = new Question();
         $question->addAnswer(new Answer());
+        $answer = $em->getRepository('AppBundle:Answer')->find($request->query->get('previousAnswer'));
+        $question->setPreviousAnswer($answer);
+        $question->setQuiz($answer->getQuestion()->getQuiz());
 
         $form = $this->createForm(new QuestionType(), $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            // Join previous answer if defined
-            if ($request->query->has('previousAnswer')) {
-                $answer = $em->getRepository('AppBundle:Answer')->find($request->query->get('previousAnswer'));
-                $question->setPreviousAnswer($answer);
-                $question->setQuiz($answer->getQuestion()->getQuiz());
-                $em->persist($answer);
-            }
-
+            $em->persist($answer);
             $em->persist($question);
             $em->flush();
         }

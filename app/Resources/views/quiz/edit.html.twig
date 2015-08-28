@@ -13,6 +13,7 @@
         <ul class="nav nav-tabs">
               <li class="active"><a href="#tab-basic" data-toggle="tab" aria-expanded="true">{{ 'basic'|trans }}</a></li>
               <li class=""><a href="#tab-structure" data-toggle="tab" aria-expanded="false">{{ 'structure'|trans }}</a></li>
+              <li class=""><a href="#tab-recommendation" data-toggle="tab" aria-expanded="false">{{ 'recommendation'|trans }}</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab-basic">
@@ -31,6 +32,21 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="tab-pane" id="tab-recommendation">
+                <ul>
+                    {% for recommendation in recommendations %}
+                        <li>
+                            {{ recommendation.name }}
+                            <ul>
+                                {% for criterias in recommendation.recommendationCriterias %}
+                                    <li>{{ criterias.message }}</li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>

@@ -31,7 +31,7 @@ class Answer
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -69,6 +69,7 @@ class Answer
     public function __construct()
     {
         $this->results = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->score = 0;
     }
 
     /**

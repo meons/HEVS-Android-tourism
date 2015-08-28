@@ -38,19 +38,19 @@ class Quiz
     /**
      * Question[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question", mappedBy="quiz")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Question", mappedBy="quiz", cascade={"persist", "remove"})
      */
     private $questions;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participation", mappedBy="quiz")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participation", mappedBy="quiz", cascade={"persist", "remove"})
      */
     private $participations;
 
     /**
      * @var Category[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Category", mappedBy="quiz")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Category", mappedBy="quiz", cascade={"persist", "remove"})
      */
     private $categories;
 
@@ -98,12 +98,13 @@ class Quiz
     /**
      * Add questions
      *
-     * @param \AppBundle\Entity\Quiz $questions
+     * @param \AppBundle\Entity\Question $questions
      * @return Quiz
      */
-    public function addQuestion(\AppBundle\Entity\Quiz $questions)
+    public function addQuestion(\AppBundle\Entity\Question $questions)
     {
         $this->questions[] = $questions;
+        $questions->setQuiz($this);
 
         return $this;
     }
@@ -111,9 +112,9 @@ class Quiz
     /**
      * Remove questions
      *
-     * @param \AppBundle\Entity\Quiz $questions
+     * @param \AppBundle\Entity\Question $questions
      */
-    public function removeQuestion(\AppBundle\Entity\Quiz $questions)
+    public function removeQuestion(\AppBundle\Entity\Question $questions)
     {
         $this->questions->removeElement($questions);
     }

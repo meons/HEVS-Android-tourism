@@ -2,6 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Answer;
+use AppBundle\Entity\Category;
+use AppBundle\Entity\Question;
 use AppBundle\Response\TreeQuizResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -43,21 +46,21 @@ class QuizController extends Controller
     public function newAction(Request $request)
     {
         $quiz = new Quiz();
-        $form = $this->createForm(new QuizType(), $quiz);
-        $form->handleRequest($request);
+        $quiz->setName('...');
+        $quiz->setOffice($this->getUser()->getOffice());
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($quiz);
-            $em->flush();
+        $question = (new Question())->setText('...');
+        $category = (new Category())->setName('...');
+        $question->setCategory($category);
+        $answer = (new Answer())->setText('...');
+        $question->addAnswer($answer);
+        $quiz->addQuestion($question);
 
-            return $this->redirectToRoute('quiz_show', array('id' => $quiz->getId()));
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($quiz);
+        $em->flush();
 
-        return $this->render('quiz/new.html.twig', array(
-            'quiz' => $quiz,
-            'form' => $form->createView(),
-        ));
+        return $this->redirectToRoute('quiz_edit', array('id' => $quiz->getId()));
     }
 
     /**

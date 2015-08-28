@@ -52,7 +52,7 @@ class Question
     /**
      * @var Category
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="questions")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="questions", cascade={"persist"})
      */
     private $category;
 
@@ -153,6 +153,7 @@ class Question
     public function setCategory(\AppBundle\Entity\Category $category = null)
     {
         $this->category = $category;
+        $category->setQuiz($this->getQuiz());
 
         return $this;
     }

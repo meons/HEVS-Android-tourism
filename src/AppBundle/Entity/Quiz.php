@@ -138,6 +138,7 @@ class Quiz
     public function addCategory(\AppBundle\Entity\Category $categories)
     {
         $this->categories[] = $categories;
+        $categories->setQuiz($this);
 
         return $this;
     }

@@ -153,7 +153,6 @@ class Question
     public function setCategory(\AppBundle\Entity\Category $category = null)
     {
         $this->category = $category;
-        $category->setQuiz($this->getQuiz());
 
         return $this;
     }

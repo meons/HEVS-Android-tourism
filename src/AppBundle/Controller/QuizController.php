@@ -41,16 +41,23 @@ class QuizController extends Controller
      * Creates a new Quiz entity.
      *
      * @Route("/new", name="quiz_new")
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      */
     public function newAction(Request $request)
     {
+        // Quiz
         $quiz = new Quiz();
         $quiz->setName('...');
+
+        // Office
         $quiz->setOffice($this->getUser()->getOffice());
 
-        $question = (new Question())->setText('...');
+        // Category
         $category = (new Category())->setName('...');
+        $quiz->addCategory($category);
+
+        // Question/Answer
+        $question = (new Question())->setText('...');
         $question->setCategory($category);
         $answer = (new Answer())->setText('...');
         $question->addAnswer($answer);

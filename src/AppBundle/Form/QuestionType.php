@@ -16,14 +16,14 @@ class QuestionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         /** @var Question $question */
-        // $question = $options['data'];
+        $question = $options['data'];
 
         $builder
             ->add('text')
             ->add('category', 'entity', array(
                 'class' => 'AppBundle\Entity\Category',
                 'property' => 'name',
-                /* 'choices' => $question->getQuiz()->getCategories(), */
+                'choices' => $question->getQuiz()->getCategories(),
             ))
             ->add('answers', 'collection', array(
                 'type' => new AnswerType(),

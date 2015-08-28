@@ -11,6 +11,35 @@
     {{ form_end(delete_form) }}
 </div>
 <div class="modal-footer">
+    <input type="submit" class="btn btn-primary btn-add-answer" value="Add a new answer" />
     <input type="submit" class="btn btn-warning btn-delete-question" value="Delete" />
     <input type="submit" class="btn btn-primary btn-edit-question" value="Save changes" />
 </div>
+<script>
+    $(document).ready(function() {
+        var $answers = $('#app_question_answers');
+        $answers.data('index', $answers.find(':input').length);
+
+        $('.btn-add-answer').on('click', function(e) {
+            e.preventDefault();
+            addAnswerForm($answers);
+        });
+    });
+
+    function addAnswerForm($answers) {
+        var prototype = $answers.data('prototype');
+        var index = $answers.data('index');
+        var newForm = prototype.replace(/__name__label__/g, index).replace(/__name__/g, index);
+        $answers.data('index', index + 1);
+
+        var $newForm = $(newForm);
+        $newForm.append('<a href="#" class="remove-answer">X</a>');
+        $answers.append($newForm);
+
+        $('.remove-answer').click(function(e) {
+            e.preventDefault();
+            $(this).parent().remove();
+            return false;
+        });
+    }
+</script>

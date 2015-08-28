@@ -49,7 +49,7 @@ class QuestionController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        // Create new question joined with previous answer and that contain an predefined answer
+        // Create new question joined with previous answer and that contain a predefined answer
         $question = new Question();
         $question->addAnswer(new Answer());
         $answer = $em->getRepository('AppBundle:Answer')->find($request->query->get('previousAnswer'));

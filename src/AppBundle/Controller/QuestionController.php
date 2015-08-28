@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Answer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Question;
 use AppBundle\Form\QuestionType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Question controller.
@@ -37,21 +39,30 @@ class QuestionController extends Controller
     /**
      * Creates a new Question entity.
      *
-     * @Route("/new", name="question_new")
+     * @Route("/new", name="question_new", options={"expose":true})
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
         $question = new Question();
+        $question->addAnswer(new Answer());
+
         $form = $this->createForm(new QuestionType(), $question);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // Join previous answer if defined
+            if ($request->query->has('previousAnswer')) {
+                $answer = $em->getRepository('AppBundle:Answer')->find($request->query->get('previousAnswer'));
+                $question->setPreviousAnswer($answer);
+                $question->setQuiz($answer->getQuestion()->getQuiz());
+                $em->persist($answer);
+            }
+
             $em->persist($question);
             $em->flush();
-
-            return $this->redirectToRoute('question_show', array('id' => $question->getId()));
         }
 
         return $this->render('question/new.html.twig', array(
@@ -104,7 +115,7 @@ class QuestionController extends Controller
     /**
      * Deletes a Question entity.
      *
-     * @Route("/{id}", name="question_delete")
+     * @Route("/{id}", name="question_delete", options={"expose"=true})
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Question $question)
@@ -118,7 +129,7 @@ class QuestionController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('question_index');
+        return new Response('Ok');
     }
 
     /**

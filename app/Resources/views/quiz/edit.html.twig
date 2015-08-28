@@ -25,7 +25,7 @@
             <div class="tab-pane" id="tab-structure">
                 <div class="chart">
                     <div class="tree"></div>
-                    <div class="modal fade" id="modal-edit-question" tabindex="-1" role="dialog" aria-labelledby="modal-edit-questionLabel">
+                    <div class="modal fade" id="modal-question" tabindex="-1" role="dialog" aria-labelledby="modal-question-label">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content"></div>
                         </div>
@@ -47,7 +47,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jstree/3.0.9/jstree.min.js"></script>
     <script>
         $(function() {
-            $('#modal-edit-question').on('hide.bs.modal', function (e) {
+            $('#modal-question').on('hide.bs.modal', function (e) {
                 $('.tree').jstree(true).refresh();
             });
 
@@ -65,8 +65,6 @@
                             return {
                                 "edit": {
                                     "id": $node.original.id,
-                                    "separator_before": false,
-                                    "separator_after": false,
                                     "label": "Editer la structure de cette question",
                                     "action": editQuestion
                                 }
@@ -75,11 +73,9 @@
                             return {
                                 "add": {
                                     "id": $node.original.id,
-                                    "separator_before": false,
-                                    "separator_after": false,
                                     "label": "Ajouter une nouvelle question",
                                     "_disabled": $node.children.length > 0,
-                                    "action": addAction
+                                    "action": addQuestion
                                 }
                             };
                         }
@@ -92,20 +88,47 @@
         function editQuestion(obj) {
             var id = obj.item.id.split('-')[1];
             var url = Routing.generate('question_edit', { id: id });
-            $('#modal-edit-question').modal('show');
+            $('#modal-question').modal('show');
             $.get(url, function (data) {
-                $('#modal-edit-question .modal-content').html(data);
+                $('#modal-question .modal-content').html(data);
+
+                // Ajaxify edit process
                 $('input.btn-edit-question').click(function() {
                     var $form = $('form.form-edit-question');
                     $.post(url, $form.serialize(), function() {
-                        $('#modal-edit-question').modal('hide');
+                        $('#modal-question').modal('hide');
+                    });
+                });
+
+                // Ajaxify delete process
+                $('input.btn-delete-question').click(function() {
+                    var $form = $('form.form-delete-question');
+                    $.ajax($form.attr('action'), {
+                        method: 'DELETE',
+                        data: $form.serialize(),
+                        success: function() {
+                            $('#modal-question').modal('hide');
+                        }
                     });
                 });
             });
         }
 
         function addQuestion(obj) {
-            // TODO
+            var id = obj.item.id.split('-')[1];
+            var url = Routing.generate('question_new', {previousAnswer: id});
+            $('#modal-question').modal('show');
+            $.get(url, function (data) {
+                $('#modal-question .modal-content').html(data);
+
+                // Ajaxify new process
+                $('input.btn-new-question').click(function() {
+                    var $form = $('form.form-new-question');
+                    $.post(url, $form.serialize(), function() {
+                        $('#modal-question').modal('hide');
+                    });
+                });
+            });
         }
     </script>
 {% endblock %}

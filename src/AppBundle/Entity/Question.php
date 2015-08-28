@@ -45,7 +45,7 @@ class Question
     /**
      * @var Answer[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Answer", mappedBy="question")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Answer", mappedBy="question", cascade={"persist", "remove"})
      */
     private $answers;
 
@@ -129,6 +129,7 @@ class Question
     public function setPreviousAnswer(\AppBundle\Entity\Answer $previousAnswer = null)
     {
         $this->previousAnswer = $previousAnswer;
+        $previousAnswer->setNextQuestion($this);
 
         return $this;
     }
@@ -175,6 +176,7 @@ class Question
     public function addAnswer(\AppBundle\Entity\Answer $answers)
     {
         $this->answers[] = $answers;
+        $answers->setQuestion($this);
 
         return $this;
     }

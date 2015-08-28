@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Answer;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,11 +20,6 @@ class AnswerType extends AbstractType
             ->add('text')
             ->add('description')
             ->add('score')
-            ->add('nextQuestion', 'entity', array(
-                'class' => 'AppBundle\Entity\Question',
-                'property' => 'text'
-            ))
-            //->add('question')
         ;
     }
     

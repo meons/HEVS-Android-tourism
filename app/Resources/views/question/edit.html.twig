@@ -6,7 +6,11 @@
     {{ form_start(edit_form, { attr: {class: 'form-edit-question'} }) }}
         {{ form_widget(edit_form) }}
     {{ form_end(edit_form) }}
+    {{ form_start(delete_form, { attr: {class: 'form-delete-question'} }) }}
+        {{ form_widget(delete_form) }}
+    {{ form_end(delete_form) }}
 </div>
 <div class="modal-footer">
+    <input type="submit" class="btn btn-warning btn-delete-question" value="Delete" />
     <input type="submit" class="btn btn-primary btn-edit-question" value="Save changes" />
 </div>

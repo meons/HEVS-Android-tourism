@@ -1,16 +1,12 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-    <h1>Question creation</h1>
-
-    {{ form_start(form) }}
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title" id="myModalLabel">Question edit</h4>
+</div>
+<div class="modal-body">
+    {{ form_start(form, { attr: {class: 'form-new-question'} }) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" />
     {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('question_index') }}">Back to the list</a>
-        </li>
-    </ul>
-{% endblock %}
+</div>
+<div class="modal-footer">
+    <input type="submit" class="btn btn-primary btn-new-question" value="Save changes" />
+</div>

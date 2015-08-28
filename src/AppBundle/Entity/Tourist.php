@@ -12,6 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tourist
 {
+    const GENDER_MALE = 0;
+    const GENDER_FEMALE = 1;
+
     /**
      * @var integer
      *
@@ -30,9 +33,24 @@ class Tourist
 
     /**
      * @var \DateTime
+     *
      * @ORM\Column(type="datetime", name="creation_date")
      */
     private $creationDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="date", name="birth_date"
+     */
+    private $birthDate;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $gender;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Result", mappedBy="tourist")

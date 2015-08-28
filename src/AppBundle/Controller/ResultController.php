@@ -63,6 +63,28 @@ class ResultController extends Controller
             $scores[$category->getId()]['total'] += $score;
         }
 
+
+        // Get recommendations
+        $recommendations = array();
+        foreach ($quiz->getRecommendations() as $recommendation) {
+            foreach ($scores as $score) {
+                if ($recommendation->getCategory()->getName() === $score['category']->getName()) {
+                    $recommendationCriterias = $recommendation->getRecommendationCriterias();
+                    foreach ($recommendationCriterias as $criteria) {
+                        if ($score['total'] >= $criteria->getThresholdMin() && $score['total'] <= $criteria->getThresholdMax()) {
+                            $recommendations[] = array(
+                                'cat' => $score['category'],
+                                'msg' => $criteria->getMessage(),
+                            );
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        dump($recommendations);
+
+        //dump($scores);
         // find max score
         $maxScore = array_reduce($scores, function($v, $w) {
             return max($v, $w['total']);
@@ -74,6 +96,7 @@ class ResultController extends Controller
             'results' => $results,
             'scores' => $scores,
             'max_score' => $maxScore,
+            'recommendations' => $recommendations
         ));
     }
 

@@ -41,7 +41,7 @@ class Tourist
     /**
      * @var \DateTime
      *
-     * @ORM\Column(type="date", name="birth_date"
+     * @ORM\Column(type="date", name="birth_date")
      */
     private $birthDate;
 
@@ -206,5 +206,52 @@ class Tourist
     public function getParticipations()
     {
         return $this->participations;
+    }
+
+
+    /**
+     * Set birthDate
+     *
+     * @param \DateTime $birthDate
+     * @return Tourist
+     */
+    public function setBirthDate($birthDate)
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthDate
+     *
+     * @return \DateTime 
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * Set gender
+     *
+     * @param integer $gender
+     * @return Tourist
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return integer 
+     */
+    public function getGender()
+    {
+        return $this->gender;
     }
 }

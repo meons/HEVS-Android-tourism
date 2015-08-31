@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Answer;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -39,7 +40,7 @@ class QuestionController extends Controller
      * Creates a new Question entity.
      *
      * @Route("/new", name="question_new", options={"expose":true})
-     * @Method({"GET", "POST"})
+     * @Method("GET")
      */
     public function newAction(Request $request)
     {
@@ -51,24 +52,18 @@ class QuestionController extends Controller
 
         // Create new question joined with previous answer and that contain a predefined answer
         $question = new Question();
-        $question->addAnswer(new Answer());
+        $question->setText('...');
+        $question->addAnswer((new Answer())->setText('...'));
         $answer = $em->getRepository('AppBundle:Answer')->find($request->query->get('previousAnswer'));
         $question->setPreviousAnswer($answer);
         $question->setQuiz($answer->getQuestion()->getQuiz());
+        $question->setCategory($question->getQuiz()->getCategories()->first());
 
-        $form = $this->createForm(new QuestionType(), $question);
-        $form->handleRequest($request);
+        $em->persist($answer);
+        $em->persist($question);
+        $em->flush();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($answer);
-            $em->persist($question);
-            $em->flush();
-        }
-
-        return $this->render('question/new.html.twig', array(
-            'question' => $question,
-            'form' => $form->createView(),
-        ));
+        return $this->redirectToRoute('question_edit', array('id' => $question->getId()));
     }
 
     /**
@@ -95,12 +90,27 @@ class QuestionController extends Controller
      */
     public function editAction(Request $request, Question $question)
     {
+        $originalAnswers = new ArrayCollection();
+        foreach ($question->getAnswers() as $answer) {
+            $originalAnswers->add($answer);
+        }
+
         $deleteForm = $this->createDeleteForm($question);
-        $editForm = $this->createForm(new QuestionType(), $question);
+        $editForm = $this->createForm(new QuestionType(), $question, array(
+            'action' => $this->get('router')->generate('question_edit', array('id' => $question->getId())),
+        ));
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // Remove answers
+            foreach ($originalAnswers as $answer) {
+                if (!$question->getAnswers()->contains($answer)) {
+                    $em->remove($answer);
+                }
+            }
+
             $em->persist($question);
             $em->flush();
         }

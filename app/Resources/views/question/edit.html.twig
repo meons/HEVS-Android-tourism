@@ -18,24 +18,22 @@
 <script>
     $(document).ready(function() {
         var $answers = $('#app_question_answers');
-        $answers.data('index', $answers.find(':input').length);
+        $answers.data('index', $answers.children().length);
+        addRemoveAnswerLink($answers.children());
 
         $('.btn-add-answer').on('click', function(e) {
             e.preventDefault();
-            addAnswerForm($answers);
+            var prototype = $answers.data('prototype');
+            var index = $answers.data('index');
+            var $newForm = $(prototype.replace(/__name__label__/g, index).replace(/__name__/g, index));
+            $answers.append($newForm);
+            addRemoveAnswerLink($newForm);
+            $answers.data('index', index + 1);
         });
     });
 
-    function addAnswerForm($answers) {
-        var prototype = $answers.data('prototype');
-        var index = $answers.data('index');
-        var newForm = prototype.replace(/__name__label__/g, index).replace(/__name__/g, index);
-        $answers.data('index', index + 1);
-
-        var $newForm = $(newForm);
-        $newForm.append('<a href="#" class="remove-answer">X</a>');
-        $answers.append($newForm);
-
+    function addRemoveAnswerLink($answer) {
+        $answer.append('<a href="#" class="remove-answer">X</a>');
         $('.remove-answer').click(function(e) {
             e.preventDefault();
             $(this).parent().remove();

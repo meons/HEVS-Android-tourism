@@ -81,7 +81,7 @@
                         }
                     }
                 },
-                "plugins" : ["dnd", "contextmenu"]
+                "plugins" : ["contextmenu"]
             });
         });
 
@@ -91,26 +91,8 @@
             $('#modal-question').modal('show');
             $.get(url, function (data) {
                 $('#modal-question .modal-content').html(data);
-
-                // Ajaxify edit process
-                $('input.btn-edit-question').click(function() {
-                    var $form = $('form.form-edit-question');
-                    $.post(url, $form.serialize(), function() {
-                        $('#modal-question').modal('hide');
-                    });
-                });
-
-                // Ajaxify delete process
-                $('input.btn-delete-question').click(function() {
-                    var $form = $('form.form-delete-question');
-                    $.ajax($form.attr('action'), {
-                        method: 'DELETE',
-                        data: $form.serialize(),
-                        success: function() {
-                            $('#modal-question').modal('hide');
-                        }
-                    });
-                });
+                $('input.btn-edit-question').click(ajaxifyEditQuestion);
+                $('input.btn-delete-question').click(ajaxifyDeleteQuestion);
             });
         }
 
@@ -120,14 +102,25 @@
             $('#modal-question').modal('show');
             $.get(url, function (data) {
                 $('#modal-question .modal-content').html(data);
+                $('input.btn-edit-question').click(ajaxifyEditQuestion);
+            });
+        }
 
-                // Ajaxify new process
-                $('input.btn-new-question').click(function() {
-                    var $form = $('form.form-new-question');
-                    $.post(url, $form.serialize(), function() {
-                        $('#modal-question').modal('hide');
-                    });
-                });
+        function ajaxifyEditQuestion() {
+            var $form = $('form.form-edit-question');
+            $.post($form.attr('action'), $form.serialize(), function() {
+                $('#modal-question').modal('hide');
+            });
+        }
+
+        function ajaxifyDeleteQuestion() {
+            var $form = $('form.form-delete-question');
+            $.ajax($form.attr('action'), {
+                method: 'DELETE',
+                data: $form.serialize(),
+                success: function() {
+                    $('#modal-question').modal('hide');
+                }
             });
         }
     </script>

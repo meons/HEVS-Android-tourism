@@ -32,9 +32,9 @@ class Result
     private $tourist;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Quiz")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Participation")
      **/
-    private $quiz;
+    private $participation;
 
     /**
      * Get id
@@ -92,26 +92,28 @@ class Result
         return $this->tourist;
     }
 
+
+
     /**
-     * Set quiz
+     * Set participation
      *
-     * @param \AppBundle\Entity\Quiz $quiz
+     * @param \AppBundle\Entity\Participation $participation
      * @return Result
      */
-    public function setQuiz(\AppBundle\Entity\Quiz $quiz = null)
+    public function setParticipation(\AppBundle\Entity\Participation $participation = null)
     {
-        $this->quiz = $quiz;
+        $this->participation = $participation;
 
         return $this;
     }
 
     /**
-     * Get quiz
+     * Get participation
      *
-     * @return \AppBundle\Entity\Quiz 
+     * @return \AppBundle\Entity\Participation 
      */
-    public function getQuiz()
+    public function getParticipation()
     {
-        return $this->quiz;
+        return $this->participation;
     }
 }

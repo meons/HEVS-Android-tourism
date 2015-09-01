@@ -131,7 +131,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
                 $quiz->addParticipation($p);
                 $tourist->addParticipation($p);
 
-                $this->respond($manager, $tourist, $quiz->getQuestions()[0]);
+                $this->respond($manager, $tourist, $quiz->getQuestions()[0], $p);
             }
         }
 
@@ -142,10 +142,11 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
      * Create responses for a question
      *
      * @param $manager ObjectManager
-     * @param $tourist Tourist
+     * @param $t Tourist
      * @param $q Question
+     * @param $p Participation
      */
-    private function respond($manager, $tourist, $q)
+    private function respond($manager, $t, $q, $p)
     {
         if ($q === null) {
             return;
@@ -160,13 +161,13 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
 
         $result = new Result();
         $result->setAnswer($a);
-        $result->setTourist($tourist);
-        $result->setQuiz($q->getQuiz());
+        $result->setTourist($t);
+        $result->setParticipation($p);
         $manager->persist($result);
 
         // repeat...
         $q = $a->getNextQuestion();
-        $this->respond($manager, $tourist, $q);
+        $this->respond($manager, $t, $q, $p);
     }
 
     /**

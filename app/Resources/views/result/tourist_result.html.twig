@@ -119,7 +119,7 @@
              */
             function requestData() {
                 $.ajax({
-                    url: '{{ path('result_show_radar_plot_tourist_data', { tourist_id: tourist.id, quiz_id: quiz.id }) }}',
+                    url: '{{ path('result_show_radar_plot_tourist_data', { participation_id: participation.id }) }}',
                     type: "GET",
                     dataType: "json",
                     cache: false,

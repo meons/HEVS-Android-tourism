@@ -39,4 +39,19 @@ class QuizRepository extends EntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+
+    /**
+     * @param $participation Participation|int
+     * @return Quiz
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findOneByParticipation($participation)
+    {
+        return $this->createQueryBuilder('q')
+            ->addSelect('p')
+            ->join('q.participations', 'p')
+            ->where('p.id = :participation')->setParameter('participation', $participation)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

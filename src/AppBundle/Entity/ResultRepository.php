@@ -13,12 +13,11 @@ use Doctrine\ORM\EntityRepository;
 class ResultRepository extends EntityRepository
 {
     /**
-     * @param $tourist
-     * @param $quiz
+     * @param $participation
      * @return Result[]
      */
-    public function getAllByTouristQuiz($tourist, $quiz)
+    public function getAllByParticipation($participation)
     {
-        return $this->findBy(array('tourist' => $tourist, 'quiz' => $quiz));
+        return $this->findBy(array('participation' => $participation));
     }
 }

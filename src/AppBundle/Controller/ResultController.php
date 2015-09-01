@@ -40,14 +40,13 @@ class ResultController extends Controller
     }
 
     /**
-     * @Route("/{tourist_id}/{quiz_id}", name="result_tourist_quiz")
-     * @ParamConverter("tourist", options={"mapping": {"tourist_id": "id"}})
-     * @ParamConverter("quiz", options={"mapping": {"quiz_id": "id"}})
+     * @Route("/participation/{participation_id}", name="result_tourist_quiz")
+     * @ParamConverter("participation", options={"mapping": {"participation_id": "id"}})
      */
-    public function listTouristAction(Tourist $tourist, Quiz $quiz)
+    public function listTouristAction(Participation $participation)
     {
         $em = $this->getDoctrine()->getManager();
-        $results = $em->getRepository('AppBundle:Result')->getAllByTouristQuiz($tourist, $quiz);
+        $results = $em->getRepository('AppBundle:Result')->getAllByParticipation($participation);
 
         /** @var Result $result */
         $scores = array();
@@ -69,8 +68,7 @@ class ResultController extends Controller
         }, -9999999);
 
         return $this->render('result/tourist_result.html.twig', array(
-            'quiz' => $quiz,
-            'tourist' => $tourist,
+            'participation' => $participation,
             'results' => $results,
             'scores' => $scores,
             'max_score' => $maxScore,
@@ -80,14 +78,13 @@ class ResultController extends Controller
     /**
      * This method returns an ajax response with categories and scores.
      *
-     * @Route("/tourist/{tourist_id}/quiz/{quiz_id}/data", name="result_show_radar_plot_tourist_data")
-     * @ParamConverter("tourist", options={"mapping": {"tourist_id": "id"}})
-     * @ParamConverter("quiz", options={"mapping": {"quiz_id": "id"}})
+     * @Route("/participation/{participation_id}/data", name="result_show_radar_plot_tourist_data")
+     * @ParamConverter("participation", options={"mapping": {"participation_id": "id"}})
      */
-    public function showRadarPlotTouristAction(Tourist $tourist, Quiz $quiz)
+    public function showRadarPlotTouristAction(Participation $participation)
     {
         $em = $this->getDoctrine()->getManager();
-        $results = $em->getRepository('AppBundle:Result')->getAllByTouristQuiz($tourist, $quiz);
+        $results = $em->getRepository('AppBundle:Result')->getAllByParticipation($participation);
 
         /** @var Result $result */
         $scores = array();
@@ -115,10 +112,10 @@ class ResultController extends Controller
     }
 
     /**
-     * @Route("/tourist/{tourist_id}/quiz/{quiz_id}/graph/data", name="result_tourist_quiz_graph_data")
+     * @Route("/participation/{participation_id}/graph/data", name="result_tourist_quiz_graph_data")
      * @ParamConverter("quiz", options={
-     *      "repository_method" = "findOneByTourist",
-     *      "mapping" = {"quiz_id": "quiz", "tourist_id": "tourist"},
+     *      "repository_method" = "findOneByParticipation",
+     *      "mapping" = {"participation_id": "participation"},
      *      "map_method_signature" = true
      * })
      */

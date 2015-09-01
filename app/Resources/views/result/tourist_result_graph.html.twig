@@ -46,7 +46,7 @@
             .append("g")
             .attr("transform", "translate(40,0)");
 
-        d3.json("{{ path('result_tourist_quiz_graph_data', { quiz_id: quiz.id, tourist_id: tourist.id }) }}", function(error, root) {
+        d3.json("{{ path('result_tourist_quiz_graph_data', { participation_id: participation.id }) }}", function(error, root) {
             if (error) throw error;
 
             var nodes = cluster.nodes(root),

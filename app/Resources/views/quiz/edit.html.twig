@@ -35,18 +35,11 @@
             </div>
 
             <div class="tab-pane" id="tab-recommendation">
-                <ul>
-                    {% for recommendation in recommendations %}
-                        <li>
-                            {{ recommendation.name }}
-                            <ul>
-                                {% for criterias in recommendation.recommendationCriterias %}
-                                    <li>{{ criterias.message }}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% endfor %}
-                </ul>
+                <a href="{{ path('recommendation_new') }}" class="btn btn-success">Add</a>
+                </br>
+                {% for recommendation in recommendations %}
+                    <a href="{{ path('recommendation_edit', {id: recommendation.id}) }}">{{ recommendation.name }}</a>&nbsp;<a href="#" class="fa fa-remove">Delete</a>
+                {% endfor %}
             </div>
         </div>
     </div>

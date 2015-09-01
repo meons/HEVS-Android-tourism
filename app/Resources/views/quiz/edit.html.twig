@@ -11,8 +11,9 @@
 {% block body %}
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-              <li class="active"><a href="#tab-basic" data-toggle="tab" aria-expanded="true">{{ 'basic'|trans }}</a></li>
-              <li class=""><a href="#tab-structure" data-toggle="tab" aria-expanded="false">{{ 'structure'|trans }}</a></li>
+            <li class="active"><a href="#tab-basic" data-toggle="tab" aria-expanded="true">{{ 'basic'|trans }}</a></li>
+            <li class=""><a href="#tab-categories" data-toggle="tab" aria-expanded="false">{{ 'categories'|trans }}</a></li>
+            <li class=""><a href="#tab-structure" data-toggle="tab" aria-expanded="false">{{ 'structure'|trans }}</a></li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab-basic">
@@ -20,6 +21,10 @@
                     {{ form_widget(edit_form) }}
                     <input type="submit" value="Edit" class="btn btn-primary" />
                 {{ form_end(edit_form) }}
+            </div>
+
+            <div class="tab-pane" id="tab-categories">
+                {{ include('category/index.html.twig', { categories: quiz.categories }) }}
             </div>
 
             <div class="tab-pane" id="tab-structure">

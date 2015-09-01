@@ -44,12 +44,14 @@
                         <table class="table table-hover">
                             <tr>
                                 <th>Nom</th>
-                                <th>Action</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                             {% for recommendation in recommendations %}
                                 <tr>
                                     <td>{{ recommendation.name }} ({{ recommendation.category.name }})</td>
-                                    <td><a href="{{ path('recommendation_edit', {id: recommendation.id}) }}" class="fa fa-edit">edit</a></td>
+                                    <td><a href="{{ path('recommendation_edit', {id: recommendation.id}) }}" class="fa fa-edit"> edit</a></td>
+                                    <td><a href="#" class="fa fa-list"> criterias</a></td>
                                 </tr>
                             {% endfor %}
                         </table>

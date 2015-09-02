@@ -10,3 +10,8 @@
         {{ form_rest(edit_form) }}
     {{ form_end(edit_form) }}
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'recommendation/script_recommendationCriteria.html.twig' %}
+{% endblock %}

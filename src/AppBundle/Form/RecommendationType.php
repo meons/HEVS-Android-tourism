@@ -32,7 +32,11 @@ class RecommendationType extends AbstractType
                 'property' => 'name',
                 'choices' => $this->quiz->getCategories(),
             ))
-            ->add('recommendationCriterias', 'collection', array('type' => new RecommendationCriteriaType()))
+            ->add('recommendationCriterias', 'collection', array(
+                'type' => new RecommendationCriteriaType(),
+                'allow_add' => true,
+                'by_reference' => false,
+            ))
         ;
     }
 

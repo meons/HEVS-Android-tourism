@@ -7,6 +7,10 @@
     {{ form_start(form) }}
         {{ form_widget(form) }}
         <input type="submit" value="Create" />
-        {{ form_rest(form) }}
     {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% include 'recommendation/script_recommendationCriteria.html.twig' %}
 {% endblock %}

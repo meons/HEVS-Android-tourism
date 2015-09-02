@@ -86,7 +86,7 @@ class RecommendationController extends Controller
     public function editAction(Request $request, Recommendation $recommendation)
     {
         $deleteForm = $this->createDeleteForm($recommendation);
-        $editForm = $this->createForm(new RecommendationType(), $recommendation);
+        $editForm = $this->createForm(new RecommendationType($recommendation->getQuiz()), $recommendation);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {

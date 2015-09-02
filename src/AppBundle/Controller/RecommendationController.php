@@ -43,7 +43,7 @@ class RecommendationController extends Controller
     {
         $recommendation = new Recommendation();
         $quiz = $this->getDoctrine()->getRepository('AppBundle:Quiz')->find($request->get('quiz_id'));
-        $form = $this->createForm(new RecommendationType(), $recommendation);
+        $form = $this->createForm(new RecommendationType($quiz), $recommendation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

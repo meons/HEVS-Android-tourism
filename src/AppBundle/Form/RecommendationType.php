@@ -2,12 +2,23 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Quiz;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RecommendationType extends AbstractType
 {
+    private $quiz;
+
+    /**
+     * RecommendationType constructor.
+     */
+    public function __construct($quiz)
+    {
+        $this->quiz = $quiz;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -19,7 +30,9 @@ class RecommendationType extends AbstractType
             ->add('category', 'entity', array(
                 'class' => 'AppBundle:Category',
                 'property' => 'name',
+                'choices' => $this->quiz->getCategories(),
             ))
+            ->add('recommendationCriterias', 'collection', array('type' => new RecommendationCriteriaType()))
         ;
     }
 

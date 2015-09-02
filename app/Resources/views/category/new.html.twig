@@ -8,9 +8,5 @@
         <input type="submit" value="Create" />
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('category_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a href="{{ path('quiz_edit', { id: category.quiz.id }) }}">Back to the list</a>
 {% endblock %}

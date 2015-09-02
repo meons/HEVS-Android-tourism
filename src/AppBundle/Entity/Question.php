@@ -53,6 +53,7 @@ class Question
      * @var Category
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category", inversedBy="questions", cascade={"persist"})
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", onDelete="SET NULL")
      */
     private $category;
 

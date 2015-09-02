@@ -17,23 +17,6 @@ use AppBundle\Form\CategoryType;
 class CategoryController extends Controller
 {
     /**
-     * Lists all Category entities.
-     *
-     * @Route("/", name="category_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $categories = $em->getRepository('AppBundle:Category')->findAll();
-
-        return $this->render('category/index.html.twig', array(
-            'categories' => $categories,
-        ));
-    }
-
-    /**
      * Creates a new Category entity.
      *
      * @Route("/new", name="category_new")
@@ -41,7 +24,10 @@ class CategoryController extends Controller
      */
     public function newAction(Request $request)
     {
+        $quiz = $this->getDoctrine()->getRepository('AppBundle:Quiz')->find($request->query->get('quiz'));
+
         $category = new Category();
+        $category->setQuiz($quiz);
         $form = $this->createForm(new CategoryType(), $category);
         $form->handleRequest($request);
 
@@ -56,22 +42,6 @@ class CategoryController extends Controller
         return $this->render('category/new.html.twig', array(
             'category' => $category,
             'form' => $form->createView(),
-        ));
-    }
-
-    /**
-     * Finds and displays a Category entity.
-     *
-     * @Route("/{id}", name="category_show")
-     * @Method("GET")
-     */
-    public function showAction(Category $category)
-    {
-        $deleteForm = $this->createDeleteForm($category);
-
-        return $this->render('category/show.html.twig', array(
-            'category' => $category,
-            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -92,7 +62,7 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('category_edit', array('id' => $category->getId()));
+            return $this->redirectToRoute('quiz_edit', array('id' => $category->getQuiz()->getId()));
         }
 
         return $this->render('category/edit.html.twig', array(
@@ -110,6 +80,7 @@ class CategoryController extends Controller
      */
     public function deleteAction(Request $request, Category $category)
     {
+        $quiz = $category->getQuiz();
         $form = $this->createDeleteForm($category);
         $form->handleRequest($request);
 
@@ -119,7 +90,7 @@ class CategoryController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('category_index');
+        return $this->redirectToRoute('quiz_edit', array('id' => $quiz->getId()));
     }
 
     /**

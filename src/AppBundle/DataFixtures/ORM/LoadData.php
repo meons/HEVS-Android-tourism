@@ -8,6 +8,8 @@ use AppBundle\Entity\Office;
 use AppBundle\Entity\Participation;
 use AppBundle\Entity\Question;
 use AppBundle\Entity\Quiz;
+use AppBundle\Entity\Recommendation;
+use AppBundle\Entity\RecommendationCriteria;
 use AppBundle\Entity\Tourist;
 use AppBundle\Entity\Result;
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -58,6 +60,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
         }
 
         $this->createTouristOfficeUser($manager);
+        $this->createRecommendation($manager);
     }
 
     /**
@@ -200,6 +203,33 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
                 $userManager->updateUser($user);
             }
         }
+    }
+
+    /**
+     * Create recommendations with recommendation criterias for all quizzes
+     *
+     * @param $manager ObjectManager
+     */
+    public function createRecommendation($manager)
+    {
+        $quizzes = $manager->getRepository('AppBundle:Quiz')->findAll();
+        foreach ($quizzes as $quiz) {
+            $recommendation = new Recommendation();
+            $category = $quiz->getCategories()->first();
+            $recommendation->setName("Duree de la route a proposer");
+            $recommendation->setCategory($category);
+            $recommendation->setQuiz($quiz);
+            $manager->persist($recommendation);
+            for ($i = 0; $i < 10; $i += 2) {
+                $recommendationCriteria = new RecommendationCriteria();
+                $recommendationCriteria->setRecommendation($recommendation);
+                $recommendationCriteria->setThresholdMin($i);
+                $recommendationCriteria->setThresholdMax($i + 1);
+                $recommendationCriteria->setMessage("Temps de marche max: " . $i . " heures");
+                $manager->persist($recommendationCriteria);
+            }
+        }
+        $manager->flush();
     }
 
     /**

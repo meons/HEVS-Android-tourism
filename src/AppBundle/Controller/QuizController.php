@@ -107,6 +107,7 @@ class QuizController extends Controller
         $deleteForm = $this->createDeleteForm($quiz);
         $editForm = $this->createForm(new QuizType(), $quiz);
         $editForm->handleRequest($request);
+        $recommendations = $quiz->getRecommendations();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -120,6 +121,7 @@ class QuizController extends Controller
             'quiz' => $quiz,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'recommendations' => $recommendations
         ));
     }
 

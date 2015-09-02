@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}Edit recommendation{% endblock %}
+{% block header_desc %}{% endblock %}
+
+{% block body %}
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+            <input type="submit" value="Save" />
+        {{ form_rest(edit_form) }}
+    {{ form_end(edit_form) }}
+{% endblock %}

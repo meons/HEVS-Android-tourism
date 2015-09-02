@@ -40,18 +40,28 @@
             </div>
 
             <div class="tab-pane" id="tab-recommendation">
-                <ul>
-                    {% for recommendation in recommendations %}
-                        <li>
-                            {{ recommendation.name }}
-                            <ul>
-                                {% for criterias in recommendation.recommendationCriterias %}
-                                    <li>{{ criterias.message }}</li>
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% endfor %}
-                </ul>
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Recommendations</h3>
+                        <a href="{{ path('recommendation_new', {quiz_id: quiz.id}) }}" class="btn btn-success">Add</a>
+                    </div><!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tr>
+                                <th>Nom</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            {% for recommendation in recommendations %}
+                                <tr>
+                                    <td>{{ recommendation.name }} ({{ recommendation.category.name }})</td>
+                                    <td><a href="{{ path('recommendation_edit', {id: recommendation.id}) }}" class="fa fa-edit"> edit</a></td>
+                                    <td><a href="#" class="fa fa-list"> criterias</a></td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

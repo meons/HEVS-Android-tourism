@@ -42,15 +42,17 @@ class RecommendationController extends Controller
     public function newAction(Request $request)
     {
         $recommendation = new Recommendation();
-        $form = $this->createForm(new RecommendationType(), $recommendation);
+        $quiz = $this->getDoctrine()->getRepository('AppBundle:Quiz')->find($request->get('quiz_id'));
+        $form = $this->createForm(new RecommendationType($quiz), $recommendation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $recommendation->setQuiz($quiz);
             $em = $this->getDoctrine()->getManager();
             $em->persist($recommendation);
             $em->flush();
 
-            return $this->redirectToRoute('recommendation_show', array('id' => $recommendation->getId()));
+            return $this->redirectToRoute('quiz_edit', array('id' => $recommendation->getQuiz()->getId()));
         }
 
         return $this->render('recommendation/new.html.twig', array(
@@ -92,7 +94,8 @@ class RecommendationController extends Controller
             $em->persist($recommendation);
             $em->flush();
 
-            return $this->redirectToRoute('recommendation_edit', array('id' => $recommendation->getId()));
+            return $this->redirectToRoute('quiz_edit', array('id' => $recommendation->getQuiz()->getId()));
+            //return $this->redirectToRoute('recommendation_edit', array('id' => $recommendation->getId()));
         }
 
         return $this->render('recommendation/edit.html.twig', array(

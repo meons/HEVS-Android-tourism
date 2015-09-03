@@ -1,0 +1,32 @@
+<script>
+    $(document).ready(function() {
+        var $answers = $('.answers');
+        $answers.data('index', $answers.children().length);
+        addRemoveAnswerLink($answers.children());
+
+        $('.btn-add-answer').on('click', function(e) {
+            e.preventDefault();
+            var prototype = $answers.data('prototype');
+            var index = $answers.data('index');
+            var form = prototype.replace(/__name__label__/g, index).replace(/__name__/g, index);
+            var $answer = $('<div class="panel panel-default" style="display: none;"><div class="panel-body">' + form + '</div><div class="panel-footer"></div></div>');
+
+            $answers.append($answer);
+            addRemoveAnswerLink($answer);
+            $answer.show('slow');
+
+            $answers.data('index', index + 1);
+        });
+    });
+
+    function addRemoveAnswerLink($answer) {
+        $answer.find('.panel-footer').append('<a href="#" class="btn btn-link btn-default remove-answer">Remove this answer</a>');
+        $('.remove-answer').click(function(e) {
+            e.preventDefault();
+            $(this).parent().parent().hide('slow', function() {
+                $(this).remove();
+            });
+            return false;
+        });
+    }
+</script>

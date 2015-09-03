@@ -1,43 +1,41 @@
-<div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title" id="myModalLabel">Question edit</h4>
-</div>
-<div class="modal-body">
-    {{ form_start(edit_form, { attr: {class: 'form-edit-question'} }) }}
-        {{ form_widget(edit_form) }}
-    {{ form_end(edit_form) }}
-    {{ form_start(delete_form, { attr: {class: 'form-delete-question'} }) }}
-        {{ form_widget(delete_form) }}
-    {{ form_end(delete_form) }}
-</div>
-<div class="modal-footer">
-    <input type="submit" class="btn btn-primary btn-add-answer" value="Add a new answer" />
-    <input type="submit" class="btn btn-warning btn-delete-question" value="Delete" />
-    <input type="submit" class="btn btn-primary btn-edit-question" value="Save changes" />
-</div>
-<script>
-    $(document).ready(function() {
-        var $answers = $('#app_question_answers');
-        $answers.data('index', $answers.children().length);
-        addRemoveAnswerLink($answers.children());
+{% extends 'base.html.twig' %}
 
-        $('.btn-add-answer').on('click', function(e) {
-            e.preventDefault();
-            var prototype = $answers.data('prototype');
-            var index = $answers.data('index');
-            var $newForm = $(prototype.replace(/__name__label__/g, index).replace(/__name__/g, index));
-            $answers.append($newForm);
-            addRemoveAnswerLink($newForm);
-            $answers.data('index', index + 1);
-        });
-    });
+{% block header %}{{ 'question.edit'|trans }}{% endblock %}
+{% block header_desc %}{% endblock %}
 
-    function addRemoveAnswerLink($answer) {
-        $answer.append('<a href="#" class="remove-answer">X</a>');
-        $('.remove-answer').click(function(e) {
-            e.preventDefault();
-            $(this).parent().remove();
-            return false;
-        });
-    }
-</script>
+{% block body %}
+    <div class="box">
+        <div class="box-header">
+            <h3 class="box-title">Question edit</h3>
+        </div>
+        <div class="box-body">
+            {{ form_start(edit_form) }}
+                {{ form_errors(edit_form) }}
+                {{ form_row(edit_form.text) }}
+                {{ form_row(edit_form.category) }}
+                <div class="answers" data-prototype="{{ form_widget(edit_form.answers.vars.prototype)|e }}">
+                    {% for answer in edit_form.answers %}
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{ form_row(answer) }}
+                            </div>
+                            <div class="panel-footer"></div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="submit" class="btn btn-primary btn-add-answer" value="Add a new answer" />
+                <input type="submit" class="btn btn-primary btn-edit-question " value="Edit" />
+            {{ form_end(edit_form) }}
+
+            {{ form_start(delete_form, { attr: {class: 'form-delete-question pull-right'} }) }}
+                {{ form_widget(delete_form) }}
+                <input type="submit" class="btn btn-warning btn-delete-question" value="Delete" />
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('question/script_answers.html.twig') }}
+{% endblock %}

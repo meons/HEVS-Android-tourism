@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Answer;
+use AppBundle\Entity\Quiz;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -40,7 +41,7 @@ class QuestionController extends Controller
      * Creates a new Question entity.
      *
      * @Route("/new", name="question_new", options={"expose":true})
-     * @Method("GET")
+     * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
@@ -50,20 +51,26 @@ class QuestionController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        // Create new question joined with previous answer and that contain a predefined answer
         $question = new Question();
-        $question->setText('...');
-        $question->addAnswer((new Answer())->setText('...'));
-        $answer = $em->getRepository('AppBundle:Answer')->find($request->query->get('previousAnswer'));
-        $question->setPreviousAnswer($answer);
-        $question->setQuiz($answer->getQuestion()->getQuiz());
-        $question->setCategory($question->getQuiz()->getCategories()->first());
+        $question->addAnswer(new Answer());
+        $previousAnswer = $em->getRepository('AppBundle:Answer')->find($request->query->get('previousAnswer'));
+        $question->setPreviousAnswer($previousAnswer);
+        $question->setQuiz($previousAnswer->getQuestion()->getQuiz());
 
-        $em->persist($answer);
-        $em->persist($question);
-        $em->flush();
+        $form = $this->createForm(new QuestionType(), $question);
+        $form->handleRequest($request);
 
-        return $this->redirectToRoute('question_edit', array('id' => $question->getId()));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($question);
+            $em->flush();
+
+            return $this->redirectToRoute('quiz_edit', array('id' => $question->getQuiz()->getId()));
+        }
+
+        return $this->render('question/new.html.twig', array(
+            'form' => $form->createView(),
+            'question' => $question,
+        ));
     }
 
     /**
@@ -96,9 +103,7 @@ class QuestionController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($question);
-        $editForm = $this->createForm(new QuestionType(), $question, array(
-            'action' => $this->get('router')->generate('question_edit', array('id' => $question->getId())),
-        ));
+        $editForm = $this->createForm(new QuestionType(), $question);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -113,6 +118,8 @@ class QuestionController extends Controller
 
             $em->persist($question);
             $em->flush();
+
+            return $this->redirectToRoute('quiz_edit', array('id' => $question->getQuiz()->getId()));
         }
 
         return $this->render('question/edit.html.twig', array(
@@ -139,7 +146,7 @@ class QuestionController extends Controller
             $em->flush();
         }
 
-        return new Response('Ok');
+        return $this->redirectToRoute('quiz_edit', array('id' => $question->getQuiz()->getId()));
     }
 
     /**

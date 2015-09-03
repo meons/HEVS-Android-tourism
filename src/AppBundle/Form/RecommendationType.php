@@ -35,6 +35,7 @@ class RecommendationType extends AbstractType
             ->add('recommendationCriterias', 'collection', array(
                 'type' => new RecommendationCriteriaType(),
                 'allow_add' => true,
+                'allow_delete' => true,
                 'by_reference' => false,
             ))
         ;

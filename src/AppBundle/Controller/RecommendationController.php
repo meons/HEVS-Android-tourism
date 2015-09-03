@@ -122,7 +122,8 @@ class RecommendationController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('recommendation_index');
+        return $this->redirectToRoute('quiz_edit', array('id' => $recommendation->getQuiz()->getId()));
+        //return $this->redirectToRoute('recommendation_index');
     }
 
     /**

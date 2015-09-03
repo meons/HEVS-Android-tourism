@@ -1,0 +1,22 @@
+<script>
+    var collectionHolder = $('#app_recommendation_recommendationCriterias');
+    var $addLink = $('<a href="#" class="add-criteria-link btn btn-info">Add criteria</a>');
+    var $newLinkLi = $('<div></div>').append($addLink);
+
+    jQuery(document).ready(function() {
+        collectionHolder.append($newLinkLi);
+
+        $addLink.on('click', function(e) {
+            e.preventDefault();
+            addTagForm(collectionHolder, $newLinkLi);
+        });
+    });
+
+    function addTagForm(collectionHolder, $newLinkLi) {
+        var prototype = collectionHolder.attr('data-prototype');
+        var newForm = prototype.replace(/__name__label__/g, collectionHolder.children().length).replace(/__name__/g, collectionHolder.children().length);
+        var $newFormLi = $('<div></div>').append(newForm);
+
+        $newLinkLi.before($newFormLi);
+    }
+</script>

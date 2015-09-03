@@ -86,7 +86,7 @@ class RecommendationController extends Controller
     public function editAction(Request $request, Recommendation $recommendation)
     {
         $deleteForm = $this->createDeleteForm($recommendation);
-        $editForm = $this->createForm(new RecommendationType(), $recommendation);
+        $editForm = $this->createForm(new RecommendationType($recommendation->getQuiz()), $recommendation);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -122,7 +122,8 @@ class RecommendationController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('recommendation_index');
+        return $this->redirectToRoute('quiz_edit', array('id' => $recommendation->getQuiz()->getId()));
+        //return $this->redirectToRoute('recommendation_index');
     }
 
     /**

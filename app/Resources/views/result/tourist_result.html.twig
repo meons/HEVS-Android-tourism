@@ -59,7 +59,7 @@
                 </div>
                 <div class="box-body">
                     {% for recommendation in recommendations %}
-                        <i>{{ recommendation['cat'].name }}</i> : <strong>{{ recommendation['msg'] }}</strong>
+                        <p><i>{{ recommendation['cat'].name }}</i> : <strong>{{ recommendation['msg'] }}</strong></p>
                     {% endfor %}
                 </div><!-- /.box-body -->
             </div>

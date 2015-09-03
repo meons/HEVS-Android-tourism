@@ -122,6 +122,7 @@ class Recommendation
     public function addRecommendationCriteria(\AppBundle\Entity\RecommendationCriteria $recommendationCriterias)
     {
         $this->recommendationCriterias[] = $recommendationCriterias;
+        $recommendationCriterias->setRecommendation($this);
 
         return $this;
     }

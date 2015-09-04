@@ -65,7 +65,7 @@ class ResultController extends Controller
 
         // Get recommendations
         $recommendations = array();
-        foreach ($quiz->getRecommendations() as $recommendation) {
+        foreach ($participation->getQuiz()->getRecommendations() as $recommendation) {
             foreach ($scores as $score) {
                 if ($recommendation->getCategory()->getName() === $score['category']->getName()) {
                     $recommendationCriterias = $recommendation->getRecommendationCriterias();

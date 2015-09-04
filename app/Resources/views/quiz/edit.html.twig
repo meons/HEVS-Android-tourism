@@ -25,7 +25,7 @@
             </div>
 
             <div class="tab-pane" id="tab-category">
-                {{ include('category/index.html.twig', { categories: quiz.categories }) }}
+                {{ include('category/index.html.twig', { quiz: quiz, categories: quiz.categories }) }}
             </div>
 
             <div class="tab-pane" id="tab-structure">

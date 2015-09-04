@@ -170,6 +170,58 @@
         <source>tourist.creationDate</source>
         <target>__tourist.creationDate</target>
       </trans-unit>
+      <trans-unit id="46b3931b9959c927df4fc65fdee94b07" resname="about">
+        <source>about</source>
+        <target>À propos</target>
+      </trans-unit>
+      <trans-unit id="6b522f7c9d28a8dedf5f068dd78898a7" resname="about.title">
+        <source>about.title</source>
+        <target>À propos</target>
+      </trans-unit>
+      <trans-unit id="b2ad90b18baef60d08447211793b0d77" resname="about.desc">
+        <source>about.desc</source>
+        <target>Cette application a été developpée par Dany Maillard, Vincent Huck et Siméon Bobylev dans le cadre d'un projet à l'HESSO</target>
+      </trans-unit>
+      <trans-unit id="0497df19740b6b937bfdd7e5ade1348c" resname="header.results">
+        <source>header.results</source>
+        <target>__header.results</target>
+      </trans-unit>
+      <trans-unit id="8efccd48a225d0b8fb2715f1975232e5" resname="tab.scores">
+        <source>tab.scores</source>
+        <target>__tab.scores</target>
+      </trans-unit>
+      <trans-unit id="faf4b268a2a91ae9e2e0aa2761fd0a7d" resname="tab.selected_answers">
+        <source>tab.selected_answers</source>
+        <target>__tab.selected_answers</target>
+      </trans-unit>
+      <trans-unit id="8dbd5e1c0b1c1f693f1452d2251c84c8" resname="tab.recommendations">
+        <source>tab.recommendations</source>
+        <target>__tab.recommendations</target>
+      </trans-unit>
+      <trans-unit id="32383a1b826c5f97ab182d9600c9faad" resname="tab.tourist">
+        <source>tab.tourist</source>
+        <target>__tab.tourist</target>
+      </trans-unit>
+      <trans-unit id="635d5bd98a1f55245b2af7fa9467a25e" resname="score.value">
+        <source>score.value</source>
+        <target>__score.value</target>
+      </trans-unit>
+      <trans-unit id="5657336cc4d1063360be802c00afd0e8" resname="tourist.creation_date">
+        <source>tourist.creation_date</source>
+        <target>__tourist.creation_date</target>
+      </trans-unit>
+      <trans-unit id="f07987247f01a40927bae9029f8c55cc" resname="tourist.birth_date">
+        <source>tourist.birth_date</source>
+        <target>__tourist.birth_date</target>
+      </trans-unit>
+      <trans-unit id="295162df8a98a2b87f3c1d9e448963e6" resname="tourist.gender">
+        <source>tourist.gender</source>
+        <target>__tourist.gender</target>
+      </trans-unit>
+      <trans-unit id="changes_saved" resname="changes_saved">
+        <source>changes_saved</source>
+        <target>Vos modifications ont été enregistrés.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

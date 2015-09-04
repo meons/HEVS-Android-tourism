@@ -114,6 +114,8 @@ class QuizController extends Controller
             $em->persist($quiz);
             $em->flush();
 
+            $this->addFlash('success', 'changes_saved');
+
             return $this->redirectToRoute('quiz_edit', array('id' => $quiz->getId()));
         }
 

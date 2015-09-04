@@ -50,7 +50,7 @@ class TreeQuizResponse extends JsonResponse
                 'text' => sprintf('%s %s', $info, $a->getText()),
                 'children' => array(),
                 'state' => array(
-                    'opened' => true,
+                    'opened' => false,
                 ),
                 'id' => 'a-'.$a->getId(),
                 'icon' => 'glyphicon glyphicon-arrow-right',

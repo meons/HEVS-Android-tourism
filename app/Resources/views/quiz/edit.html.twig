@@ -94,7 +94,7 @@
                             return {
                                 "edit": {
                                     "id": $node.original.id,
-                                    "label": "Editer la structure de cette question",
+                                    "label": "{{ 'edit'|trans }}",
                                     "action": function(obj) {
                                         var id = obj.item.id.split('-')[1];
                                         window.location = Routing.generate('question_edit', { id: id });
@@ -105,7 +105,7 @@
                             return {
                                 "add": {
                                     "id": $node.original.id,
-                                    "label": "Ajouter une nouvelle question",
+                                    "label": "{{ 'add'|trans }}",
                                     "_disabled": $node.children.length > 0,
                                     "action": function(obj) {
                                         var id = obj.item.id.split('-')[1];

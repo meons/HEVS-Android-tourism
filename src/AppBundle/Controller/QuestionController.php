@@ -3,8 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Answer;
-use AppBundle\Entity\Quiz;
+use AppBundle\Response\TreeQuizResponse;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -20,23 +21,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class QuestionController extends Controller
 {
-    /**
-     * Lists all Question entities.
-     *
-     * @Route("/", name="question_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $questions = $em->getRepository('AppBundle:Question')->findAll();
-
-        return $this->render('question/index.html.twig', array(
-            'questions' => $questions,
-        ));
-    }
-
     /**
      * Creates a new Question entity.
      *
@@ -81,17 +65,15 @@ class QuestionController extends Controller
     /**
      * Finds and displays a Question entity.
      *
-     * @Route("/{id}", name="question_show")
+     * @Route("/", name="question_show")
      * @Method("GET")
      */
-    public function showAction(Question $question)
+    public function showAction(Request $request)
     {
-        $deleteForm = $this->createDeleteForm($question);
-
-        return $this->render('question/show.html.twig', array(
-            'question' => $question,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $question = $this->getDoctrine()->getRepository('AppBundle:Question')->find($request->query->get('id'));
+        $tree = array();
+        TreeQuizResponse::tree($tree, $question);
+        return new JsonResponse($tree[0]);
     }
 
     /**

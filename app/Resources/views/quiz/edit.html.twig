@@ -83,7 +83,17 @@
             $('.tree').jstree({
                 'core' : {
                     'data' : {
-                        "url" : "{{ path('quiz_show_tree', {id: quiz.id}) }}",
+                        'url' : function (node) {
+                            return node.id === '#' ?
+                                '{{ path('quiz_show_tree', {id: quiz.id}) }}' : // root (quiz)
+                                '{{ path('question_show') }}'; // children (next question)
+                        },
+                        'data' : function (node) {
+                            console.log(node);
+                            if (typeof node.original !== 'undefined') {
+                                return { 'id' : node.original.nextQuestion };
+                            }
+                        }
                     },
                     "check_callback" : true
                 },

@@ -14,7 +14,7 @@ class TreeQuizResponse extends JsonResponse
     public function __construct(Quiz $quiz, $status = 200, $headers = array())
     {
         $tree = array();
-        $this->tree($tree, $quiz->getQuestions()[0]);
+        self::tree($tree, $quiz->getQuestions()[0]);
         parent::__construct($tree[0], $status, $headers);
     }
 
@@ -22,9 +22,9 @@ class TreeQuizResponse extends JsonResponse
      * @param $tree array
      * @param $q Question
      */
-    protected function tree(&$tree, $q)
+    static public function tree(&$tree, $q, $depth = 1)
     {
-        if ($q === null) {
+        if ($q === null || $depth === 0) {
             return;
         }
 
@@ -48,16 +48,17 @@ class TreeQuizResponse extends JsonResponse
             $info = sprintf('<span class="label label-default">%s</span>', $a->getScore() > 0 ? '+'.$a->getScore() : $a->getScore());
             $nodeA = array(
                 'text' => sprintf('%s %s', $info, $a->getText()),
-                'children' => array(),
+                'children' => $depth === 1 ? true : array(),
                 'state' => array(
                     'opened' => false,
                 ),
                 'id' => 'a-'.$a->getId(),
                 'icon' => 'glyphicon glyphicon-arrow-right',
                 'type' => 'answer',
+                'nextQuestion' => $a->getNextQuestion() ? $a->getNextQuestion()->getId() : 0,
             );
             $nodeQ['children'][] = &$nodeA;
-            $this->tree($nodeA['children'], $a->getNextQuestion());
+            self::tree($nodeA['children'], $a->getNextQuestion(), $depth - 1);
             unset($nodeA);
         }
     }

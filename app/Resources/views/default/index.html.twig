@@ -64,7 +64,7 @@
                         <tbody>
                         <tr>
                             <th>{{ 'tourist_reference'|trans }}</th>
-                            <th></th>
+                            <th>{{ 'tourist.creation_date'|trans }}</th>
                         </tr>
                         {% for tourist in tourists %}
                             <tr>
@@ -73,7 +73,7 @@
                                         {{ tourist.reference }}
                                     </a>
                                 </td>
-                                <td></td>
+                                <td>{{ tourist.creationDate|date("d.m.Y H:i") }}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

@@ -38,7 +38,7 @@ class Question
     /**
      * @var Answer[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Answer", mappedBy="nextQuestion")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Answer", mappedBy="nextQuestion", cascade={"persist", "remove"})
      */
     private $previousAnswers;
 
@@ -63,6 +63,7 @@ class Question
     public function __construct()
     {
         $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->previousAnswers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**

@@ -230,9 +230,73 @@
         <source>tourist.creationDate</source>
         <target>__tourist.creationDate</target>
       </trans-unit>
-      <trans-unit id="changes_saved" resname="changes_saved">
+      <trans-unit id="ffbf5dad3548a84855131e746d7d3c4c" resname="changes_saved">
         <source>changes_saved</source>
         <target>__changes_saved</target>
+      </trans-unit>
+      <trans-unit id="8c6f4f6f11f31473c6de362e5fb036e5" resname="category.edit.title">
+        <source>category.edit.title</source>
+        <target>__category.edit.title</target>
+      </trans-unit>
+      <trans-unit id="aeec7d0d547f2e00d9ec2ed9ecaac968" resname="category.edit.desc">
+        <source>category.edit.desc</source>
+        <target>__category.edit.desc</target>
+      </trans-unit>
+      <trans-unit id="35b91e165e1b658bdd0804f83535465d" resname="btn.edit">
+        <source>btn.edit</source>
+        <target>__btn.edit</target>
+      </trans-unit>
+      <trans-unit id="f2e8155b849f7e0831511494aeca39c8" resname="btn.delete">
+        <source>btn.delete</source>
+        <target>__btn.delete</target>
+      </trans-unit>
+      <trans-unit id="3494a0217d0baeb024b856527515b28f" resname="btn.add">
+        <source>btn.add</source>
+        <target>__btn.add</target>
+      </trans-unit>
+      <trans-unit id="09d877a04b4a7082eb72bb2f7711db8f" resname="category.add.title">
+        <source>category.add.title</source>
+        <target>__category.add.title</target>
+      </trans-unit>
+      <trans-unit id="328068d4790c701e4bb174a6dafe912a" resname="category.add.desc">
+        <source>category.add.desc</source>
+        <target>__category.add.desc</target>
+      </trans-unit>
+      <trans-unit id="9b513ded5a5afd29be44c23cd3042935" resname="btn.back">
+        <source>btn.back</source>
+        <target>__btn.back</target>
+      </trans-unit>
+      <trans-unit id="589f9344f6f8d534599c7967875369ad" resname="question.edit.title">
+        <source>question.edit.title</source>
+        <target>__question.edit.title</target>
+      </trans-unit>
+      <trans-unit id="db1ad78cc57de81dff1e76636c228dda" resname="question.edit.desc">
+        <source>question.edit.desc</source>
+        <target>__question.edit.desc</target>
+      </trans-unit>
+      <trans-unit id="532d85eefe6c49804329e1af759cea61" resname="question.index.title">
+        <source>question.index.title</source>
+        <target>__question.index.title</target>
+      </trans-unit>
+      <trans-unit id="080f22beb36b727dcc74f2c37d028b09" resname="question.index.desc">
+        <source>question.index.desc</source>
+        <target>__question.index.desc</target>
+      </trans-unit>
+      <trans-unit id="37e41bf1b649675c545c2c55e43b6037" resname="question.add.title">
+        <source>question.add.title</source>
+        <target>__question.add.title</target>
+      </trans-unit>
+      <trans-unit id="6bb85582c5136db4f57fa5f6af124f69" resname="question.add.desc">
+        <source>question.add.desc</source>
+        <target>__question.add.desc</target>
+      </trans-unit>
+      <trans-unit id="5af6da5e3bbe37fe7c72c8adb196b0de" resname="btn.remove">
+        <source>btn.remove</source>
+        <target>__btn.remove</target>
+      </trans-unit>
+      <trans-unit id="c4ef352f74e502ef5e7bc98e6f4e493d" resname="category">
+        <source>category</source>
+        <target>__category</target>
       </trans-unit>
     </body>
   </file>

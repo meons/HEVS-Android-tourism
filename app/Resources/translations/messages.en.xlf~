@@ -166,6 +166,10 @@
         <source>quiz.name</source>
         <target>Quiz name</target>
       </trans-unit>
+      <trans-unit id="d4dc063965459ee1f75dd07671e460d3" resname="recommendation.name">
+        <source>recommendation.name</source>
+        <target>Recommendation name</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

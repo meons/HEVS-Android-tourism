@@ -62,7 +62,6 @@ class ResultController extends Controller
             $scores[$category->getId()]['total'] += $score;
         }
 
-
         // Get recommendations
         $recommendations = array();
         foreach ($participation->getQuiz()->getRecommendations() as $recommendation) {
@@ -81,7 +80,6 @@ class ResultController extends Controller
                 }
             }
         }
-        dump($recommendations);
 
         //dump($scores);
         // find max score

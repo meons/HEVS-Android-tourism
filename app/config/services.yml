@@ -10,3 +10,7 @@ services:
         arguments: ["%app_locales%"]
         tags:
             - { name: twig.extension }
+  app.twig.my_app_extension:
+        class: AppBundle\Twig\AppExtension
+        tags:
+            - { name: twig.extension }

@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+    <tr>
+        <td>{{ 'tourist.reference'|trans }}</td>
+        <td>{{ tourist.reference }}</td>
+    </tr>
+    <tr>
+        <td>{{ 'tourist.creation_date'|trans }}</td>
+        <td>{{ tourist.creationDate|date }}</td>
+    </tr>
+    <tr>
+        <td>{{ 'tourist.birth_date'|trans }}</td>
+        <td>{{ tourist.birthDate|date }}</td>
+    </tr>
+    <tr>
+        <td>{{ 'tourist.gender'|trans }}</td>
+        <td>{{ tourist|tourist_gender|trans }}</td>
+    </tr>
+</table>

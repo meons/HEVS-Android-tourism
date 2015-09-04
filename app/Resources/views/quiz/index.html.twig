@@ -9,30 +9,22 @@
 {% endblock %}
 
 {% block body %}
+    <p><a href="{{ path('quiz_new') }}" class="btn btn-success">{{ 'btn.add'|trans }}</a></p>
     <div class="box">
         <div class="box-body no-padding">
             <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>{{ 'quiz.name'|trans }}</th>
-                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                 {% for quiz in quizzes %}
                     <tr>
-                        <td>{{ quiz.name }}</td>
-                        <td>
-                            <a class="fa fa-edit" href="{{ path('quiz_edit', { 'id': quiz.id }) }}">{{ 'edit'|trans }}</a>
-                        </td>
+                        <td><a href="{{ path('quiz_edit', { 'id': quiz.id }) }}">{{ quiz.name }}</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
-                <tfoot>
-                    <a href="{{ path('quiz_new') }}" class="btn btn-app">
-                        <i class="fa fa-plus"></i> {{ 'add'|trans }}
-                    </a>
-                </tfoot>
             </table>
         </div>
     </div>

@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Question list</h1>
+{% block header %}{{ 'question.index.title'|trans }}{% endblock %}
+{% block header_desc %}{{ 'question.index.desc'|trans }}{% endblock %}
 
+{% block body %}
     <table>
         <thead>
             <tr>

@@ -218,6 +218,10 @@
         <source>tourist.gender</source>
         <target>__tourist.gender</target>
       </trans-unit>
+      <trans-unit id="changes_saved" resname="changes_saved">
+        <source>changes_saved</source>
+        <target>Vos modifications ont été enregistrés.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -12,7 +12,7 @@
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab-basic" data-toggle="tab" aria-expanded="true">{{ 'basic'|trans }}</a></li>
-            <li class=""><a href="#tab-categories" data-toggle="tab" aria-expanded="false">{{ 'categories'|trans }}</a></li>
+            <li class=""><a href="#tab-category" data-toggle="tab" aria-expanded="false">{{ 'category'|trans }}</a></li>
             <li class=""><a href="#tab-structure" data-toggle="tab" aria-expanded="false">{{ 'structure'|trans }}</a></li>
             <li class=""><a href="#tab-recommendation" data-toggle="tab" aria-expanded="false">{{ 'recommendation'|trans }}</a></li>
         </ul>
@@ -24,7 +24,7 @@
                 {{ form_end(edit_form) }}
             </div>
 
-            <div class="tab-pane" id="tab-categories">
+            <div class="tab-pane" id="tab-category">
                 {{ include('category/index.html.twig', { categories: quiz.categories }) }}
             </div>
 

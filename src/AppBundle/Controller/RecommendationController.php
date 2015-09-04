@@ -52,7 +52,10 @@ class RecommendationController extends Controller
             $em->persist($recommendation);
             $em->flush();
 
-            return $this->redirectToRoute('quiz_edit', array('id' => $recommendation->getQuiz()->getId()));
+            return $this->redirectToRoute('quiz_edit', array(
+                'id' => $recommendation->getQuiz()->getId(),
+                'tab_enabled' => 'tab-recommendation',
+            ));
         }
 
         return $this->render('recommendation/new.html.twig', array(
@@ -94,8 +97,10 @@ class RecommendationController extends Controller
             $em->persist($recommendation);
             $em->flush();
 
-            return $this->redirectToRoute('quiz_edit', array('id' => $recommendation->getQuiz()->getId()));
-            //return $this->redirectToRoute('recommendation_edit', array('id' => $recommendation->getId()));
+            return $this->redirectToRoute('quiz_edit', array(
+                'id' => $recommendation->getQuiz()->getId(),
+                'tab_enabled' => 'tab-recommendation',
+            ));
         }
 
         return $this->render('recommendation/edit.html.twig', array(
@@ -122,8 +127,10 @@ class RecommendationController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('quiz_edit', array('id' => $recommendation->getQuiz()->getId()));
-        //return $this->redirectToRoute('recommendation_index');
+        return $this->redirectToRoute('quiz_edit', array(
+            'id' => $recommendation->getQuiz()->getId(),
+            'tab_enabled' => 'tab-recommendation',
+        ));
     }
 
     /**

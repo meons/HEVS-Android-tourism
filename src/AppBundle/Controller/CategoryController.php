@@ -36,7 +36,10 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('quiz_edit', array('id' => $category->getQuiz()->getId()));
+            return $this->redirectToRoute('quiz_edit', array(
+                'id' => $category->getQuiz()->getId(),
+                'tab_enabled' => 'tab-category',
+            ));
         }
 
         return $this->render('category/new.html.twig', array(
@@ -62,7 +65,10 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
-            return $this->redirectToRoute('quiz_edit', array('id' => $category->getQuiz()->getId()));
+            return $this->redirectToRoute('quiz_edit', array(
+                'id' => $category->getQuiz()->getId(),
+                'tab_enabled' => 'tab-category',
+            ));
         }
 
         return $this->render('category/edit.html.twig', array(
@@ -90,7 +96,10 @@ class CategoryController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('quiz_edit', array('id' => $quiz->getId()));
+        return $this->redirectToRoute('quiz_edit', array(
+            'id' => $quiz->getId(),
+            'tab_enabled' => 'tab-category',
+        ));
     }
 
     /**

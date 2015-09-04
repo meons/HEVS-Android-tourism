@@ -64,7 +64,10 @@ class QuestionController extends Controller
             $em->persist($question);
             $em->flush();
 
-            return $this->redirectToRoute('quiz_edit', array('id' => $question->getQuiz()->getId()));
+            return $this->redirectToRoute('quiz_edit', array(
+                'id' => $question->getQuiz()->getId(),
+                'tab_enabled' => 'tab-structure',
+            ));
         }
 
         return $this->render('question/new.html.twig', array(
@@ -118,6 +121,11 @@ class QuestionController extends Controller
 
             $em->persist($question);
             $em->flush();
+
+            return $this->redirectToRoute('quiz_edit', array(
+                'id' => $question->getQuiz()->getId(),
+                'tab_enabled' => 'tab-structure',
+            ));
         }
 
         return $this->render('question/edit.html.twig', array(
@@ -144,7 +152,10 @@ class QuestionController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('quiz_edit', array('id' => $question->getQuiz()->getId()));
+        return $this->redirectToRoute('quiz_edit', array(
+            'id' => $question->getQuiz()->getId(),
+            'tab_enabled' => 'tab-structure',
+        ));
     }
 
     /**

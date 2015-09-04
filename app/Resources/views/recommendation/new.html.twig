@@ -6,11 +6,24 @@
 {% block body %}
 <div class="box">
     <div class="box-body">
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <hr />
-        <input type="submit" value="{{ 'btn.add'|trans }}" class="btn btn-success" />
-    {{ form_end(form) }}
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.category) }}
+            <hr />
+            <div class="criterias" data-prototype="{{ form_widget(form.recommendationCriterias.vars.prototype)|e }}">
+                {% for critera in form.recommendationCriterias %}
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            {{ form_row(critera) }}
+                        </div>
+                        <div class="panel-footer"></div>
+                    </div>
+                {% endfor %}
+            </div>
+            <input type="submit" class="btn btn-success btn-add-criteria" value="{{ 'btn.add'|trans }}" />
+            <hr />
+            <input type="submit" value="{{ 'save'|trans }}" class="btn btn-default pull-left" />
+        {{ form_end(form) }}
     </div>
 </div>
 {% endblock %}

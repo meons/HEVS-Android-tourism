@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\RecommendationCriteria;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -42,6 +43,8 @@ class RecommendationController extends Controller
     public function newAction(Request $request)
     {
         $recommendation = new Recommendation();
+        $recommendation->addRecommendationCriteria(new RecommendationCriteria());
+
         $quiz = $this->getDoctrine()->getRepository('AppBundle:Quiz')->find($request->get('quiz_id'));
         $form = $this->createForm(new RecommendationType($quiz), $recommendation);
         $form->handleRequest($request);

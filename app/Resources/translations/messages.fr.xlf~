@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>quiz.title</source>
+                <target>Quiz</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>result.title</source>
+                <target>Résultats</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>stat.office_quizzes</source>
+                <target>Quiz de l'office du tourism</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>stat.tourist_quizzes</source>
+                <target>Touristes ayant répondu au quiz</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>title.tourist_list</source>
+                <target>Tous les touristes</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

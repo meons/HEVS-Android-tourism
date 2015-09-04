@@ -59,6 +59,7 @@ class Tourist
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Participation", mappedBy="tourist", cascade={"persist"})
+     * @ORM\OrderBy({"isNew" = "DESC", "createdAt" = "DESC"})
      */
     private $participations;
 

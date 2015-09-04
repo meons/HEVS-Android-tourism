@@ -29,6 +29,13 @@ class Participation
     private $createdAt;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_new", type="boolean", options={"default":true} )
+     */
+    private $isNew;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Quiz", inversedBy="participations")
      */
     private $quiz;
@@ -115,5 +122,28 @@ class Participation
     public function getTourist()
     {
         return $this->tourist;
+    }
+
+    /**
+     * Set isNew
+     *
+     * @param boolean $isNew
+     * @return Participation
+     */
+    public function setIsNew($isNew)
+    {
+        $this->isNew = $isNew;
+
+        return $this;
+    }
+
+    /**
+     * Get isNew
+     *
+     * @return boolean 
+     */
+    public function getIsNew()
+    {
+        return $this->isNew;
     }
 }

@@ -33,9 +33,7 @@ class ResultController extends Controller
     public function indexAction(Tourist $tourist)
     {
         $participation = $tourist->getParticipations();
-        //$quizzes = $tourist->getQuizzes();
 
-        //return $this->render('result/tourist_quizzes.html.twig', array('tourist' => $tourist, 'quizzes' => $quizzes));
         return $this->render('result/tourist_quizzes.html.twig', array('tourist' => $tourist, 'partitipation' => $participation));
     }
 
@@ -47,6 +45,10 @@ class ResultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $results = $em->getRepository('AppBundle:Result')->getAllByParticipation($participation);
+
+        // at first render, we set the participation as not new because we admit that the quiz has been treated
+        $participation->setIsNew(false);
+        $em->flush();
 
         /** @var Result $result */
         $scores = array();
@@ -61,7 +63,6 @@ class ResultController extends Controller
             }
             $scores[$category->getId()]['total'] += $score;
         }
-
 
         // Get recommendations
         $recommendations = array();

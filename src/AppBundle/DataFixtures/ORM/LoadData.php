@@ -130,6 +130,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
                 $p->setCreatedAt(new \DateTime());
                 $p->setTourist($tourist);
                 $p->setQuiz($quiz);
+                $p->setIsNew(true);
 
                 $quiz->addParticipation($p);
                 $tourist->addParticipation($p);

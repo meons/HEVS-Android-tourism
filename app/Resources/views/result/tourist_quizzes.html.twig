@@ -2,28 +2,36 @@
 
 {% block title %}Tourist quizzes{% endblock %}
 
+{% block header %}{{ 'header.quizzes'|trans }}{% endblock %}
+
 {% block body %}
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Quizzes list</h3>
+            <h3 class="box-title">{{ 'quizzes.title'|trans }}</h3>
         </div><!-- /.box-header -->
         <div class="box-body no-padding">
             <table class="table table-bordered">
-                <tbody>
+                <thead>
                     <tr>
-                        <th style="width: 10px">#</th>
-                        <th>Reference</th>
-                        <th></th>
+                        <th>{{ 'tourist.reference'|trans }}</th>
+                        <th>{{ 'participation.creation_date'|trans }}</th>
                     </tr>
+                </thead>
+                <tbody>
+
                     {% for p in partitipation %}
                         <tr>
-                            <td>1.</td>
                             <td>
                                 <a href="{{ path('result_tourist_quiz', { participation_id: p.id }) }}">
                                     {{ p.quiz.name }}
                                 </a>
+                                {% if p.isNew %}
+                                    <small class="label pull-right bg-green">{{ 'label.new'|trans }}</small>
+                                {% endif %}
                             </td>
-                            <td></td>
+                            <td>
+                                {{ p.createdAt|date("d.m.Y H:i") }}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

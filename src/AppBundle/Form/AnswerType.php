@@ -3,13 +3,23 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Answer;
-use Doctrine\ORM\EntityRepository;
+use AppBundle\Entity\Question;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AnswerType extends AbstractType
 {
+    private $question;
+
+    /**
+     * {@inheritdoc}
+     */
+    function __construct(Question $question)
+    {
+        $this->question = $question;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -20,6 +30,13 @@ class AnswerType extends AbstractType
             ->add('text')
             ->add('description')
             ->add('score')
+            ->add('nextQuestion', 'entity', array(
+                'class' => 'AppBundle\Entity\Question',
+                'property' => 'text',
+                'choices' => $this->question->getQuiz()->getQuestions(),
+                'required' => false,
+                'empty_value' => ' ',
+            ))
         ;
     }
     

@@ -54,7 +54,7 @@ class QuestionController extends Controller
         $question = new Question();
         $question->addAnswer(new Answer());
         $previousAnswer = $em->getRepository('AppBundle:Answer')->find($request->query->get('previousAnswer'));
-        $question->setPreviousAnswer($previousAnswer);
+        $question->addPreviousAnswer($previousAnswer);
         $question->setQuiz($previousAnswer->getQuestion()->getQuiz());
 
         $form = $this->createForm(new QuestionType(), $question);

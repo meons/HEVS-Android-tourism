@@ -77,7 +77,7 @@ class LoadData implements FixtureInterface, ContainerAwareInterface
         }
 
         $question = new Question();
-        $question->setText('Question ?');
+        $question->setText('Question '.$depth.'-'.rand(1, 100).' ?');
         $question->setQuiz($quiz);
         $question->setCategory($categories[rand(0, count($categories) - 1)]);
         $manager->persist($question);

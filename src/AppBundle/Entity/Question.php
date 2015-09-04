@@ -36,11 +36,11 @@ class Question
     private $quiz;
 
     /**
-     * @var Answer
+     * @var Answer[]
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Answer", mappedBy="nextQuestion")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Answer", mappedBy="nextQuestion")
      */
-    private $previousAnswer;
+    private $previousAnswers;
 
     /**
      * @var Answer[]
@@ -122,27 +122,36 @@ class Question
     }
 
     /**
-     * Set previousAnswer
+     * Add previousAnswers
      *
-     * @param \AppBundle\Entity\Answer $previousAnswer
+     * @param \AppBundle\Entity\Answer $previousAnswers
      * @return Question
      */
-    public function setPreviousAnswer(\AppBundle\Entity\Answer $previousAnswer = null)
+    public function addPreviousAnswer(\AppBundle\Entity\Answer $previousAnswers)
     {
-        $this->previousAnswer = $previousAnswer;
-        $previousAnswer->setNextQuestion($this);
+        $this->previousAnswers[] = $previousAnswers;
 
         return $this;
     }
 
     /**
-     * Get previousAnswer
+     * Remove previousAnswers
      *
-     * @return \AppBundle\Entity\Answer
+     * @param \AppBundle\Entity\Answer $previousAnswers
      */
-    public function getPreviousAnswer()
+    public function removePreviousAnswer(\AppBundle\Entity\Answer $previousAnswers)
     {
-        return $this->previousAnswer;
+        $this->previousAnswers->removeElement($previousAnswers);
+    }
+
+    /**
+     * Get previousAnswers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPreviousAnswers()
+    {
+        return $this->previousAnswers;
     }
 
     /**

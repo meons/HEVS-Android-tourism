@@ -45,7 +45,7 @@ class Answer
     /**
      * @var Question
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Question", inversedBy="previousAnswer", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Question", inversedBy="previousAnswers", cascade={"persist", "remove"})
      * @ORM\JoinColumn(name="next_question_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $nextQuestion;

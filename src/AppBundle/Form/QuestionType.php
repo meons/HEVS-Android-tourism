@@ -26,7 +26,7 @@ class QuestionType extends AbstractType
                 'choices' => $question->getQuiz()->getCategories(),
             ))
             ->add('answers', 'collection', array(
-                'type' => new AnswerType(),
+                'type' => new AnswerType($question),
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,

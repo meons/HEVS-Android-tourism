@@ -121,7 +121,8 @@ class QuizController extends Controller
             'quiz' => $quiz,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
-            'recommendations' => $recommendations
+            'recommendations' => $recommendations,
+            'tab_enabled' => $request->query->get('tab_enabled'),
         ));
     }
 

@@ -119,4 +119,7 @@
             });
         });
     </script>
+    <script>
+        $('a[href="#{{ tab_enabled|default('tab-basic') }}"]').tab('show');
+    </script>
 {% endblock %}

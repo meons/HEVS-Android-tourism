@@ -118,8 +118,6 @@ class QuestionController extends Controller
 
             $em->persist($question);
             $em->flush();
-
-            return $this->redirectToRoute('quiz_edit', array('id' => $question->getQuiz()->getId()));
         }
 
         return $this->render('question/edit.html.twig', array(

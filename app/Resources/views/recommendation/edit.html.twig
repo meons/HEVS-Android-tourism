@@ -7,7 +7,21 @@
     <div class="box">
         <div class="box-body">
             {{ form_start(edit_form) }}
-                {{ form_widget(edit_form) }}
+                {{ form_row(edit_form.name) }}
+                {{ form_row(edit_form.category) }}
+                <hr />
+                <div class="criterias" data-prototype="{{ form_widget(edit_form.recommendationCriterias.vars.prototype)|e }}">
+                    {% for critera in edit_form.recommendationCriterias %}
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                {{ form_row(critera) }}
+                            </div>
+                            <div class="panel-footer"></div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <input type="submit" class="btn btn-success btn-add-criteria" value="{{ 'btn.add'|trans }}" />
+                <hr />
                 <input type="submit" value="{{ 'save'|trans }}" class="btn btn-success pull-left" />
             {{ form_end(edit_form) }}
 

@@ -258,6 +258,10 @@
         <source>tourist.gender.female</source>
         <target>Frau</target>
       </trans-unit>
+      <trans-unit id="2ax5712037c9f8469ef40037c08a6f30" resname="confirm.message">
+        <source>confirm.message</source>
+        <target>Sind Sie sicher ?</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

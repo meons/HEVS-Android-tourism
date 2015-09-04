@@ -11,7 +11,7 @@
                 <input type="submit" class="btn btn-default pull-left" value="{{ 'btn.edit'|trans }}" />
             {{ form_end(edit_form) }}
             {{ form_start(delete_form, { attr: {class: 'pull-right'} }) }}
-                <input type="submit" class="btn btn-danger pull-right" value="{{ 'btn.delete'|trans }}" onclick="return confirm('{{ 'confirm.message' }}');">
+                <input type="submit" class="btn btn-danger pull-right" value="{{ 'btn.delete'|trans }}" onclick="return confirm('{{ 'confirm.message'|trans }}');">
             {{ form_end(delete_form) }}
         </div>
     </div>

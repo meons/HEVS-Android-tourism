@@ -28,7 +28,7 @@
 
             {{ form_start(delete_form, { attr: {class: 'form-delete-question'} }) }}
                 {{ form_widget(delete_form) }}
-                <input type="submit" class="btn btn-danger btn-delete-question pull-right" value="{{ 'btn.delete'|trans }}"  onclick="return confirm('{{ 'confirm.message' }}');" />
+                <input type="submit" class="btn btn-danger btn-delete-question pull-right" value="{{ 'btn.delete'|trans }}"  onclick="return confirm('{{ 'confirm.message'|trans }}');" />
             {{ form_end(delete_form) }}
         </div>
     </div>

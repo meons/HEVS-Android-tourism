@@ -20,7 +20,7 @@
     });
 
     function addRemoveAnswerLink($answer) {
-        $answer.find('.panel-footer').append('<a href="#" class="btn btn-link btn-default remove-answer">Remove this answer</a>');
+        $answer.find('.panel-footer').append('<a href="#" class="btn btn-link btn-default remove-answer">{{ 'btn.remove'|trans }}</a>');
         $('.remove-answer').click(function(e) {
             e.preventDefault();
             $(this).parent().parent().hide('slow', function() {

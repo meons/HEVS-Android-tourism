@@ -23,13 +23,13 @@
                         </div>
                     {% endfor %}
                 </div>
-                <input type="submit" class="btn btn-primary btn-add-answer" value="Add a new answer" />
-                <input type="submit" class="btn btn-primary btn-edit-question " value="Edit" />
+                <input type="submit" class="btn btn-default btn-edit-question pull-left" value="{{ 'btn.edit'|trans }}" />
+                <input type="submit" class="btn btn-success btn-add-answer pull-left" value="{{ 'btn.add'|trans }}" />
             {{ form_end(edit_form) }}
 
-            {{ form_start(delete_form, { attr: {class: 'form-delete-question pull-right'} }) }}
+            {{ form_start(delete_form, { attr: {class: 'form-delete-question'} }) }}
                 {{ form_widget(delete_form) }}
-                <input type="submit" class="btn btn-warning btn-delete-question" value="Delete" />
+                <input type="submit" class="btn btn-danger btn-delete-question pull-right" value="{{ 'btn.delete'|trans }}"  onclick="return confirm('{{ 'confirm.message' }}');" />
             {{ form_end(delete_form) }}
         </div>
     </div>

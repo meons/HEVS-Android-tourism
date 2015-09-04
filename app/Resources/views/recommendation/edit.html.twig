@@ -4,14 +4,16 @@
 {% block header_desc %}{{ 'recommendation.edit.desc'|trans }}{% endblock %}
 
 {% block body %}
-    {{ form_start(delete_form) }}
-        <input type="submit" value="{{ 'delete'|trans }}" class="btn btn-danger">
-    {{ form_end(delete_form) }}
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="{{ 'save'|trans }}" class="btn btn-success" />
+        <input type="submit" value="{{ 'save'|trans }}" class="btn btn-success pull-left" />
     {{ form_end(edit_form) }}
+
+    {{ form_start(delete_form) }}
+        <input type="submit" value="{{ 'delete'|trans }}" class="btn btn-danger pull-right" onclick="return confirm('{{ 'confirm.message' }}');">
+    {{ form_end(delete_form) }}
+    <div class="clearfix"></div>
 {% endblock %}
 
 {% block javascripts %}

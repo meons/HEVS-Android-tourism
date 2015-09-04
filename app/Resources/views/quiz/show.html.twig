@@ -25,7 +25,7 @@
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" onclick="return confirm('Please click on OK to continue.');">
             {{ form_end(delete_form) }}
         </li>
     </ul>

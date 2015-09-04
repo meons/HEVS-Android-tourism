@@ -64,6 +64,8 @@ class QuestionController extends Controller
             $em->persist($question);
             $em->flush();
 
+            $this->addFlash('success', 'changes_saved');
+
             return $this->redirectToRoute('quiz_edit', array(
                 'id' => $question->getQuiz()->getId(),
                 'tab_enabled' => 'tab-structure',
@@ -122,6 +124,8 @@ class QuestionController extends Controller
             $em->persist($question);
             $em->flush();
 
+            $this->addFlash('success', 'changes_saved');
+
             return $this->redirectToRoute('quiz_edit', array(
                 'id' => $question->getQuiz()->getId(),
                 'tab_enabled' => 'tab-structure',
@@ -151,6 +155,8 @@ class QuestionController extends Controller
             $em->remove($question);
             $em->flush();
         }
+
+        $this->addFlash('success', 'changes_saved');
 
         return $this->redirectToRoute('quiz_edit', array(
             'id' => $question->getQuiz()->getId(),

@@ -36,6 +36,8 @@ class CategoryController extends Controller
             $em->persist($category);
             $em->flush();
 
+            $this->addFlash('success', 'changes_saved');
+
             return $this->redirectToRoute('quiz_edit', array(
                 'id' => $category->getQuiz()->getId(),
                 'tab_enabled' => 'tab-category',
@@ -64,6 +66,8 @@ class CategoryController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($category);
             $em->flush();
+
+            $this->addFlash('success', 'changes_saved');
 
             return $this->redirectToRoute('quiz_edit', array(
                 'id' => $category->getQuiz()->getId(),
@@ -95,6 +99,8 @@ class CategoryController extends Controller
             $em->remove($category);
             $em->flush();
         }
+
+        $this->addFlash('success', 'changes_saved');
 
         return $this->redirectToRoute('quiz_edit', array(
             'id' => $quiz->getId(),

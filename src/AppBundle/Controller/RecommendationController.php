@@ -52,6 +52,8 @@ class RecommendationController extends Controller
             $em->persist($recommendation);
             $em->flush();
 
+            $this->addFlash('success', 'changes_saved');
+
             return $this->redirectToRoute('quiz_edit', array(
                 'id' => $recommendation->getQuiz()->getId(),
                 'tab_enabled' => 'tab-recommendation',
@@ -97,6 +99,8 @@ class RecommendationController extends Controller
             $em->persist($recommendation);
             $em->flush();
 
+            $this->addFlash('success', 'changes_saved');
+
             return $this->redirectToRoute('quiz_edit', array(
                 'id' => $recommendation->getQuiz()->getId(),
                 'tab_enabled' => 'tab-recommendation',
@@ -126,6 +130,8 @@ class RecommendationController extends Controller
             $em->remove($recommendation);
             $em->flush();
         }
+
+        $this->addFlash('success', 'changes_saved');
 
         return $this->redirectToRoute('quiz_edit', array(
             'id' => $recommendation->getQuiz()->getId(),

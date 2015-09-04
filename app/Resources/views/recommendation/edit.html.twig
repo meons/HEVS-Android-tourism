@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block header %}Edit recommendation{% endblock %}
-{% block header_desc %}Here you can edit or delete a recommendation with their criteria{% endblock %}
+{% block header %}{{ 'recommendation.edit.title'|trans }}{% endblock %}
+{% block header_desc %}{{ 'recommendation.edit.desc'|trans }}{% endblock %}
 
 {% block body %}
     {{ form_start(delete_form) }}
-        <input type="submit" value="Delete" class="btn btn-danger">
+        <input type="submit" value="{{ 'delete'|trans }}" class="btn btn-danger">
     {{ form_end(delete_form) }}
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Save" class="btn btn-success" />
+        <input type="submit" value="{{ 'save'|trans }}" class="btn btn-success" />
     {{ form_end(edit_form) }}
 {% endblock %}
 

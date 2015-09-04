@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block header %}Add recommendation{% endblock %}
-{% block header_desc %}Here you can add a new recommendation with criteria{% endblock %}
+{% block header %}{{ 'recommendation.add.title'|trans }}{% endblock %}
+{% block header_desc %}{{ 'recommendation.add.desc'|trans }}{% endblock %}
 
 {% block body %}
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <input type="submit" value="Create" class="btn btn-success" />
+        <input type="submit" value="{{ 'add'|trans }}" class="btn btn-success" />
     {{ form_end(form) }}
 {% endblock %}
 

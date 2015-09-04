@@ -50,14 +50,6 @@
         <source>tourist_reference</source>
         <target>Référence</target>
       </trans-unit>
-      <trans-unit id="db6a01bf16a4b0246ba37373d83c59c1" resname="question.edit">
-        <source>question.edit</source>
-        <target>__question.edit</target>
-      </trans-unit>
-      <trans-unit id="33a604319045a34cae41e9d024cb646e" resname="question.creation">
-        <source>question.creation</source>
-        <target>__question.creation</target>
-      </trans-unit>
       <trans-unit id="c5b0444da14b43496eb3645e3bb8730a" resname="quiz.edit.title">
         <source>quiz.edit.title</source>
         <target>Modifier un quiz</target>
@@ -142,34 +134,6 @@
         <source>recommendation.add.desc</source>
         <target>Vous pouvez ajouter une recommendation sur cette page</target>
       </trans-unit>
-      <trans-unit id="6d71b91eeb11b5a5d547737d6dd7e6e8" resname="header.quizzes">
-        <source>header.quizzes</source>
-        <target>__header.quizzes</target>
-      </trans-unit>
-      <trans-unit id="1147490bd24cabcb0d82b93f0720c502" resname="quizzes.title">
-        <source>quizzes.title</source>
-        <target>__quizzes.title</target>
-      </trans-unit>
-      <trans-unit id="0929464e7ee438d90c23190ab7198c23" resname="tourist.reference">
-        <source>tourist.reference</source>
-        <target>__tourist.reference</target>
-      </trans-unit>
-      <trans-unit id="b6935927f111484113ec9f5ea5fa962d" resname="participation.creation_date">
-        <source>participation.creation_date</source>
-        <target>__participation.creation_date</target>
-      </trans-unit>
-      <trans-unit id="9c808e27845e4e4ec593d8bdfe12f11a" resname="label.new">
-        <source>label.new</source>
-        <target>__label.new</target>
-      </trans-unit>
-      <trans-unit id="e24a5205ebc5ffa4869853b62950ada2" resname="header.tourists">
-        <source>header.tourists</source>
-        <target>__header.tourists</target>
-      </trans-unit>
-      <trans-unit id="7c11bfbcf2148412ddafc3e7fbeed84f" resname="tourist.creationDate">
-        <source>tourist.creationDate</source>
-        <target>__tourist.creationDate</target>
-      </trans-unit>
       <trans-unit id="46b3931b9959c927df4fc65fdee94b07" resname="about">
         <source>about</source>
         <target>À propos</target>
@@ -182,69 +146,17 @@
         <source>about.desc</source>
         <target>Cette application a été developpée par Dany Maillard, Vincent Huck et Siméon Bobylev dans le cadre d'un projet à l'HESSO</target>
       </trans-unit>
-      <trans-unit id="0497df19740b6b937bfdd7e5ade1348c" resname="header.results">
-        <source>header.results</source>
-        <target>__header.results</target>
-      </trans-unit>
-      <trans-unit id="8efccd48a225d0b8fb2715f1975232e5" resname="tab.scores">
-        <source>tab.scores</source>
-        <target>__tab.scores</target>
-      </trans-unit>
-      <trans-unit id="faf4b268a2a91ae9e2e0aa2761fd0a7d" resname="tab.selected_answers">
-        <source>tab.selected_answers</source>
-        <target>__tab.selected_answers</target>
-      </trans-unit>
-      <trans-unit id="8dbd5e1c0b1c1f693f1452d2251c84c8" resname="tab.recommendations">
-        <source>tab.recommendations</source>
-        <target>__tab.recommendations</target>
-      </trans-unit>
-      <trans-unit id="32383a1b826c5f97ab182d9600c9faad" resname="tab.tourist">
-        <source>tab.tourist</source>
-        <target>__tab.tourist</target>
-      </trans-unit>
-      <trans-unit id="635d5bd98a1f55245b2af7fa9467a25e" resname="score.value">
-        <source>score.value</source>
-        <target>__score.value</target>
-      </trans-unit>
-      <trans-unit id="5657336cc4d1063360be802c00afd0e8" resname="tourist.creation_date">
-        <source>tourist.creation_date</source>
-        <target>__tourist.creation_date</target>
-      </trans-unit>
-      <trans-unit id="f07987247f01a40927bae9029f8c55cc" resname="tourist.birth_date">
-        <source>tourist.birth_date</source>
-        <target>__tourist.birth_date</target>
-      </trans-unit>
-      <trans-unit id="295162df8a98a2b87f3c1d9e448963e6" resname="tourist.gender">
-        <source>tourist.gender</source>
-        <target>__tourist.gender</target>
-      </trans-unit>
       <trans-unit id="ffbf5dad3548a84855131e746d7d3c4c" resname="changes_saved">
         <source>changes_saved</source>
         <target>Vos modifications ont été enregistrés.</target>
       </trans-unit>
-      <trans-unit id="22a5816693b9c03ea125816196c23c68" resname="header.category">
-        <source>header.category</source>
-        <target>__header.category</target>
-      </trans-unit>
       <trans-unit id="35b91e165e1b658bdd0804f83535465d" resname="btn.edit">
         <source>btn.edit</source>
-        <target>__btn.edit</target>
+        <target>Modifier</target>
       </trans-unit>
       <trans-unit id="f2e8155b849f7e0831511494aeca39c8" resname="btn.delete">
         <source>btn.delete</source>
-        <target>__btn.delete</target>
-      </trans-unit>
-      <trans-unit id="3494a0217d0baeb024b856527515b28f" resname="btn.add">
-        <source>btn.add</source>
-        <target>__btn.add</target>
-      </trans-unit>
-      <trans-unit id="09ae9117d043400a11e09a1872883901" resname="header.category.add">
-        <source>header.category.add</source>
-        <target>__header.category.add</target>
-      </trans-unit>
-      <trans-unit id="9b513ded5a5afd29be44c23cd3042935" resname="btn.back">
-        <source>btn.back</source>
-        <target>__btn.back</target>
+        <target>Supprimer</target>
       </trans-unit>
       <trans-unit id="589f9344f6f8d534599c7967875369ad" resname="question.edit.title">
         <source>question.edit.title</source>
@@ -293,6 +205,78 @@
       <trans-unit id="328068d4790c701e4bb174a6dafe912a" resname="category.add.desc">
         <source>category.add.desc</source>
         <target>Vous pouvez ajouter une catégorie sur cette page</target>
+      </trans-unit>
+      <trans-unit id="3494a0217d0baeb024b856527515b28f" resname="btn.add">
+        <source>btn.add</source>
+        <target>Ajouter</target>
+      </trans-unit>
+      <trans-unit id="9b513ded5a5afd29be44c23cd3042935" resname="btn.back">
+        <source>btn.back</source>
+        <target>Retour</target>
+      </trans-unit>
+      <trans-unit id="98bb8ad48531da0b95e124a24d090120" resname="participation.index.title">
+        <source>participation.index.title</source>
+        <target>Liste des participations</target>
+      </trans-unit>
+      <trans-unit id="cef2ece320001d3eae0894850e39356a" resname="participation.index.desc">
+        <source>participation.index.desc</source>
+        <target>Vous pouvez voir la liste des participations sur cette page</target>
+      </trans-unit>
+      <trans-unit id="0929464e7ee438d90c23190ab7198c23" resname="tourist.reference">
+        <source>tourist.reference</source>
+        <target>Référence</target>
+      </trans-unit>
+      <trans-unit id="b6935927f111484113ec9f5ea5fa962d" resname="participation.creation_date">
+        <source>participation.creation_date</source>
+        <target>Répondu le</target>
+      </trans-unit>
+      <trans-unit id="9c808e27845e4e4ec593d8bdfe12f11a" resname="label.new">
+        <source>label.new</source>
+        <target>Nouveau</target>
+      </trans-unit>
+      <trans-unit id="2ad2937037c9f6628ef40037c08a6f30" resname="result.desc">
+        <source>result.desc</source>
+        <target>Sur cette page vous pouvez voir les résultats</target>
+      </trans-unit>
+      <trans-unit id="8efccd48a225d0b8fb2715f1975232e5" resname="tab.scores">
+        <source>tab.scores</source>
+        <target>Scores</target>
+      </trans-unit>
+      <trans-unit id="faf4b268a2a91ae9e2e0aa2761fd0a7d" resname="tab.selected_answers">
+        <source>tab.selected_answers</source>
+        <target>Réponses séléctionnées</target>
+      </trans-unit>
+      <trans-unit id="8dbd5e1c0b1c1f693f1452d2251c84c8" resname="tab.recommendations">
+        <source>tab.recommendations</source>
+        <target>Recommendations</target>
+      </trans-unit>
+      <trans-unit id="32383a1b826c5f97ab182d9600c9faad" resname="tab.tourist">
+        <source>tab.tourist</source>
+        <target>Tourist</target>
+      </trans-unit>
+      <trans-unit id="635d5bd98a1f55245b2af7fa9467a25e" resname="score.value">
+        <source>score.value</source>
+        <target>Score</target>
+      </trans-unit>
+      <trans-unit id="5657336cc4d1063360be802c00afd0e8" resname="tourist.creation_date">
+        <source>tourist.creation_date</source>
+        <target>Date de connection via l'application</target>
+      </trans-unit>
+      <trans-unit id="f07987247f01a40927bae9029f8c55cc" resname="tourist.birth_date">
+        <source>tourist.birth_date</source>
+        <target>Date de naissance</target>
+      </trans-unit>
+      <trans-unit id="295162df8a98a2b87f3c1d9e448963e6" resname="tourist.gender">
+        <source>tourist.gender</source>
+        <target>Sexe</target>
+      </trans-unit>
+      <trans-unit id="e056a5166a9f2756c0ee347311d186c3" resname="tourist.index.title">
+        <source>tourist.index.title</source>
+        <target>Liste des touristes</target>
+      </trans-unit>
+      <trans-unit id="0b3937d3940d78e582324074387de760" resname="tourist.index.desc">
+        <source>tourist.index.desc</source>
+        <target>Vous pouvez voir la liste des touristes sur cette page</target>
       </trans-unit>
     </body>
   </file>

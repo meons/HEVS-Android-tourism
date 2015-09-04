@@ -46,14 +46,6 @@
         <source>tourist_reference</source>
         <target>Reference</target>
       </trans-unit>
-      <trans-unit id="db6a01bf16a4b0246ba37373d83c59c1" resname="question.edit">
-        <source>question.edit</source>
-        <target>__question.edit</target>
-      </trans-unit>
-      <trans-unit id="33a604319045a34cae41e9d024cb646e" resname="question.creation">
-        <source>question.creation</source>
-        <target>__question.creation</target>
-      </trans-unit>
       <trans-unit id="c5b0444da14b43496eb3645e3bb8730a" resname="quiz.edit.title">
         <source>quiz.edit.title</source>
         <target>Edit quiz</target>
@@ -130,37 +122,17 @@
         <source>recommendation.add.desc</source>
         <target>You can add a recommendation on this page</target>
       </trans-unit>
-      <trans-unit id="6d71b91eeb11b5a5d547737d6dd7e6e8" resname="header.quizzes">
-        <source>header.quizzes</source>
-        <target>__header.quizzes</target>
-      </trans-unit>
-      <trans-unit id="1147490bd24cabcb0d82b93f0720c502" resname="quizzes.title">
-        <source>quizzes.title</source>
-        <target>__quizzes.title</target>
-      </trans-unit>
       <trans-unit id="0929464e7ee438d90c23190ab7198c23" resname="tourist.reference">
         <source>tourist.reference</source>
-        <target>__tourist.reference</target>
+        <target>Reference</target>
       </trans-unit>
       <trans-unit id="b6935927f111484113ec9f5ea5fa962d" resname="participation.creation_date">
         <source>participation.creation_date</source>
-        <target>__participation.creation_date</target>
+        <target>Answered on</target>
       </trans-unit>
       <trans-unit id="9c808e27845e4e4ec593d8bdfe12f11a" resname="label.new">
         <source>label.new</source>
-        <target>__label.new</target>
-      </trans-unit>
-      <trans-unit id="e24a5205ebc5ffa4869853b62950ada2" resname="header.tourists">
-        <source>header.tourists</source>
-        <target>__header.tourists</target>
-      </trans-unit>
-      <trans-unit id="7c11bfbcf2148412ddafc3e7fbeed84f" resname="tourist.creationDate">
-        <source>tourist.creationDate</source>
-        <target>__tourist.creationDate</target>
-      </trans-unit>
-      <trans-unit id="05665e8f1b8de00759c9d0eab6a5ef57" resname="title.tourist_list">
-        <source>title.tourist_list</source>
-        <target>__title.tourist_list</target>
+        <target>New</target>
       </trans-unit>
       <trans-unit id="075892d1c1999ee5fa303de909a41fe5" resname="quiz.name">
         <source>quiz.name</source>
@@ -181,10 +153,6 @@
       <trans-unit id="b2ad90b18baef60d08447211793b0d77" resname="about.desc">
         <source>about.desc</source>
         <target>This app has been created by Dany Maillard, Vincent Huck and Simeon Bobylev for an HESSO project</target>
-      </trans-unit>
-      <trans-unit id="0497df19740b6b937bfdd7e5ade1348c" resname="header.results">
-        <source>header.results</source>
-        <target>__header.results</target>
       </trans-unit>
       <trans-unit id="8efccd48a225d0b8fb2715f1975232e5" resname="tab.scores">
         <source>tab.scores</source>
@@ -208,7 +176,7 @@
       </trans-unit>
       <trans-unit id="5657336cc4d1063360be802c00afd0e8" resname="tourist.creation_date">
         <source>tourist.creation_date</source>
-        <target>Creation date</target>
+        <target>App connection date</target>
       </trans-unit>
       <trans-unit id="f07987247f01a40927bae9029f8c55cc" resname="tourist.birth_date">
         <source>tourist.birth_date</source>
@@ -222,10 +190,6 @@
         <source>changes_saved</source>
         <target>Your changes have been saved.</target>
       </trans-unit>
-      <trans-unit id="22a5816693b9c03ea125816196c23c68" resname="header.category">
-        <source>header.category</source>
-        <target>__header.category</target>
-      </trans-unit>
       <trans-unit id="35b91e165e1b658bdd0804f83535465d" resname="btn.edit">
         <source>btn.edit</source>
         <target>Edit</target>
@@ -237,10 +201,6 @@
       <trans-unit id="3494a0217d0baeb024b856527515b28f" resname="btn.add">
         <source>btn.add</source>
         <target>Add</target>
-      </trans-unit>
-      <trans-unit id="09ae9117d043400a11e09a1872883901" resname="header.category.add">
-        <source>header.category.add</source>
-        <target>__header.category.add</target>
       </trans-unit>
       <trans-unit id="9b513ded5a5afd29be44c23cd3042935" resname="btn.back">
         <source>btn.back</source>
@@ -293,6 +253,26 @@
       <trans-unit id="328068d4790c701e4bb174a6dafe912a" resname="category.add.desc">
         <source>category.add.desc</source>
         <target>You can add a category on this page</target>
+      </trans-unit>
+      <trans-unit id="e056a5166a9f2756c0ee347311d186c3" resname="tourist.index.title">
+        <source>tourist.index.title</source>
+        <target>Tourists list</target>
+      </trans-unit>
+      <trans-unit id="0b3937d3940d78e582324074387de760" resname="tourist.index.desc">
+        <source>tourist.index.desc</source>
+        <target>You can see tourists on this page</target>
+      </trans-unit>
+      <trans-unit id="98bb8ad48531da0b95e124a24d090120" resname="participation.index.title">
+        <source>participation.index.title</source>
+        <target>Participations</target>
+      </trans-unit>
+      <trans-unit id="cef2ece320001d3eae0894850e39356a" resname="participation.index.desc">
+        <source>participation.index.desc</source>
+        <target>You can see participations on this page</target>
+      </trans-unit>
+      <trans-unit id="2ad2937037c9f6628ef40037c08a6f30" resname="result.desc">
+        <source>result.desc</source>
+        <target>You can see results on this page</target>
       </trans-unit>
     </body>
   </file>

@@ -10,73 +10,41 @@
         <source>result.title</source>
         <target>__result.title</target>
       </trans-unit>
-      <trans-unit id="22c065c5841dc2d60e565f7577c13701" resname="default.title">
-        <source>default.title</source>
-        <target>Home page DE</target>
-      </trans-unit>
-      <trans-unit id="8e7a98bde171d8550dcf27214bc12a30" resname="default.desc">
-        <source>default.desc</source>
-        <target>__default.desc</target>
-      </trans-unit>
-      <trans-unit id="69da9f144e7501d0b19d09ede8e339ee" resname="stat.office_quizzes">
-        <source>stat.office_quizzes</source>
-        <target>__stat.office_quizzes</target>
-      </trans-unit>
-      <trans-unit id="04a2c6d9a91ccd85e8adb9f72d5e2411" resname="stat.tourist_quizzes">
-        <source>stat.tourist_quizzes</source>
-        <target>__stat.tourist_quizzes</target>
-      </trans-unit>
-      <trans-unit id="db6a01bf16a4b0246ba37373d83c59c1" resname="question.edit">
-        <source>question.edit</source>
-        <target>__question.edit</target>
-      </trans-unit>
-      <trans-unit id="33a604319045a34cae41e9d024cb646e" resname="question.creation">
-        <source>question.creation</source>
-        <target>__question.creation</target>
-      </trans-unit>
-      <trans-unit id="9a1003654f70942b24e944a438caba62" resname="quiz.edit">
-        <source>quiz.edit</source>
-        <target>__quiz.edit</target>
-      </trans-unit>
-      <trans-unit id="f17aaabc20bfe045075927934fed52d2" resname="basic">
-        <source>basic</source>
-        <target>__basic</target>
-      </trans-unit>
-      <trans-unit id="b0b5ccb4a195a07fd3eed14affb8695f" resname="categories">
-        <source>categories</source>
-        <target>__categories</target>
-      </trans-unit>
-      <trans-unit id="07414f4e15ca943e6cde032dec85d92f" resname="structure">
-        <source>structure</source>
-        <target>__structure</target>
-      </trans-unit>
-      <trans-unit id="5ba88d25175d87cb5977cb56e01ed17c" resname="recommendation">
-        <source>recommendation</source>
-        <target>__recommendation</target>
-      </trans-unit>
-      <trans-unit id="083dbf7e7d10b583d9b735c651bd624f" resname="back_list">
-        <source>back_list</source>
-        <target>__back_list</target>
-      </trans-unit>
-      <trans-unit id="099af53f601532dbd31e0ea99ffdeb64" resname="delete">
-        <source>delete</source>
-        <target>__delete</target>
-      </trans-unit>
-      <trans-unit id="de95b43bceeb4b998aed4aed5cef1ae7" resname="edit">
-        <source>edit</source>
-        <target>__edit</target>
-      </trans-unit>
-      <trans-unit id="34ec78fcc91ffb1e54cd85e4a0924332" resname="add">
-        <source>add</source>
-        <target>__add</target>
-      </trans-unit>
-      <trans-unit id="05665e8f1b8de00759c9d0eab6a5ef57" resname="title.tourist_list">
-        <source>title.tourist_list</source>
-        <target>__title.tourist_list</target>
-      </trans-unit>
       <trans-unit id="46b3931b9959c927df4fc65fdee94b07" resname="about">
         <source>about</source>
         <target>__about</target>
+      </trans-unit>
+      <trans-unit id="8c6f4f6f11f31473c6de362e5fb036e5" resname="category.edit.title">
+        <source>category.edit.title</source>
+        <target>__category.edit.title</target>
+      </trans-unit>
+      <trans-unit id="aeec7d0d547f2e00d9ec2ed9ecaac968" resname="category.edit.desc">
+        <source>category.edit.desc</source>
+        <target>__category.edit.desc</target>
+      </trans-unit>
+      <trans-unit id="35b91e165e1b658bdd0804f83535465d" resname="btn.edit">
+        <source>btn.edit</source>
+        <target>__btn.edit</target>
+      </trans-unit>
+      <trans-unit id="f2e8155b849f7e0831511494aeca39c8" resname="btn.delete">
+        <source>btn.delete</source>
+        <target>__btn.delete</target>
+      </trans-unit>
+      <trans-unit id="3494a0217d0baeb024b856527515b28f" resname="btn.add">
+        <source>btn.add</source>
+        <target>__btn.add</target>
+      </trans-unit>
+      <trans-unit id="09d877a04b4a7082eb72bb2f7711db8f" resname="category.add.title">
+        <source>category.add.title</source>
+        <target>__category.add.title</target>
+      </trans-unit>
+      <trans-unit id="328068d4790c701e4bb174a6dafe912a" resname="category.add.desc">
+        <source>category.add.desc</source>
+        <target>__category.add.desc</target>
+      </trans-unit>
+      <trans-unit id="9b513ded5a5afd29be44c23cd3042935" resname="btn.back">
+        <source>btn.back</source>
+        <target>__btn.back</target>
       </trans-unit>
       <trans-unit id="6b522f7c9d28a8dedf5f068dd78898a7" resname="about.title">
         <source>about.title</source>
@@ -88,11 +56,11 @@
       </trans-unit>
       <trans-unit id="785fa5247813fd6effd9d1986eac1444" resname="home.title">
         <source>home.title</source>
-        <target>__home.title</target>
+        <target>Startseite</target>
       </trans-unit>
       <trans-unit id="242b87830145951c81b081c915511281" resname="home.desc">
         <source>home.desc</source>
-        <target>__home.desc</target>
+        <target>Einige Statistiken auf dieser Seite</target>
       </trans-unit>
       <trans-unit id="761b4dde9f845ae8658ea5a084fd8fb7" resname="stats.office_quizzes">
         <source>stats.office_quizzes</source>
@@ -114,6 +82,34 @@
         <source>tourist_reference</source>
         <target>__tourist_reference</target>
       </trans-unit>
+      <trans-unit id="589f9344f6f8d534599c7967875369ad" resname="question.edit.title">
+        <source>question.edit.title</source>
+        <target>__question.edit.title</target>
+      </trans-unit>
+      <trans-unit id="db1ad78cc57de81dff1e76636c228dda" resname="question.edit.desc">
+        <source>question.edit.desc</source>
+        <target>__question.edit.desc</target>
+      </trans-unit>
+      <trans-unit id="532d85eefe6c49804329e1af759cea61" resname="question.index.title">
+        <source>question.index.title</source>
+        <target>__question.index.title</target>
+      </trans-unit>
+      <trans-unit id="080f22beb36b727dcc74f2c37d028b09" resname="question.index.desc">
+        <source>question.index.desc</source>
+        <target>__question.index.desc</target>
+      </trans-unit>
+      <trans-unit id="37e41bf1b649675c545c2c55e43b6037" resname="question.add.title">
+        <source>question.add.title</source>
+        <target>__question.add.title</target>
+      </trans-unit>
+      <trans-unit id="6bb85582c5136db4f57fa5f6af124f69" resname="question.add.desc">
+        <source>question.add.desc</source>
+        <target>__question.add.desc</target>
+      </trans-unit>
+      <trans-unit id="5af6da5e3bbe37fe7c72c8adb196b0de" resname="btn.remove">
+        <source>btn.remove</source>
+        <target>__btn.remove</target>
+      </trans-unit>
       <trans-unit id="c5b0444da14b43496eb3645e3bb8730a" resname="quiz.edit.title">
         <source>quiz.edit.title</source>
         <target>__quiz.edit.title</target>
@@ -122,9 +118,33 @@
         <source>quiz.edit.desc</source>
         <target>__quiz.edit.desc</target>
       </trans-unit>
+      <trans-unit id="f17aaabc20bfe045075927934fed52d2" resname="basic">
+        <source>basic</source>
+        <target>__basic</target>
+      </trans-unit>
+      <trans-unit id="c4ef352f74e502ef5e7bc98e6f4e493d" resname="category">
+        <source>category</source>
+        <target>__category</target>
+      </trans-unit>
+      <trans-unit id="07414f4e15ca943e6cde032dec85d92f" resname="structure">
+        <source>structure</source>
+        <target>__structure</target>
+      </trans-unit>
+      <trans-unit id="5ba88d25175d87cb5977cb56e01ed17c" resname="recommendation">
+        <source>recommendation</source>
+        <target>__recommendation</target>
+      </trans-unit>
+      <trans-unit id="de95b43bceeb4b998aed4aed5cef1ae7" resname="edit">
+        <source>edit</source>
+        <target>__edit</target>
+      </trans-unit>
       <trans-unit id="d4dc063965459ee1f75dd07671e460d3" resname="recommendation.name">
         <source>recommendation.name</source>
         <target>__recommendation.name</target>
+      </trans-unit>
+      <trans-unit id="099af53f601532dbd31e0ea99ffdeb64" resname="delete">
+        <source>delete</source>
+        <target>__delete</target>
       </trans-unit>
       <trans-unit id="a644e33496210d8c2bcb9211dee90a5c" resname="quiz.index.title">
         <source>quiz.index.title</source>
@@ -166,13 +186,13 @@
         <source>recommendation.add.desc</source>
         <target>__recommendation.add.desc</target>
       </trans-unit>
-      <trans-unit id="6d71b91eeb11b5a5d547737d6dd7e6e8" resname="header.quizzes">
-        <source>header.quizzes</source>
-        <target>__header.quizzes</target>
+      <trans-unit id="98bb8ad48531da0b95e124a24d090120" resname="participation.index.title">
+        <source>participation.index.title</source>
+        <target>__participation.index.title</target>
       </trans-unit>
-      <trans-unit id="1147490bd24cabcb0d82b93f0720c502" resname="quizzes.title">
-        <source>quizzes.title</source>
-        <target>__quizzes.title</target>
+      <trans-unit id="cef2ece320001d3eae0894850e39356a" resname="participation.index.desc">
+        <source>participation.index.desc</source>
+        <target>__participation.index.desc</target>
       </trans-unit>
       <trans-unit id="0929464e7ee438d90c23190ab7198c23" resname="tourist.reference">
         <source>tourist.reference</source>
@@ -186,9 +206,9 @@
         <source>label.new</source>
         <target>__label.new</target>
       </trans-unit>
-      <trans-unit id="0497df19740b6b937bfdd7e5ade1348c" resname="header.results">
-        <source>header.results</source>
-        <target>__header.results</target>
+      <trans-unit id="2ad2937037c9f6628ef40037c08a6f30" resname="result.desc">
+        <source>result.desc</source>
+        <target>__result.desc</target>
       </trans-unit>
       <trans-unit id="8efccd48a225d0b8fb2715f1975232e5" resname="tab.scores">
         <source>tab.scores</source>
@@ -222,81 +242,13 @@
         <source>tourist.gender</source>
         <target>__tourist.gender</target>
       </trans-unit>
-      <trans-unit id="e24a5205ebc5ffa4869853b62950ada2" resname="header.tourists">
-        <source>header.tourists</source>
-        <target>__header.tourists</target>
+      <trans-unit id="e056a5166a9f2756c0ee347311d186c3" resname="tourist.index.title">
+        <source>tourist.index.title</source>
+        <target>__tourist.index.title</target>
       </trans-unit>
-      <trans-unit id="7c11bfbcf2148412ddafc3e7fbeed84f" resname="tourist.creationDate">
-        <source>tourist.creationDate</source>
-        <target>__tourist.creationDate</target>
-      </trans-unit>
-      <trans-unit id="ffbf5dad3548a84855131e746d7d3c4c" resname="changes_saved">
-        <source>changes_saved</source>
-        <target>__changes_saved</target>
-      </trans-unit>
-      <trans-unit id="8c6f4f6f11f31473c6de362e5fb036e5" resname="category.edit.title">
-        <source>category.edit.title</source>
-        <target>__category.edit.title</target>
-      </trans-unit>
-      <trans-unit id="aeec7d0d547f2e00d9ec2ed9ecaac968" resname="category.edit.desc">
-        <source>category.edit.desc</source>
-        <target>__category.edit.desc</target>
-      </trans-unit>
-      <trans-unit id="35b91e165e1b658bdd0804f83535465d" resname="btn.edit">
-        <source>btn.edit</source>
-        <target>__btn.edit</target>
-      </trans-unit>
-      <trans-unit id="f2e8155b849f7e0831511494aeca39c8" resname="btn.delete">
-        <source>btn.delete</source>
-        <target>__btn.delete</target>
-      </trans-unit>
-      <trans-unit id="3494a0217d0baeb024b856527515b28f" resname="btn.add">
-        <source>btn.add</source>
-        <target>__btn.add</target>
-      </trans-unit>
-      <trans-unit id="09d877a04b4a7082eb72bb2f7711db8f" resname="category.add.title">
-        <source>category.add.title</source>
-        <target>__category.add.title</target>
-      </trans-unit>
-      <trans-unit id="328068d4790c701e4bb174a6dafe912a" resname="category.add.desc">
-        <source>category.add.desc</source>
-        <target>__category.add.desc</target>
-      </trans-unit>
-      <trans-unit id="9b513ded5a5afd29be44c23cd3042935" resname="btn.back">
-        <source>btn.back</source>
-        <target>__btn.back</target>
-      </trans-unit>
-      <trans-unit id="589f9344f6f8d534599c7967875369ad" resname="question.edit.title">
-        <source>question.edit.title</source>
-        <target>__question.edit.title</target>
-      </trans-unit>
-      <trans-unit id="db1ad78cc57de81dff1e76636c228dda" resname="question.edit.desc">
-        <source>question.edit.desc</source>
-        <target>__question.edit.desc</target>
-      </trans-unit>
-      <trans-unit id="532d85eefe6c49804329e1af759cea61" resname="question.index.title">
-        <source>question.index.title</source>
-        <target>__question.index.title</target>
-      </trans-unit>
-      <trans-unit id="080f22beb36b727dcc74f2c37d028b09" resname="question.index.desc">
-        <source>question.index.desc</source>
-        <target>__question.index.desc</target>
-      </trans-unit>
-      <trans-unit id="37e41bf1b649675c545c2c55e43b6037" resname="question.add.title">
-        <source>question.add.title</source>
-        <target>__question.add.title</target>
-      </trans-unit>
-      <trans-unit id="6bb85582c5136db4f57fa5f6af124f69" resname="question.add.desc">
-        <source>question.add.desc</source>
-        <target>__question.add.desc</target>
-      </trans-unit>
-      <trans-unit id="5af6da5e3bbe37fe7c72c8adb196b0de" resname="btn.remove">
-        <source>btn.remove</source>
-        <target>__btn.remove</target>
-      </trans-unit>
-      <trans-unit id="c4ef352f74e502ef5e7bc98e6f4e493d" resname="category">
-        <source>category</source>
-        <target>__category</target>
+      <trans-unit id="0b3937d3940d78e582324074387de760" resname="tourist.index.desc">
+        <source>tourist.index.desc</source>
+        <target>__tourist.index.desc</target>
       </trans-unit>
     </body>
   </file>

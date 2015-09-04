@@ -2,7 +2,8 @@
 
 {% block title %}Quiz{% endblock %}
 
-{% block header %}{{ 'header.tourists'|trans }}{% endblock %}
+{% block header %}{{ 'tourist.index.title'|trans }}{% endblock %}
+{% block header_desc %}{{ 'tourist.index.desc'|trans }}{% endblock %}
 
 {% block body %}
     <div class="box">
@@ -11,7 +12,7 @@
                 <tbody>
                     <tr>
                         <th>{{ 'tourist.reference'|trans }}</th>
-                        <th>{{ 'tourist.creationDate'|trans }}</th>
+                        <th>{{ 'tourist.creation_date'|trans }}</th>
                     </tr>
                     {% for tourist in tourists %}
                         <tr>

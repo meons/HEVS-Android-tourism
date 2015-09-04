@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block header %}{{ 'quiz.add.title'|trans }}{% endblock %}
+{% block header_desc %}{{ 'quiz.add.desc'|trans }}{% endblock %}
+
 {% block body %}
-    <h1>Quiz creation</h1>
 
     {{ form_start(form) }}
         {{ form_widget(form) }}

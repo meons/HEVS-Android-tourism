@@ -2,28 +2,27 @@
 
 {% block title %}Quiz{% endblock %}
 
+{% block header %}{{ 'header.tourists'|trans }}{% endblock %}
+
 {% block body %}
     <div class="box">
-        <div class="box-header">
-            <h3 class="box-title">{{ 'title.tourist_list'|trans }}</h3>
-        </div><!-- /.box-header -->
         <div class="box-body no-padding">
             <table class="table table-bordered">
                 <tbody>
                     <tr>
-                        <th style="width: 10px">#</th>
-                        <th>Reference</th>
-                        <th></th>
+                        <th>{{ 'tourist.reference'|trans }}</th>
+                        <th>{{ 'tourist.creationDate'|trans }}</th>
                     </tr>
                     {% for tourist in tourists %}
                         <tr>
-                            <td>1.</td>
                             <td>
                                 <a href="{{ path('result_tourist_quizzes', { tourist_id: tourist.id }) }}">
                                     {{ tourist.reference }}
                                 </a>
                             </td>
-                            <td></td>
+                            <td>
+                                {{ tourist.creationDate|date("d.m.Y H:i") }}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="de" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="2274e7ff28c0bd3603be36973405cb60" resname="quiz.title">
+        <source>quiz.title</source>
+        <target>__quiz.title</target>
+      </trans-unit>
+      <trans-unit id="22112f942647646ef95c1101ffc015b0" resname="result.title">
+        <source>result.title</source>
+        <target>__result.title</target>
+      </trans-unit>
+      <trans-unit id="22c065c5841dc2d60e565f7577c13701" resname="default.title">
+        <source>default.title</source>
+        <target>Home page DE</target>
+      </trans-unit>
+      <trans-unit id="8e7a98bde171d8550dcf27214bc12a30" resname="default.desc">
+        <source>default.desc</source>
+        <target>__default.desc</target>
+      </trans-unit>
+      <trans-unit id="69da9f144e7501d0b19d09ede8e339ee" resname="stat.office_quizzes">
+        <source>stat.office_quizzes</source>
+        <target>__stat.office_quizzes</target>
+      </trans-unit>
+      <trans-unit id="04a2c6d9a91ccd85e8adb9f72d5e2411" resname="stat.tourist_quizzes">
+        <source>stat.tourist_quizzes</source>
+        <target>__stat.tourist_quizzes</target>
+      </trans-unit>
+      <trans-unit id="db6a01bf16a4b0246ba37373d83c59c1" resname="question.edit">
+        <source>question.edit</source>
+        <target>__question.edit</target>
+      </trans-unit>
+      <trans-unit id="33a604319045a34cae41e9d024cb646e" resname="question.creation">
+        <source>question.creation</source>
+        <target>__question.creation</target>
+      </trans-unit>
+      <trans-unit id="9a1003654f70942b24e944a438caba62" resname="quiz.edit">
+        <source>quiz.edit</source>
+        <target>__quiz.edit</target>
+      </trans-unit>
+      <trans-unit id="f17aaabc20bfe045075927934fed52d2" resname="basic">
+        <source>basic</source>
+        <target>__basic</target>
+      </trans-unit>
+      <trans-unit id="b0b5ccb4a195a07fd3eed14affb8695f" resname="categories">
+        <source>categories</source>
+        <target>__categories</target>
+      </trans-unit>
+      <trans-unit id="07414f4e15ca943e6cde032dec85d92f" resname="structure">
+        <source>structure</source>
+        <target>__structure</target>
+      </trans-unit>
+      <trans-unit id="5ba88d25175d87cb5977cb56e01ed17c" resname="recommendation">
+        <source>recommendation</source>
+        <target>__recommendation</target>
+      </trans-unit>
+      <trans-unit id="083dbf7e7d10b583d9b735c651bd624f" resname="back_list">
+        <source>back_list</source>
+        <target>__back_list</target>
+      </trans-unit>
+      <trans-unit id="099af53f601532dbd31e0ea99ffdeb64" resname="delete">
+        <source>delete</source>
+        <target>__delete</target>
+      </trans-unit>
+      <trans-unit id="de95b43bceeb4b998aed4aed5cef1ae7" resname="edit">
+        <source>edit</source>
+        <target>__edit</target>
+      </trans-unit>
+      <trans-unit id="34ec78fcc91ffb1e54cd85e4a0924332" resname="add">
+        <source>add</source>
+        <target>__add</target>
+      </trans-unit>
+      <trans-unit id="05665e8f1b8de00759c9d0eab6a5ef57" resname="title.tourist_list">
+        <source>title.tourist_list</source>
+        <target>__title.tourist_list</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

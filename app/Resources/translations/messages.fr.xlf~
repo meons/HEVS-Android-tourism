@@ -1,27 +1,175 @@
-<?xml version="1.0"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="1">
-                <source>quiz.title</source>
-                <target>Quiz</target>
-            </trans-unit>
-            <trans-unit id="2">
-                <source>result.title</source>
-                <target>Résultats</target>
-            </trans-unit>
-            <trans-unit id="3">
-                <source>stat.office_quizzes</source>
-                <target>Quiz de l'office du tourism</target>
-            </trans-unit>
-            <trans-unit id="4">
-                <source>stat.tourist_quizzes</source>
-                <target>Touristes ayant répondu au quiz</target>
-            </trans-unit>
-            <trans-unit id="5">
-                <source>title.tourist_list</source>
-                <target>Tous les touristes</target>
-            </trans-unit>
-        </body>
-    </file>
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="2274e7ff28c0bd3603be36973405cb60" resname="quiz.title">
+        <source>quiz.title</source>
+        <target>Quiz</target>
+      </trans-unit>
+      <trans-unit id="22112f942647646ef95c1101ffc015b0" resname="result.title">
+        <source>result.title</source>
+        <target>Résultats</target>
+      </trans-unit>
+      <trans-unit id="69da9f144e7501d0b19d09ede8e339ee" resname="stat.office_quizzes">
+        <source>stat.office_quizzes</source>
+        <target>Quiz de l'office du tourisme</target>
+      </trans-unit>
+      <trans-unit id="04a2c6d9a91ccd85e8adb9f72d5e2411" resname="stat.tourist_quizzes">
+        <source>stat.tourist_quizzes</source>
+        <target>Touristes ayant répondu aux quiz</target>
+      </trans-unit>
+      <trans-unit id="05665e8f1b8de00759c9d0eab6a5ef57" resname="title.tourist_list">
+        <source>title.tourist_list</source>
+        <target>Tous les touristes</target>
+      </trans-unit>
+      <trans-unit id="785fa5247813fd6effd9d1986eac1444" resname="home.title">
+        <source>home.title</source>
+        <target>Page d'accueil</target>
+      </trans-unit>
+      <trans-unit id="242b87830145951c81b081c915511281" resname="home.desc">
+        <source>home.desc</source>
+        <target>Quelques statistiques sur cette page</target>
+      </trans-unit>
+      <trans-unit id="761b4dde9f845ae8658ea5a084fd8fb7" resname="stats.office_quizzes">
+        <source>stats.office_quizzes</source>
+        <target>Nombre de quiz pour cet office de tourisme</target>
+      </trans-unit>
+      <trans-unit id="b372a011208a2b971d51e1a3c3d010c4" resname="stats.tourist_quizzes">
+        <source>stats.tourist_quizzes</source>
+        <target>Tourises ayant répondu aux quiz</target>
+      </trans-unit>
+      <trans-unit id="90bc5ab0b6fe726f0d2d821529878464" resname="stats.all_members">
+        <source>stats.all_members</source>
+        <target>Tous les membres du staff</target>
+      </trans-unit>
+      <trans-unit id="0acf66abb2e2603b5dfc6b21fb104a5b" resname="tourists_quiz_answer">
+        <source>tourists_quiz_answer</source>
+        <target>Références des touristes (réponse au quiz)</target>
+      </trans-unit>
+      <trans-unit id="1379804f23c75f106d0aa7bc012e743e" resname="tourist_reference">
+        <source>tourist_reference</source>
+        <target>Référence</target>
+      </trans-unit>
+      <trans-unit id="db6a01bf16a4b0246ba37373d83c59c1" resname="question.edit">
+        <source>question.edit</source>
+        <target>__question.edit</target>
+      </trans-unit>
+      <trans-unit id="33a604319045a34cae41e9d024cb646e" resname="question.creation">
+        <source>question.creation</source>
+        <target>__question.creation</target>
+      </trans-unit>
+      <trans-unit id="c5b0444da14b43496eb3645e3bb8730a" resname="quiz.edit.title">
+        <source>quiz.edit.title</source>
+        <target>Modifier un quiz</target>
+      </trans-unit>
+      <trans-unit id="8ef3bce4ae29976e0d88676573c0f12d" resname="quiz.edit.desc">
+        <source>quiz.edit.desc</source>
+        <target>Vous pouvez modifier un quiz sur cette page</target>
+      </trans-unit>
+      <trans-unit id="f17aaabc20bfe045075927934fed52d2" resname="basic">
+        <source>basic</source>
+        <target>Basique</target>
+      </trans-unit>
+      <trans-unit id="b0b5ccb4a195a07fd3eed14affb8695f" resname="categories">
+        <source>categories</source>
+        <target>Catégories</target>
+      </trans-unit>
+      <trans-unit id="07414f4e15ca943e6cde032dec85d92f" resname="structure">
+        <source>structure</source>
+        <target>Structure</target>
+      </trans-unit>
+      <trans-unit id="5ba88d25175d87cb5977cb56e01ed17c" resname="recommendation">
+        <source>recommendation</source>
+        <target>Recommendations</target>
+      </trans-unit>
+      <trans-unit id="de95b43bceeb4b998aed4aed5cef1ae7" resname="edit">
+        <source>edit</source>
+        <target>Modifier</target>
+      </trans-unit>
+      <trans-unit id="34ec78fcc91ffb1e54cd85e4a0924332" resname="add">
+        <source>add</source>
+        <target>Ajouter</target>
+      </trans-unit>
+      <trans-unit id="d4dc063965459ee1f75dd07671e460d3" resname="recommendation.name">
+        <source>recommendation.name</source>
+        <target>Nom de la recommendation</target>
+      </trans-unit>
+      <trans-unit id="083dbf7e7d10b583d9b735c651bd624f" resname="back_list">
+        <source>back_list</source>
+        <target>Retour</target>
+      </trans-unit>
+      <trans-unit id="099af53f601532dbd31e0ea99ffdeb64" resname="delete">
+        <source>delete</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="a644e33496210d8c2bcb9211dee90a5c" resname="quiz.index.title">
+        <source>quiz.index.title</source>
+        <target>Liste des quiz</target>
+      </trans-unit>
+      <trans-unit id="68cc6e06b9e938d59f7cf43677a2913b" resname="quiz.index.desc">
+        <source>quiz.index.desc</source>
+        <target>Vous pouvez voir la liste des quiz sur cette page</target>
+      </trans-unit>
+      <trans-unit id="075892d1c1999ee5fa303de909a41fe5" resname="quiz.name">
+        <source>quiz.name</source>
+        <target>Nom du quiz</target>
+      </trans-unit>
+      <trans-unit id="dbb7b369e075c892786a9a054bccebf0" resname="quiz.add.title">
+        <source>quiz.add.title</source>
+        <target>Ajouter un quiz</target>
+      </trans-unit>
+      <trans-unit id="d3aefced8ca3f4fb746af9785973e374" resname="quiz.add.desc">
+        <source>quiz.add.desc</source>
+        <target>Vous pouvez ajouter un quiz sur cette page</target>
+      </trans-unit>
+      <trans-unit id="bceaf17210d5283cb29152c693ef76f5" resname="recommendation.edit.title">
+        <source>recommendation.edit.title</source>
+        <target>Modifier une recommendation</target>
+      </trans-unit>
+      <trans-unit id="20677d29d135628bd86abf4f189f4ecd" resname="recommendation.edit.desc">
+        <source>recommendation.edit.desc</source>
+        <target>Vous pouvez modifier une recommendation sur cette page</target>
+      </trans-unit>
+      <trans-unit id="43781db5c40ecc39fd718685594f0956" resname="save">
+        <source>save</source>
+        <target>Sauvegarder</target>
+      </trans-unit>
+      <trans-unit id="2b0039346edeb9a3adf27cf19d9e5bbc" resname="recommendation.add.title">
+        <source>recommendation.add.title</source>
+        <target>Ajouter une recommendation</target>
+      </trans-unit>
+      <trans-unit id="7f42745771e7fa749a50d9f36313f7fc" resname="recommendation.add.desc">
+        <source>recommendation.add.desc</source>
+        <target>Vous pouvez ajouter une recommendation sur cette page</target>
+      </trans-unit>
+      <trans-unit id="6d71b91eeb11b5a5d547737d6dd7e6e8" resname="header.quizzes">
+        <source>header.quizzes</source>
+        <target>__header.quizzes</target>
+      </trans-unit>
+      <trans-unit id="1147490bd24cabcb0d82b93f0720c502" resname="quizzes.title">
+        <source>quizzes.title</source>
+        <target>__quizzes.title</target>
+      </trans-unit>
+      <trans-unit id="0929464e7ee438d90c23190ab7198c23" resname="tourist.reference">
+        <source>tourist.reference</source>
+        <target>__tourist.reference</target>
+      </trans-unit>
+      <trans-unit id="b6935927f111484113ec9f5ea5fa962d" resname="participation.creation_date">
+        <source>participation.creation_date</source>
+        <target>__participation.creation_date</target>
+      </trans-unit>
+      <trans-unit id="9c808e27845e4e4ec593d8bdfe12f11a" resname="label.new">
+        <source>label.new</source>
+        <target>__label.new</target>
+      </trans-unit>
+      <trans-unit id="e24a5205ebc5ffa4869853b62950ada2" resname="header.tourists">
+        <source>header.tourists</source>
+        <target>__header.tourists</target>
+      </trans-unit>
+      <trans-unit id="7c11bfbcf2148412ddafc3e7fbeed84f" resname="tourist.creationDate">
+        <source>tourist.creationDate</source>
+        <target>__tourist.creationDate</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

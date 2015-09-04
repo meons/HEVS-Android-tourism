@@ -28,4 +28,12 @@ class DefaultController extends Controller
             'tourists' => $tourists
         ));
     }
+
+    /**
+     * @Route("/about", name="about")
+     */
+    public function aboutAction()
+    {
+        return $this->render('default/about.html.twig');
+    }
 }

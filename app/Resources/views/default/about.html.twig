@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {{ 'about.title'|trans }}
+{% endblock %}
+
+{% block header_desc %}
+    {{ 'about.desc'|trans }}
+{% endblock %}
+
+{% block body %}
+    <img src="{{ asset('resources/img/about_logo.png') }}" />
+{% endblock %}

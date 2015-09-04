@@ -250,6 +250,14 @@
         <source>tourist.index.desc</source>
         <target>__tourist.index.desc</target>
       </trans-unit>
+      <trans-unit id="2ad2937037c9f1245ef40037c08a6f30" resname="tourist.gender.male">
+        <source>tourist.gender.male</source>
+        <target>Man</target>
+      </trans-unit>
+      <trans-unit id="2ad2937037c9f8469ef40037c08a6f30" resname="tourist.gender.female">
+        <source>tourist.gender.female</source>
+        <target>Frau</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

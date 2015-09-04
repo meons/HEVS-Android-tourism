@@ -26,7 +26,9 @@ class TouristRepository extends EntityRepository
             ->join('t.participations', 'p')
             ->join('p.quiz', 'q')
             ->join('q.office', 'o')
-            ->where('o = :office')->setParameter('office', $office);
+            ->where('o = :office')->setParameter('office', $office)
+            ->orderBy('p.createdAt', 'DESC')
+        ;
 
         return $qb->getQuery()->getResult();
     }

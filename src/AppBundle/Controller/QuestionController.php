@@ -70,6 +70,10 @@ class QuestionController extends Controller
      */
     public function showAction(Request $request)
     {
+        if ($request->query->get('id', 0) == 0) {
+            return new JsonResponse(array());
+        }
+
         $question = $this->getDoctrine()->getRepository('AppBundle:Question')->find($request->query->get('id'));
         $tree = array();
         TreeQuizResponse::tree($tree, $question);
